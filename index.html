@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>LttP Item Tracker</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css" type="text/css">
+    
+        <script src="script/items.js"></script>
+        <script src="script/chests.js"></script>
+        <script src="script/main.js"></script>
+    </head>
+
+    <body>
+    
+        <div id='layoutdiv'>
+            <div id='itemdiv' class='itemdiv'>
+            </div>
+            <div id='mapdiv' class='mapdiv'>
+            </div>
+        </div>
+        <div width='100%' id="caption" align='center'>
+            &nbsp
+        </div>
+        
+        <!-- Setting panel-->
+        
+        <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
+        <fieldset id='settings' class='settings'>
+            <legend>Settings</legend>
+            <fieldset>
+                <legend>Item Tracker</legend>
+                <button type="button" onclick="EditMode()">Edit Mode</button>
+                <br>
+                Size<input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
+                <span id='itemdivsize'>100%</span><br>
+                <fieldset>
+                    <legend>Dungeon Display</legend>
+                    <input type="checkbox" name="showchest" checked='true' onchange="showChest(this)">Chests
+                    <input type="checkbox" name="showcrystal" checked='true' onchange="showCrystal(this)">Prizes
+                    <input type="checkbox" name="showmedallion" checked='true' onchange="showMedallion(this)">Medals<br>
+                </fieldset>
+            </fieldset>
+            <fieldset>
+                <legend>Map Tracker</legend>
+                <input type="checkbox" name="showmap" checked='true' onchange="showTracker('mapdiv', this)">Enabled<br>
+                Size<input type="range" name='mapdivsize' value='100' max='200' min='1' onchange="setZoom('mapdiv', this)">
+                <span id='mapdivsize'>100%</span><br>
+                Position:
+                <input type='radio' name='mapposition' value='Below' checked='true' onclick="setOrder(true)">Below
+                <input type='radio' name='mapposition' value='Side' onclick="setOrder(false)">Side<br>
+                Orientation:
+                <input type='radio' name='maporientation' value='Horizontal' checked='true' onclick="setMapOrientation(false)">Horizontal
+                <input type='radio' name='maporientation' value='Verical' onclick="setMapOrientation(true)">Vertical<br>
+            </fieldset>
+        </fieldset>
+        
+        <table id='itemconfig' class='itemconfig' style='display:none'></table>
+        
+        <script>
+            init();
+        </script>
+        
+        <footer style='bottom:0; width:100%; text-align: center; position: absolute; color:grey'>Lttp Item Randomizer v1.0 -
+            TestRunner (Based on <a href="https://www.twitch.tv/crossproduct">Stoop Cross Cheet 4.0</a>)
+        </footer>
+    </body>
+</html>
+

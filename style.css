@@ -1,0 +1,190 @@
+
+body{
+    background-color: rgb(0,0,0);
+    margin: 0px;
+    color: white;
+}
+
+.flexcontainer {
+    display: flex;
+}
+
+.settings{
+    background-color: rgb(0,0,0);	
+    position: absolute;
+    right:0;
+    bottom:0;
+    z-index : 10;
+    display: none;
+}
+
+#settingsbutton{
+    position: absolute;
+    right:0;
+    bottom:0;
+    z-index : 11;	
+    background-color: rgb(0,0,0);	
+    color: red;
+}
+
+.tracker{
+    background-color: rgb(0,0,0);
+    position: relative;
+    left: 0px;
+    top: 0px;
+    empty-cells: show;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+.tracker td{
+    width: 64px;
+    height: 64px;
+    padding: 0px;
+    background-repeat: no-repeat;
+    background-size: 64px 64px;
+}
+
+.tracker .halfcell {
+    width: 32px;
+    height: 64px;	
+}
+
+.itemconfig {
+    border-spacing: 0px;
+    border: 1px solid white;	
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.stoops{
+    width: 128;
+    height: 128;
+    background-size: 200% 200%;
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display:inline-block;
+    *display: inline;     /* for IE7*/
+    zoom:1;              /* for IE7*/
+    vertical-align:middle;
+    margin-left:20px
+}
+
+label {
+    display:inline-block;
+    *display: inline;     /* for IE7*/
+    zoom:1;              /* for IE7*/
+    float: left;
+    padding-top: 5px;
+    text-align: right;
+    width: 140px;
+}
+
+.lonk{
+    width: 64px;
+    height: 64px;
+    border-spacing: 0px;
+    border: 0px;
+}
+
+.corner{
+    width: 32px;
+    height: 32px;
+}
+
+.true{
+    opacity: 1;
+}
+
+.false{
+    opacity: 0.25;
+}
+
+.mini{
+    width: 16;
+    height: 16;
+    vertical-align: text-bottom;
+}
+
+.boss{
+    width: 12;
+    height: 12;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75% 75%;
+
+    position: absolute;
+    margin-left: -6px;
+    margin-top: -6px;
+
+    z-index: 2;
+}
+
+.dungeon{
+    width: 24;
+    height: 24;
+    background-size: 100% 100%;
+
+    position: absolute;
+    margin-left: -12px;
+    margin-top: -12px;
+}
+
+.itemdiv{
+    position: relative;
+    left: 0px;
+}
+
+.mapdiv{
+    background-image: url("images/map.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    position: relative;
+    width: 825px;
+    height: 466px;
+    left: 0px;
+}
+
+.mapvdiv{
+    background-image: url("images/mapv.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    position: relative;
+    width: 438px;
+    height: 888px;
+    left: 0px;
+}
+
+.chest{
+    width: 16;
+    height: 16;
+    background-size: 100% 100%;
+
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+}
+
+.unavailable{
+    background-color: rgb(255,0,0);
+}
+
+.available{
+    background-color: rgb(0,255,0);
+}
+
+.possible{
+    background-color: rgb(210,190,30);
+}
+
+.opened{
+    background-color: rgb(127,127,127);
+}
