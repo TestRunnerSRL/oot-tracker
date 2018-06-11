@@ -20,7 +20,7 @@ var dungeons = [
         name: "Deku Tree",
         x: "87.0%",
         y: "57.0%",
-        image: "kokiriEmerald.png",
+        image: "KokiriEmerald.png",
         chestlist: {
             ['Deku Tree Lobby Chest']: function () {return true},
             ['Deku Tree Compass Chest']: function () {return true},
@@ -47,7 +47,7 @@ var dungeons = [
         name: "Water Temple",
         x: "36.1%",
         y: "91.0%",
-        image: "watermedallion.png",
+        image: "WaterMedallion.png",
         chestlist: {
             ['Water Temple Map Chest']: function () {
                 return items.ZoraTunic && items.IronBoots && items.Hookshot; },
@@ -88,7 +88,7 @@ var dungeons = [
         name: "Gerudo Training Grounds",
         x: "18.8%",
         y: "28.0%",
-        image: "ice.png",
+        image: "Ice.png",
         chestlist: {
             ['Gerudo Training Grounds Lobby Left Chest']:  function () {
                 return (items.EponasSong || items.Hookshot >= 2) && items.Bow; },
@@ -204,7 +204,7 @@ var dungeons = [
         name: "Bottom of the Well",
         x: "68.8%",
         y: "20.0%",
-        image: "lens.png",
+        image: "Lens.png",
         chestlist: {
             ['Bottom of the Well Front Left Hidden Wall']:  function () {
                 return items.SongofStorms && items.Lens && items.Magic; },
@@ -298,7 +298,7 @@ var dungeons = [
         name: "GoronRuby's Cavern",
         x: "60.0%",
         y: "13.0%",
-        image: "boss02.png",
+        image: "GoronRuby.png",
         chestlist: {
             ['Dodongos Cavern Map Chest']:  function () {
                 return items.Bombs || items.Hammer || items.Glove  ; },
@@ -477,7 +477,7 @@ var dungeons = [
         name: "Ganon's Castle",
         x: "52.0%",
         y: "10.0%",
-        image: "light.png",
+        image: "Light.png",
         chestlist: {
             ['Ganons Castle Forest Trial Chest']: function () { 
                 return true; },
