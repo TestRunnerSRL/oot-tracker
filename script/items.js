@@ -97,7 +97,7 @@ var items = {
     Glove:0,
     Scale:0,
     StoneofAgony:false,
-    Magic:false,
+    Magic:0,
     ZoraLetter:false, 
 
     ZeldasLullaby:false,
@@ -146,6 +146,7 @@ var itemsMin = {
     Bottle:0,
     Glove:0,
     Scale:0,
+    Magic:0,
 
 	boss0: 1,
 	boss1: 1,
@@ -165,6 +166,7 @@ var itemsMax = {
     Bottle:4,
     Glove:3,
     Scale:2,
+    Magic:2,
 
 	boss0: 2,
 	boss1: 2,
