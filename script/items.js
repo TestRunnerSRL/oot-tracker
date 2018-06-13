@@ -71,12 +71,12 @@ var defaultItemGrid = [
 
 
 var items = {
-    Bow:false,
+    Bow:0,
     Hookshot:0,
     Hammer:false,
-    Slingshot:false,
+    Slingshot:0,
     Boomerang:false,
-    Bombs:false,
+    Bombs:0,
     Lens:false,
     Dins:false,
     Farores:false,
@@ -141,6 +141,9 @@ var dungeonchests = {
 
 
 var itemsMin = {
+    Bow:0,
+    Slingshot:0,
+    Bombs:0,    
     Hookshot:0,
     Ocarina:1,
     Bottle:0,
@@ -161,6 +164,9 @@ var itemsMin = {
 };
 
 var itemsMax = {
+    Bow:3,
+    Slingshot:3,
+    Bombs:3,    
     Hookshot:2,
     Ocarina:2,
     Bottle:4,
