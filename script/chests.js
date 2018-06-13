@@ -1127,7 +1127,7 @@ var chests = [
         y: "05.2%",
         isOpened: false,
         isAvailable: function(){
-            if(items.BoleroofFire || (items.GoronTunic && (items.HoverBoots || items.Hookshot)))
+            if(items.BoleroofFire || items.HoverBoots || items.Hookshot)
                 return "available";
             return "unavailable";
         }
@@ -1138,7 +1138,7 @@ var chests = [
         y: "06.0%",
         isOpened: false,
         isAvailable: function(){
-            if(items.GoronTunic && items.Hammer && items.ZeldasLullaby)
+            if(items.Hammer && items.ZeldasLullaby)
                 return "available";
             return "unavailable";
         }
