@@ -851,6 +851,7 @@ function populateMapdiv() {
         s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
         s.onmouseover = new Function('highlightDungeonChest(this)');
         s.onmouseout = new Function('unhighlightDungeonChest(this)');
+        s.style.cursor = "pointer";
 
         document.getElementById('submaplist').appendChild(s)
     }
