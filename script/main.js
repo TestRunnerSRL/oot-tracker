@@ -167,6 +167,7 @@ function clickDungeon(d){
         s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
         s.onmouseover = new Function('highlightDungeonChest(this)');
         s.onmouseout = new Function('unhighlightDungeonChest(this)');
+        s.style.cursor = "pointer";
 
         DClist.appendChild(s)
     }

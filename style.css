@@ -11,18 +11,18 @@ body{
 
 .settings{
     background-color: rgb(0,0,0);	
-    position: absolute;
+    position: fixed;
     right:0;
-    bottom:0;
+    bottom: 0;
     z-index : 10;
     display: none;
 }
 
 #settingsbutton{
-    position: absolute;
+    position: fixed;
     right:0;
     bottom:0;
-    z-index : 11;	
+    z-index:11;	
     background-color: rgb(0,0,0);	
     color: red;
 }
