@@ -28,7 +28,7 @@ body{
 }
 
 .tracker{
-    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0);
     position: relative;
     left: 0px;
     top: 0px;
@@ -152,6 +152,17 @@ label {
     left: 0px;
 }
 
+
+.submapdiv{
+    background-color: black;
+
+    position: absolute;
+    width: 240px;
+    height: 260px;
+    margin-top: 206px;
+}
+
+
 .mapvdiv{
     background-image: url("images/mapv.png");
     background-size: cover;
@@ -187,4 +198,25 @@ label {
 
 .opened{
     background-color: rgb(127,127,127);
+}
+
+
+.DCunavailable{
+    color: rgb(255,0,0);
+}
+
+.DCavailable{
+    color: rgb(0,255,0);
+}
+
+.DCpossible{
+    color: rgb(210,190,30);
+}
+
+.DCopened{
+    color: rgb(127,127,127);
+}
+
+.DChighlight{
+    color: rgb(255,255,0);
 }

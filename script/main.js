@@ -10,6 +10,8 @@ var showmedals = true;
 var editmode = false;
 var selected = {};
 
+var dungeonSelect = 0;
+
 function setCookie(obj) {
     var d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
@@ -136,9 +138,71 @@ function highlightDungeon(x){
 }
 
 function unhighlightDungeon(x){
-    document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
+    if (dungeonSelect != x)
+        document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
     document.getElementById("caption").innerHTML = "&nbsp;";
 }
+
+function clickDungeon(d){
+    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/poi.png)";
+    dungeonSelect = d;
+    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/highlighted.png)";
+
+    document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
+    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
+    var DClist = document.getElementById('submaplist');
+    DClist.innerHTML = ""
+
+    for (var key in dungeons[dungeonSelect].chestlist) {
+        var s = document.createElement('li');
+        s.innerHTML = key
+
+        if ( dungeons[dungeonSelect].chestlist[key].isOpened)
+            s.className = "DCopened";               
+        else if ( dungeons[dungeonSelect].chestlist[key].isAvailable())
+            s.className = "DCavailable";               
+        else
+            s.className = "DCunavailable";               
+
+        s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
+        s.onmouseover = new Function('highlightDungeonChest(this)');
+        s.onmouseout = new Function('unhighlightDungeonChest(this)');
+
+        DClist.appendChild(s)
+    }
+}
+
+function toggleDungeonChest(sender, d, c){
+    dungeons[d].chestlist[c].isOpened = !dungeons[d].chestlist[c].isOpened;
+    if(dungeons[d].chestlist[c].isOpened)
+        sender.className = "DCopened";
+    else if(dungeons[d].chestlist[c].isAvailable())
+        sender.className = "DCavailable";     
+    else
+        sender.className = "DCunavailable";
+    document.getElementById("dungeon"+d).className = "mapspan dungeon " + dungeons[d].canGetChest();
+
+    var DCcount = 0;
+    for (var key in dungeons[d].chestlist) {
+        if (dungeons[d].chestlist.hasOwnProperty(key)) {
+            if (!dungeons[d].chestlist[key].isOpened && dungeons[d].chestlist[key].isAvailable())
+                DCcount++;
+        }
+    }
+    if (DCcount == 0)
+        document.getElementById("dungeon"+d).innerHTML = "";
+    else
+        document.getElementById("dungeon"+d).innerHTML = DCcount;
+}
+
+function highlightDungeonChest(x){
+    x.style.backgroundColor = "#282828"
+}
+
+function unhighlightDungeonChest(x){
+    x.style.backgroundColor = ""
+}
+
 
 function showChest(sender) {
     showchests = sender.checked;
@@ -579,13 +643,8 @@ function gridItemClick(row, col, corner) {
             if(medallions[d] == 4)
                 medallions[d] = 0;
             // Update availability of dungeon boss AND chests
-            if(dungeons[d].isBeaten)
-                document.getElementById("bossMap"+d).className = "mapspan boss opened";
-            else
-                document.getElementById("bossMap"+d).className = "mapspan boss " + dungeons[d].isBeatable();
-
             if(dungeonchests[d] > 0)
-                document.getElementById("dungeon"+d).className = "mapspan 1dungeon " + dungeons[d].canGetChest();
+                document.getElementById("dungeon"+d).className = "mapspan dungeon " + dungeons[d].canGetChest();
             // TRock medallion affects Mimic Cave
             if(d == 9){
                 chests[4].isOpened = !chests[4].isOpened;
@@ -628,11 +687,6 @@ function gridItemClick(row, col, corner) {
             }
 
             dungeons[d].isBeaten = !dungeons[d].isBeaten;
-            if(dungeons[d].isBeaten)
-                document.getElementById("bossMap"+d).className = "mapspan boss opened";
-            else
-                document.getElementById("bossMap"+d).className = "mapspan boss " + dungeons[d].isBeatable();
-
         }
     }
     else if((typeof items[item]) == "boolean"){
@@ -650,10 +704,32 @@ function gridItemClick(row, col, corner) {
             document.getElementById(k).className = "mapspan chest " + chests[k].isAvailable();
     }
     for(k=0; k<dungeons.length; k++){
-        if(!dungeons[k].isBeaten)
-            document.getElementById("bossMap"+k).className = "mapspan boss " + dungeons[k].isBeatable();
-        //if(dungeonchests[k])
-            document.getElementById("dungeon"+k).className = "mapspan dungeon " + dungeons[k].canGetChest();
+        document.getElementById("dungeon"+k).className = "mapspan dungeon " + dungeons[k].canGetChest();
+
+        var DCcount = 0;
+        for (var key in dungeons[k].chestlist) {
+            if (dungeons[k].chestlist.hasOwnProperty(key)) {
+                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable())
+                    DCcount++;
+            }
+        }
+        if (DCcount == 0)
+            document.getElementById("dungeon"+k).innerHTML = "";
+        else
+            document.getElementById("dungeon"+k).innerHTML = DCcount;
+    }
+
+    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
+    var itemlist = document.getElementById('submaplist').children
+    for (var item in itemlist) {
+        if (itemlist.hasOwnProperty(item)) {
+            if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isOpened)
+                itemlist[item].className = "DCopened";            
+            else if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isAvailable())
+                itemlist[item].className = "DCavailable";        
+            else
+                itemlist[item].className = "DCunavailable";                
+        }
     }
 
     updateGridItem(row,col);
@@ -730,26 +806,55 @@ function populateMapdiv() {
 
     // Dungeon bosses & chests
     for(k=0; k<dungeons.length; k++){
-        var s = document.createElement('span');
-        s.style.backgroundImage = 'url(images/' + dungeons[k].image + ')';
-        s.id = 'bossMap' + k;
-        s.onmouseover = new Function('highlightDungeon('+k+')');
-        s.onmouseout = new Function('unhighlightDungeon('+k+')');
-        s.style.left = dungeons[k].x;
-        s.style.top = dungeons[k].y;
-        s.className = "mapspan boss " + dungeons[k].isBeatable();
-        mapdiv.appendChild(s);
-
         s = document.createElement('span');
         s.style.backgroundImage = 'url(images/poi.png)';
         s.id = 'dungeon' + k;
+
+        s.onclick = new Function('clickDungeon('+k+')');
         s.onmouseover = new Function('highlightDungeon('+k+')');
         s.onmouseout = new Function('unhighlightDungeon('+k+')');
         s.style.left = dungeons[k].x;
         s.style.top = dungeons[k].y;
         s.className = "mapspan dungeon " + dungeons[k].canGetChest();
+
+        var DCcount = 0;
+        for (var key in dungeons[k].chestlist) {
+            if (dungeons[k].chestlist.hasOwnProperty(key)) {
+                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable())
+                    DCcount++;
+            }
+        }
+        if (DCcount == 0)
+            s.innerHTML = "";
+        else
+            s.innerHTML = DCcount;
+
+        s.style.color = "black"
+        s.style.textAlign = "center";
+        s.style.lineHeight = "24px";
         mapdiv.appendChild(s);
     }
+
+    document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
+    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
+    for (var key in dungeons[dungeonSelect].chestlist) {
+        var s = document.createElement('li');
+        s.innerHTML = key
+
+        if ( dungeons[dungeonSelect].chestlist[key].isOpened)
+            s.className = "DCopened";               
+        else if ( dungeons[dungeonSelect].chestlist[key].isAvailable())
+            s.className = "DCavailable";               
+        else
+            s.className = "DCunavailable";               
+
+        s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
+        s.onmouseover = new Function('highlightDungeonChest(this)');
+        s.onmouseout = new Function('unhighlightDungeonChest(this)');
+
+        document.getElementById('submaplist').appendChild(s)
+    }
+
 }
 
 function populateItemconfig() {
