@@ -486,49 +486,49 @@ var dungeons = [
         y: "10.0%",
         chestlist: {
             ['Forest Trial Chest']: { isAvailable: function () { 
-                return true; } },
+                return isBridgeOpen(); } },
             ['Water Trial Left Chest']: { isAvailable: function () { 
-                return true; } },
+                return isBridgeOpen(); } },
             ['Water Trial Right Chest']: { isAvailable: function () { 
-                return true; } },
+                return isBridgeOpen(); } },
             ['Shadow Trial First Chest']: { isAvailable:  function () {
-                return (items.Magic && items.Bow && items.Fire) || items.Hookshot >= 2; } },
+                return isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || items.Hookshot >= 2); } },
             ['Shadow Trial Second Chest']: { isAvailable:  function () {
-                return (items.Magic && items.Bow && items.Fire) || (items.Hookshot >= 2 && items.HoverBoots); } },
+                return isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || (items.Hookshot >= 2 && items.HoverBoots)); } },
             ['Spirit Trial First Chest']: { isAvailable:  function () {
-                return items.Hookshot && (items.Magic || items.Bombs); } },
+                return isBridgeOpen() && items.Hookshot && (items.Magic || items.Bombs); } },
             ['Spirit Trial Second Chest']: { isAvailable:  function () {
-                return items.Hookshot && items.Magic && items.Bombs && items.Lens; } },
+                return isBridgeOpen() && items.Hookshot && items.Magic && items.Bombs && items.Lens; } },
             ['Light Trial First Left Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Second Left Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Third Left Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial First Right Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Second Right Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Third Right Chest']: { isAvailable:  function () {
-                return items.Glove >= 3; } },
+                return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trail Invisible Enemies Chest']: { isAvailable: function () {
-                return items.Glove >= 3 && (items.Magic && items.Lens); } },
+                return isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); } },
             ['Light Trial Lullaby Chest']: { isAvailable:  function () {
-                return items.Glove >= 3 && items.ZeldasLullaby; } },
+                return isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; } },
         },
         trials: {
             ['Forest Trial Clear']: { isAvailable:  function () {
-                return items.Magic && items.Bow && items.Light && (items.Fire || (items.Hookshot && items.Dins)); } },
+                return isBridgeOpen() && items.Magic && items.Bow && items.Light && (items.Fire || (items.Hookshot && items.Dins)); } },
             ['Fire Trial Clear']: { isAvailable:  function () {
-                return items.GoronTunic && items.Glove >= 3 && items.Magic && items.Bow && items.Light && items.Hookshot >= 2; } },
+                return isBridgeOpen() && items.GoronTunic && items.Glove >= 3 && items.Magic && items.Bow && items.Light && items.Hookshot >= 2; } },
             ['Water Trial Clear']: { isAvailable:  function () {
-                return items.Bottle && items.Hammer && items.Magic && items.Bow && items.Light; } },
+                return isBridgeOpen() && items.Bottle && items.Hammer && items.Magic && items.Bow && items.Light; } },
             ['Shadow Trial Clear']: { isAvailable:  function () {
-                return items.Magic && items.Bow && items.Light && items.Hammer && (items.Fire || items.Hookshot >= 2) && (items.Lens || (items.HoverBoots && items.Hookshot >= 2)); } },
+                return isBridgeOpen() && items.Magic && items.Bow && items.Light && items.Hammer && (items.Fire || items.Hookshot >= 2) && (items.Lens || (items.HoverBoots && items.Hookshot >= 2)); } },
             ['Spirit Trial Clear']: { isAvailable:  function () {
-                return items.Magic && items.Bow && items.Light && items.MirrorShield && items.Bombs && items.Hookshot; } },
+                return isBridgeOpen() && items.Magic && items.Bow && items.Light && items.MirrorShield && items.Bombs && items.Hookshot; } },
             ['Light Trial Clear']: { isAvailable:  function () {
-                return items.Glove >= 3 && items.Magic && items.Bow && items.Hookshot && items.Light; }      },
+                return isBridgeOpen() && items.Glove >= 3 && items.Magic && items.Bow && items.Hookshot && items.Light; }      },
         },
         isBeatable: function(){
             return generalCanGetChest(this.trials);
@@ -706,7 +706,7 @@ var dungeons = [
             ['Underwater Heart Piece']: { isAvailable: function () {
                 return (items.ZoraLetter && (items.Bombs || items.Scale) && items.IronBoots && items.ZeldasLullaby); } },
             ['King Zora Thawed']: { isAvailable: function () {
-                return (items.ZeldasLullaby && items.Bottle && (items.Bombs || items.Scale) && items.ZoraLetter); } },
+                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet)); } },
         },
         isBeatable: function(){
             return this.canGetChest();

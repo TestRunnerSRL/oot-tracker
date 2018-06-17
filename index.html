@@ -38,12 +38,7 @@
                 <br>
                 Size<input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
                 <span id='itemdivsize'>100%</span><br>
-                <fieldset>
-                    <legend>Dungeon Display</legend>
-                    <input type="checkbox" name="showchest" checked='true' onchange="showChest(this)">Chests
-                    <input type="checkbox" name="showcrystal" checked='true' onchange="showCrystal(this)">Prizes
-                    <input type="checkbox" name="showmedallion" checked='true' onchange="showMedallion(this)">Medals<br>
-                </fieldset>
+                <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
             </fieldset>
             <fieldset>
                 <legend>Map Tracker</legend>
@@ -53,9 +48,13 @@
                 Position:
                 <input type='radio' name='mapposition' value='Below' checked='true' onclick="setOrder(true)">Below
                 <input type='radio' name='mapposition' value='Side' onclick="setOrder(false)">Side<br>
-                Orientation:
-                <input type='radio' name='maporientation' value='Horizontal' checked='true' onclick="setMapOrientation(false)">Horizontal
-                <input type='radio' name='maporientation' value='Verical' onclick="setMapOrientation(true)">Vertical<br>
+                <fieldset>
+                    <legend>Rainbow Bridge Logic</legend>
+                    <input type='radio' name='ganonlogic' value='Open' checked='true' onclick="setGanonLogic(this)">Open
+                    <input type='radio' name='ganonlogic' value='Vanilla' onclick="setGanonLogic(this)">Vanilla<br>
+                    <input type='radio' name='ganonlogic' value='Medallions' onclick="setGanonLogic(this)">Medallions<br>
+                    <input type='radio' name='ganonlogic' value='Dungeons' onclick="setGanonLogic(this)">Dungeons<br>
+                </fieldset>
             </fieldset>
         </fieldset>
         
