@@ -26,13 +26,13 @@ var defaultItemGrid = [
         "Light"
     ],
     [
-        "blank",
         "Slingshot",
         "Boomerang",
         "Lens",
         "Bottle",
         "ZoraLetter",
-        "blank"
+        "Wallet",
+        "Skulltula"
     ],
     [
         "ZeldasLullaby",
@@ -86,6 +86,8 @@ var items = {
     Light:false,
     Ocarina:1,
     Bottle:0,
+    Wallet:0,
+    Skulltula:0,
 
     KokiriSword:false,
     BiggoronSword:false,
@@ -126,20 +128,6 @@ var items = {
     blank: false
 };
 
-var dungeonchests = {
-    0: 3,
-    1: 2,
-    2: 2,
-    3: 5,
-    4: 6,
-    5: 2,
-    6: 4,
-    7: 3,
-    8: 2,
-    9: 5     
-}
-
-
 var itemsMin = {
     Bow:0,
     Slingshot:0,
@@ -150,17 +138,8 @@ var itemsMin = {
     Glove:0,
     Scale:0,
     Magic:0,
-
-	boss0: 1,
-	boss1: 1,
-	boss2: 1,
-    boss3: 1,
-	boss4: 1,
-	boss5: 1,
-	boss6: 1,
-	boss7: 1,
-	boss8: 1,
-	boss9: 1
+    Wallet:0,
+    Skulltula:0,
 };
 
 var itemsMax = {
@@ -173,26 +152,6 @@ var itemsMax = {
     Glove:3,
     Scale:2,
     Magic:2,
-
-	boss0: 2,
-	boss1: 2,
-	boss2: 2,
-	boss3: 2,
-	boss4: 2,
-	boss5: 2,
-	boss6: 2,
-	boss7: 2,
-	boss8: 2,
-	boss9: 2,
-	
-	chest0: 3,
-    chest1: 2,
-    chest2: 2,
-	chest3: 5,
-    chest4: 6,
-    chest5: 2,
-    chest6: 4,
-    chest7: 3,
-    chest8: 2,
-    chest9: 5 
+    Wallet:2,
+    Skulltula:5,
 };
