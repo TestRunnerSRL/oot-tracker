@@ -821,3 +821,37 @@ function init() {
     loadCookie();
     saveCookie();  
 }
+
+function preloader() {
+    for (item in items) {
+        if((typeof items[item]) == "boolean") {
+            var img = new Image();
+            img.src = "images/" + item + ".png";
+        }
+        else{
+            for (i = itemsMin[item]; i < itemsMax[item]; i++) {
+                var img = new Image();
+                img.src = "images/" + item + i + ".png";
+            }
+        }
+    }
+
+    for (medallion in dungeonImg) {
+        var img = new Image();
+        img.src = "images/" + dungeonImg[medallion] + ".png";
+    }
+}
+function addLoadEvent(func) {
+    var oldonload = window.onload;
+    if (typeof window.onload != 'function') {
+        window.onload = func;
+    } else {
+        window.onload = function() {
+            if (oldonload) {
+                oldonload();
+            }
+            func();
+        }
+    }
+}
+addLoadEvent(preloader);
