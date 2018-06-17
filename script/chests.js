@@ -103,41 +103,41 @@ var dungeons = [
             ['Beamos Chest']: { isAvailable: function () {
                 return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Bombs; } },
             ['Hidden Ceiling Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Lens && items.Magic ; } },
+                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot) && items.Lens && items.Magic ; } },
             ['Maze Path First Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Path Second Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Path Third Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) ; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Path Final Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Right Central Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Right Side Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Right Side Key']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bows; } },
             ['Underwater Silver Rupee Chest']: { isAvailable: function () {
                 return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.SongofTime && items.IronBoots; } },
             ['Hammer Room Clear Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); } },
             ['Hammer Room Switch Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Hammer; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Hammer && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); } },
             ['Eye Statue Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Bow; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Bow && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); } },
             ['Near Scarecrow Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Bow; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Lens && items.Magic; } },
             ['Before Heavy Block Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot; } },
             ['Heavy Block First Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Glove >= 2 && items.Lens && items.Magic; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; } },
             ['Heavy Block Second Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Glove >= 2 && items.Lens && items.Magic; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; } },
             ['Heavy Block Third Chest']: { isAvailable:  function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Glove >= 2 && items.Lens && items.Magic; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; } },
             ['Heavy Block Fourth Chest']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Glove >= 2 && items.Lens && items.Magic; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; } },
         },
         isBeatable: function(){
             return this.canGetChest();
@@ -593,9 +593,9 @@ var dungeons = [
             ['Adult Shooting Gallery']: { isAvailable: function () {
                 return (items.Bow); } },
             ['Song of Storms']: { isAvailable: function () {
-                return (items.SongofTime); } },
-            ['Windmill Heart Piece']: { isAvailable: function () {
                 return (true); } },
+            ['Windmill Heart Piece']: { isAvailable: function () {
+                return (items.SongofTime || items.Boomerang); } },
             ['Dampe Race 1']: { isAvailable: function () {
                 return (true); } },
             ['Dampe Race 2']: { isAvailable: function () {
@@ -612,6 +612,16 @@ var dungeons = [
                 return (items.ZeldasLullaby && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)); } },
             ['Nocturne of Shadow']: { isAvailable: function () {
                 return (items.ForestMedallion && items.FireMedallion && items.WaterMedallion); } },
+            ['Skulltula House 10']: { isAvailable: function () {
+                return (items.Skulltula >= 1); } },
+            ['Skulltula House 20']: { isAvailable: function () {
+                return (items.Skulltula >= 2); } },
+            ['Skulltula House 30']: { isAvailable: function () {
+                return (items.Skulltula >= 3); } },
+            ['Skulltula House 40']: { isAvailable: function () {
+                return (items.Skulltula >= 4); } },
+            ['Skulltula House 50']: { isAvailable: function () {
+                return (items.Skulltula >= 5); } },
         },
         isBeatable: function(){
             return this.canGetChest();
@@ -659,11 +669,11 @@ var dungeons = [
             ['Target in Woods']: { isAvailable: function () {
                 return (items.Slingshot); } },
             ['Bomb Grotto Chest']: { isAvailable: function () {
-                return (items.Bombs || items.Hammer); } },
+                return (items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest))); } },
             ['Deku Salesman Grotto']: { isAvailable: function () {
                 return (items.Bombs || items.Hammer); } },
             ['Wolfos Grotto Chest']: { isAvailable: function () {
-                return (true); } },
+                return (items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest))); } },
             ['Saria\'s Song']: { isAvailable: function () {
                 return (true); } },
             ['Minuet of Forest']: { isAvailable: function () {
@@ -928,9 +938,7 @@ var chests = [
         x: "24.0%",
         y: "41.5%",
         isAvailable: function(){
-            if((items.EponasSong || items.Hookshot >= 2) && items.Hammer)
-                return "available";
-            return "unavailable";
+            return "available";
         }
     },
     {
@@ -938,9 +946,7 @@ var chests = [
         x: "25.5%",
         y: "32.0%",
         isAvailable: function(){
-            if((items.EponasSong || items.Hookshot >= 2) && items.Hammer)
-                return "available";
-            return "unavailable";
+            return "available";
         }
     },
     {
@@ -1028,7 +1034,7 @@ var chests = [
         x: "75.0%",
         y: "30.0%",
         isAvailable: function(){
-            if(items.Scale || items.Bombs)
+            if(items.Scale || items.Bombs || items.HoverBoots)
                 return "available";
             return "unavailable";
         }
@@ -1038,7 +1044,7 @@ var chests = [
         x: "86.0%",
         y: "29.2%",
         isAvailable: function(){
-            if(items.Scale || items.Bombs)
+            if(items.Scale || items.Bombs || items.HoverBoots)
                 return "available";
             return "unavailable";
         }
@@ -1048,9 +1054,7 @@ var chests = [
         x: "75.5%",
         y: "34.5%",
         isAvailable: function(){
-            if (items.Scale || items.Bombs)
-                return "available";
-            return "unavailable";
+            return "available";
         }
     },
 ]
