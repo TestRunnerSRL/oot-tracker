@@ -119,27 +119,23 @@ function toggleChest(x){
         document.getElementById(x).className = "mapspan chest " + chests[x].isAvailable();
 }
 
-// Highlights a chest location and shows the name as caption
+// Highlights a chest location
 function highlight(x){
     document.getElementById(x).style.backgroundImage = "url(images/highlighted.png)";
-    document.getElementById("caption").innerHTML = chests[x].name;
 }
 
 function unhighlight(x){
     document.getElementById(x).style.backgroundImage = "url(images/poi.png)";
-    document.getElementById("caption").innerHTML = "&nbsp;";
 }
 
-// Highlights a chest location and shows the name as caption (but for dungeons)
+// Highlights a chest location (but for dungeons)
 function highlightDungeon(x){
     document.getElementById("dungeon"+x).style.backgroundImage = "url(images/highlighted.png)";
-    document.getElementById("caption").innerHTML = dungeons[x].name;
 }
 
 function unhighlightDungeon(x){
     if (dungeonSelect != x)
         document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
-    document.getElementById("caption").innerHTML = "&nbsp;";
 }
 
 function clickDungeon(d){
@@ -602,10 +598,18 @@ function updateMap() {
                     DCcount++;
             }
         }
+
+        var child = document.getElementById("dungeon"+k).firstChild;
+        while (child) {
+            if (child.className == "chestCount") {
                 if (DCcount == 0)
-            document.getElementById("dungeon"+k).innerHTML = "";
+                    child.innerHTML = "";
                 else
-            document.getElementById("dungeon"+k).innerHTML = DCcount;
+                    child.innerHTML = DCcount;
+                break;
+            }
+            child = child.nextSibling;
+        }
     }
 
     document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
@@ -688,6 +692,12 @@ function populateMapdiv() {
             s.className = "mapspan chest opened";
         else
             s.className = "mapspan chest " + chests[k].isAvailable();
+
+        var ss = document.createElement('span');
+        ss.className = "tooltip";
+        ss.innerHTML = chests[k].name;
+        s.appendChild(ss);
+
         mapdiv.appendChild(s);
     }
 
@@ -711,19 +721,30 @@ function populateMapdiv() {
                     DCcount++;
             }
         }
-        if (DCcount == 0)
-            s.innerHTML = "";
-        else
-            s.innerHTML = DCcount;
 
-        s.style.color = "black"
+        var ss = document.createElement('span');
+        ss.className = "chestCount";
+        if (DCcount == 0)
+            ss.innerHTML = "";
+        else
+            ss.innerHTML = DCcount;
+        ss.style.color = "black"
         s.style.textAlign = "center";
-        s.style.lineHeight = "24px";
+        ss.display = "inline-block";
+        ss.style.lineHeight = "24px";
+        s.appendChild(ss);
+
+        var ss = document.createElement('span');
+        ss.className = "tooltipgray";
+        ss.innerHTML = dungeons[k].name;
+        s.appendChild(ss);
+
         mapdiv.appendChild(s);
     }
 
     document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
     document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
+    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/highlighted.png)";
     for (var key in dungeons[dungeonSelect].chestlist) {
         var s = document.createElement('li');
         s.innerHTML = key
