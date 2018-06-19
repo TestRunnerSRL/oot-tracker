@@ -176,19 +176,8 @@ function toggleDungeonChest(sender, d, c){
         sender.className = "DCavailable";     
     else
         sender.className = "DCunavailable";
-    document.getElementById("dungeon"+d).className = "mapspan dungeon " + dungeons[d].canGetChest();
 
-    var DCcount = 0;
-    for (var key in dungeons[d].chestlist) {
-        if (dungeons[d].chestlist.hasOwnProperty(key)) {
-            if (!dungeons[d].chestlist[key].isOpened && dungeons[d].chestlist[key].isAvailable())
-                DCcount++;
-        }
-    }
-    if (DCcount == 0)
-        document.getElementById("dungeon"+d).innerHTML = "";
-    else
-        document.getElementById("dungeon"+d).innerHTML = DCcount;
+    updateMap();
 }
 
 function highlightDungeonChest(x){
