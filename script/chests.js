@@ -731,7 +731,7 @@ var dungeons = [
             ['Outside Goron City Grotto']: { isAvailable: function () {
                 return (items.SongofStorms); } },
             ['Bolero of Fire']: { isAvailable: function () {
-                return (items.BoleroofFire || items.HoverBoots || items.Hookshot); } },
+                return (items.BoleroofFire || (items.HoverBoots && (items.Hammer || items.Bombs || items.Glove)) || (items.Hookshot && items.Glove)); } },
             ['Crater Wall Heart Piece']: { isAvailable: function () {
                 return (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); } },
             ['Crater Magic Bean Heart Piece']: { isAvailable: function () {
