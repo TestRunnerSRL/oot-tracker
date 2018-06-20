@@ -610,6 +610,8 @@ var dungeons = [
                 return (items.ZeldasLullaby); } },
             ['Sun\'s Song Chest']: { isAvailable: function () {
                 return (items.ZeldasLullaby && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)); } },
+            ['Magic Bean Heart Piece']: { isAvailable: function () {
+                return (items.Scale || items.Bombs || items.Hookshot >= 2); } },
             ['Nocturne of Shadow']: { isAvailable: function () {
                 return (items.ForestMedallion && items.FireMedallion && items.WaterMedallion); } },
             ['Skulltula House 10']: { isAvailable: function () {
@@ -645,6 +647,8 @@ var dungeons = [
                 return (items.Bombs); } },
             ['Link the Goron']: { isAvailable: function () {
                 return (items.Glove || items.Bombs || items.Bow); } },
+            ['Spinning Pot Heart Piece']: { isAvailable: function () {
+                return ((items.Glove || items.Bombs) && (items.ZeldasLullaby || (items.Magic && items.Dins))); } },
             ['Darunia\'s Joy']: { isAvailable: function () {
                 return (items.ZeldasLullaby && items.SariasSong); } },
         },
@@ -729,17 +733,17 @@ var dungeons = [
             ['Bolero of Fire']: { isAvailable: function () {
                 return (items.BoleroofFire || items.HoverBoots || items.Hookshot); } },
             ['Crater Wall Heart Piece']: { isAvailable: function () {
-                return (items.Bombs || items.Hammer || items.Hookshot || items.HoverBoots); } },
+                return (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); } },
             ['Crater Magic Bean Heart Piece']: { isAvailable: function () {
                 return ((items.Bombs || items.Scale) && items.BoleroofFire); } },
             ['Crater Grotto']: { isAvailable: function () {
                 return (items.Bombs || items.Hammer); } },
             ['Crater Fairy Fountain']: { isAvailable: function () {
-                return (items.Hammer && items.ZeldasLullaby); } },
+                return (items.Hammer && items.ZeldasLullaby && (items.Glove || (items.BoleroofFire && items.Hookshot) || items.HoverBoots)); } },
             ['Summit Fairy Fountain']: { isAvailable: function () {
                 return ((items.Bombs || items.Hammer) && items.ZeldasLullaby); } },
             ['Biggoron Sword']: { isAvailable: function () {
-                return (items.Bombs || items.Hammer); } },
+                return (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); } },
         },
         isBeatable: function(){
             return this.canGetChest();
@@ -960,8 +964,18 @@ var chests = [
         }
     },
     {
-        name: "Horseback Archery Game (2)",
-        x: "22.5%",
+        name: "Horseback Archery Game 1000pts",
+        x: "21.7%",
+        y: "28.0%",
+        isAvailable: function(){
+            if((items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow)
+                return "available";
+            return "unavailable";
+        }
+    },
+    {
+        name: "Horseback Archery Game 1500pts",
+        x: "23.5%",
         y: "28.0%",
         isAvailable: function(){
             if((items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow)
