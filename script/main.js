@@ -34,7 +34,6 @@ function getCookie() {
     return {};
 }
 
-var cookiekeys = ['map', 'iZoom', 'mZoom', 'mOrien', 'mPos', 'glogic', 'prize', 'items'];
 var cookieDefault = {
     map:1,
     iZoom:100,
@@ -54,7 +53,7 @@ function loadCookie() {
 
     cookieobj = getCookie();
 
-    cookiekeys.forEach(function (key) {
+    Object.keys(cookieDefault).forEach(function (key) {
         if (cookieobj[key] === undefined) {
             cookieobj[key] = cookieDefault[key];
         }
