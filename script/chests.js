@@ -511,7 +511,7 @@ var dungeons = [
                 return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Third Right Chest']: { isAvailable:  function () {
                 return isBridgeOpen() && items.Glove >= 3; } },
-            ['Light Trail Invisible Enemies Chest']: { isAvailable: function () {
+            ['Light Trial Invisible Enemies Chest']: { isAvailable: function () {
                 return isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); } },
             ['Light Trial Lullaby Chest']: { isAvailable:  function () {
                 return isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; } },
