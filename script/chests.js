@@ -710,7 +710,7 @@ var dungeons = [
             ['Underwater Heart Piece']: { isAvailable: function () {
                 return (items.ZoraLetter && (items.Bombs || items.Scale) && items.IronBoots && items.ZeldasLullaby); } },
             ['King Zora Thawed']: { isAvailable: function () {
-                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet)); } },
+                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet >= 2)); } },
         },
         isBeatable: function(){
             return this.canGetChest();
