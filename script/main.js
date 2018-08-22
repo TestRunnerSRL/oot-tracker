@@ -125,7 +125,7 @@ function serializeChests(){
 }
 
 function serializeDungeonChests(){
-    return dungeons.map(dungeon => Object.keys(dungeon.chestlist).map(chestName => dungeon.chestlist[chestName].isOpened || false));
+    return dungeons.map(dungeon => Object.values(dungeon.chestlist).map(chest => chest.isOpened || false));
 }
 
 function deserializeChests(serializedChests){
