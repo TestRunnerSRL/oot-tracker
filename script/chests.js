@@ -117,7 +117,7 @@ var dungeons = [
             ['Maze Right Side Chest']: { isAvailable: function () {
                 return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Maze Right Side Key']: { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bows; } },
+                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; } },
             ['Underwater Silver Rupee Chest']: { isAvailable: function () {
                 return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.SongofTime && items.IronBoots; } },
             ['Hammer Room Clear Chest']: { isAvailable:  function () {
@@ -511,7 +511,7 @@ var dungeons = [
                 return isBridgeOpen() && items.Glove >= 3; } },
             ['Light Trial Third Right Chest']: { isAvailable:  function () {
                 return isBridgeOpen() && items.Glove >= 3; } },
-            ['Light Trail Invisible Enemies Chest']: { isAvailable: function () {
+            ['Light Trial Invisible Enemies Chest']: { isAvailable: function () {
                 return isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); } },
             ['Light Trial Lullaby Chest']: { isAvailable:  function () {
                 return isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; } },
@@ -710,7 +710,7 @@ var dungeons = [
             ['Underwater Heart Piece']: { isAvailable: function () {
                 return (items.ZoraLetter && (items.Bombs || items.Scale) && items.IronBoots && items.ZeldasLullaby); } },
             ['King Zora Thawed']: { isAvailable: function () {
-                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet)); } },
+                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet >= 2)); } },
         },
         isBeatable: function(){
             return this.canGetChest();
