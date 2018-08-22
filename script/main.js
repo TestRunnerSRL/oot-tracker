@@ -314,6 +314,11 @@ function EditMode() {
 }
 
 
+function ResetLayout() {
+    initGridRow(defaultItemGrid);
+}
+
+
 function createItemTracker(sender) {
     var r;
     for (r = 0; r < 8; r++) {
