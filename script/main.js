@@ -42,7 +42,8 @@ var cookieDefault = {
     mPos:0,
     glogic:'Open',
     prize:1,
-    items:defaultItemGrid
+    layout:defaultItemGrid,
+    items:items
 }
 
 var cookielock = false;
@@ -59,7 +60,9 @@ function loadCookie() {
         }
     });
 
-    initGridRow(JSON.parse(JSON.stringify(cookieobj.items)));
+    initGridRow(JSON.parse(JSON.stringify(cookieobj.layout)));
+    items = JSON.parse(JSON.stringify(cookieobj.items));
+    updateGridItemAll();
 
     document.getElementsByName('showmap')[0].checked = !!cookieobj.map;
     document.getElementsByName('showmap')[0].onchange();
@@ -103,7 +106,8 @@ function saveCookie() {
             cookieobj.glogic = rbutton.value;
     }
 
-    cookieobj.items = JSON.parse(JSON.stringify(itemLayout));
+    cookieobj.layout = JSON.parse(JSON.stringify(itemLayout));
+    cookieobj.items = JSON.parse(JSON.stringify(items));
 
     setCookie(cookieobj);
 
@@ -575,6 +579,7 @@ function gridItemClick(row, col, corner) {
 
     updateMap()
     updateGridItem(row,col);
+    saveCookie();
 }
 
 function updateMap() {
