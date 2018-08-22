@@ -41,8 +41,8 @@ var cookieDefault = {
     mPos:0,
     glogic:'Open',
     prize:1,
-    layout:defaultItemGrid,
-    items:items,
+    items:defaultItemGrid,
+    obtainedItems:items,
     chests:serializeChests(),
     dungeonChests:serializeDungeonChests()
 }
@@ -61,8 +61,8 @@ function loadCookie() {
         }
     });
 
-    initGridRow(JSON.parse(JSON.stringify(cookieobj.layout)));
-    items = JSON.parse(JSON.stringify(cookieobj.items));
+    initGridRow(JSON.parse(JSON.stringify(cookieobj.items)));
+    items = JSON.parse(JSON.stringify(cookieobj.obtainedItems));
     deserializeChests(JSON.parse(JSON.stringify(cookieobj.chests)));
     deserializeDungeonChests(JSON.parse(JSON.stringify(cookieobj.dungeonChests)));
 
@@ -110,8 +110,8 @@ function saveCookie() {
             cookieobj.glogic = rbutton.value;
     }
 
-    cookieobj.layout = JSON.parse(JSON.stringify(itemLayout));
-    cookieobj.items = JSON.parse(JSON.stringify(items));
+    cookieobj.items = JSON.parse(JSON.stringify(itemLayout));
+    cookieobj.obtainedItems = JSON.parse(JSON.stringify(items));
     cookieobj.chests = JSON.parse(JSON.stringify(serializeChests()));
     cookieobj.dungeonChests = JSON.parse(JSON.stringify(serializeDungeonChests()));
 
