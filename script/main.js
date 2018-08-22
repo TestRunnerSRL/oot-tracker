@@ -358,6 +358,17 @@ function ResetLayout() {
 }
 
 
+function ResetTracker() {
+    chests.forEach(chest => delete chest.isOpened);
+    dungeons.forEach(dungeon => Object.values(dungeon.chestlist).forEach(chest => delete chest.isOpened));
+    items = Object.assign(baseItems);
+
+    updateGridItemAll();
+    updateMap();
+    saveCookie();
+}
+
+
 function createItemTracker(sender) {
     var r;
     for (r = 0; r < 8; r++) {
