@@ -34,7 +34,6 @@ function getCookie() {
     return {};
 }
 
-var cookiekeys = ['map', 'iZoom', 'mZoom', 'mOrien', 'mPos', 'glogic', 'prize', 'items'];
 var cookieDefault = {
     map:1,
     iZoom:100,
@@ -42,7 +41,10 @@ var cookieDefault = {
     mPos:0,
     glogic:'Open',
     prize:1,
-    items:defaultItemGrid
+    items:defaultItemGrid,
+    obtainedItems:items,
+    chests:serializeChests(),
+    dungeonChests:serializeDungeonChests()
 }
 
 var cookielock = false;
@@ -53,13 +55,18 @@ function loadCookie() {
 
     cookieobj = getCookie();
 
-    cookiekeys.forEach(function (key) {
+    Object.keys(cookieDefault).forEach(function (key) {
         if (cookieobj[key] === undefined) {
             cookieobj[key] = cookieDefault[key];
         }
     });
 
     initGridRow(JSON.parse(JSON.stringify(cookieobj.items)));
+    items = JSON.parse(JSON.stringify(cookieobj.obtainedItems));
+    deserializeChests(JSON.parse(JSON.stringify(cookieobj.chests)));
+    deserializeDungeonChests(JSON.parse(JSON.stringify(cookieobj.dungeonChests)));
+
+    updateGridItemAll();
 
     document.getElementsByName('showmap')[0].checked = !!cookieobj.map;
     document.getElementsByName('showmap')[0].onchange();
@@ -104,19 +111,50 @@ function saveCookie() {
     }
 
     cookieobj.items = JSON.parse(JSON.stringify(itemLayout));
+    cookieobj.obtainedItems = JSON.parse(JSON.stringify(items));
+    cookieobj.chests = JSON.parse(JSON.stringify(serializeChests()));
+    cookieobj.dungeonChests = JSON.parse(JSON.stringify(serializeDungeonChests()));
 
     setCookie(cookieobj);
 
     cookielock = false;
 }
 
+function serializeChests(){
+    return chests.map(chest => chest.isOpened || false);
+}
+
+function serializeDungeonChests(){
+    return dungeons.map(dungeon => Object.values(dungeon.chestlist).map(chest => chest.isOpened || false));
+}
+
+function deserializeChests(serializedChests){
+    for (var i = 0; i < chests.length; i++) {
+        chests[i].isOpened = serializedChests[i];
+        refreshChest(i);
+    }
+}
+
+function deserializeDungeonChests(serializedDungeons){
+    for (var i = 0; i < dungeons.length; i++) {
+        var dungeon = dungeons[i];
+        var serializedDungeon = serializedDungeons[i];
+        var chestNames = Object.keys(dungeon.chestlist);
+        for (var j = 0; j < chestNames.length; j++) {
+            dungeon.chestlist[chestNames[j]].isOpened = serializedDungeon[j];
+        }
+    }
+}
+
 // Event of clicking a chest on the map
 function toggleChest(x){
     chests[x].isOpened = !chests[x].isOpened;
-    if(chests[x].isOpened)
-        document.getElementById(x).className = "mapspan chest opened";
-    else
-        document.getElementById(x).className = "mapspan chest " + chests[x].isAvailable();
+    refreshChest(x);
+    saveCookie();
+}
+
+function refreshChest(x){
+     document.getElementById(x).className = "mapspan chest " + (chests[x].isOpened ? "opened" : chests[x].isAvailable());
 }
 
 // Highlights a chest location
@@ -178,6 +216,7 @@ function toggleDungeonChest(sender, d, c){
         sender.className = "DCunavailable";
 
     updateMap();
+    saveCookie();
 }
 
 function highlightDungeonChest(x){
@@ -316,6 +355,17 @@ function EditMode() {
 
 function ResetLayout() {
     initGridRow(defaultItemGrid);
+}
+
+
+function ResetTracker() {
+    chests.forEach(chest => delete chest.isOpened);
+    dungeons.forEach(dungeon => Object.values(dungeon.chestlist).forEach(chest => delete chest.isOpened));
+    items = Object.assign(baseItems);
+
+    updateGridItemAll();
+    updateMap();
+    saveCookie();
 }
 
 
@@ -575,6 +625,7 @@ function gridItemClick(row, col, corner) {
 
     updateMap()
     updateGridItem(row,col);
+    saveCookie();
 }
 
 function updateMap() {

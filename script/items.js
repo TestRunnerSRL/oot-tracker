@@ -70,7 +70,7 @@ var defaultItemGrid = [
 ]
 
 
-var items = {
+var baseItems = {
     Bow:0,
     Hookshot:0,
     Hammer:false,
@@ -155,3 +155,5 @@ var itemsMax = {
     Wallet:2,
     Skulltula:5,
 };
+
+var items = Object.assign(baseItems);
