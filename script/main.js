@@ -1,5 +1,15 @@
 var medallions = [];
-var dungeonImg = ['Unknown', 'Slingshot0', 'Bombs0', 'Boomerang', 'Bow0', 'Hammer', 'Hookshot0', 'HoverBoots', 'MirrorShield']
+var dungeonImg = [
+    'Unknown',
+    'Slingshot0',
+    'Bombs0',
+    'Boomerang',
+    'Bow0',
+    'Hammer',
+    'Hookshot0',
+    'HoverBoots',
+    'MirrorShield'
+];
 ganonlogic = 'Open';
 showprizes = false;
 
@@ -14,7 +24,7 @@ var dungeonSelect = 0;
 function setCookie(obj) {
     var d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
+    var expires = "expires=" + d.toUTCString();
     var val = JSON.stringify(obj);
     document.cookie = "key=" + val + ";" + expires + ";path=/";
 }
@@ -22,7 +32,7 @@ function setCookie(obj) {
 function getCookie() {
     var name = "key=";
     var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -35,27 +45,29 @@ function getCookie() {
 }
 
 var cookieDefault = {
-    map:1,
-    iZoom:100,
-    mZoom:100,
-    mPos:0,
-    glogic:'Open',
-    prize:1,
-    items:defaultItemGrid,
-    obtainedItems:items,
-    chests:serializeChests(),
-    dungeonChests:serializeDungeonChests()
+    map: 1,
+    iZoom: 100,
+    mZoom: 100,
+    mPos: 0,
+    glogic: 'Open',
+    prize: 1,
+    items: defaultItemGrid,
+    obtainedItems: items,
+    chests: serializeChests(),
+    dungeonChests: serializeDungeonChests(),
 }
 
 var cookielock = false;
 function loadCookie() {
-    if (cookielock)
+    if (cookielock) {
         return;
+    }
+
     cookielock = true;
 
     cookieobj = getCookie();
 
-    Object.keys(cookieDefault).forEach(function (key) {
+    Object.keys(cookieDefault).forEach(function(key) {
         if (cookieobj[key] === undefined) {
             cookieobj[key] = cookieDefault[key];
         }
@@ -81,17 +93,20 @@ function loadCookie() {
     document.getElementsByName('showprizes')[0].onchange();
 
     for (rbuttonID in document.getElementsByName('ganonlogic')) {
-        rbutton = document.getElementsByName('ganonlogic')[rbuttonID]
-        if (rbutton.value == cookieobj.glogic)
+        rbutton = document.getElementsByName('ganonlogic')[rbuttonID];
+        if (rbutton.value == cookieobj.glogic) {
             rbutton.click();
+        }
     }
 
     cookielock = false;
 }
 
 function saveCookie() {
-    if (cookielock)
+    if (cookielock) {
         return;
+    }
+
     cookielock = true;
 
     cookieobj = {};
@@ -105,9 +120,10 @@ function saveCookie() {
     cookieobj.prize = document.getElementsByName('showprizes')[0].checked ? 1 : 0;
 
     for (rbuttonID in document.getElementsByName('ganonlogic')) {
-        rbutton = document.getElementsByName('ganonlogic')[rbuttonID]
-        if (rbutton.checked)
+        rbutton = document.getElementsByName('ganonlogic')[rbuttonID];
+        if (rbutton.checked) {
             cookieobj.glogic = rbutton.value;
+        }
     }
 
     cookieobj.items = JSON.parse(JSON.stringify(itemLayout));
@@ -120,22 +136,22 @@ function saveCookie() {
     cookielock = false;
 }
 
-function serializeChests(){
+function serializeChests() {
     return chests.map(chest => chest.isOpened || false);
 }
 
-function serializeDungeonChests(){
+function serializeDungeonChests() {
     return dungeons.map(dungeon => Object.values(dungeon.chestlist).map(chest => chest.isOpened || false));
 }
 
-function deserializeChests(serializedChests){
+function deserializeChests(serializedChests) {
     for (var i = 0; i < chests.length; i++) {
         chests[i].isOpened = serializedChests[i];
         refreshChest(i);
     }
 }
 
-function deserializeDungeonChests(serializedDungeons){
+function deserializeDungeonChests(serializedDungeons) {
     for (var i = 0; i < dungeons.length; i++) {
         var dungeon = dungeons[i];
         var serializedDungeon = serializedDungeons[i];
@@ -147,91 +163,92 @@ function deserializeDungeonChests(serializedDungeons){
 }
 
 // Event of clicking a chest on the map
-function toggleChest(x){
+function toggleChest(x) {
     chests[x].isOpened = !chests[x].isOpened;
     refreshChest(x);
     saveCookie();
 }
 
-function refreshChest(x){
-     document.getElementById(x).className = "mapspan chest " + (chests[x].isOpened ? "opened" : chests[x].isAvailable());
+function refreshChest(x) {
+    var stateClass = chests[x].isOpened ? 'opened' : chests[x].isAvailable();
+    document.getElementById(x).className = 'mapspan chest ' + stateClass;
 }
 
 // Highlights a chest location
-function highlight(x){
-    document.getElementById(x).style.backgroundImage = "url(images/highlighted.png)";
+function highlight(x) {
+    document.getElementById(x).style.backgroundImage = 'url(images/highlighted.png)';
 }
 
-function unhighlight(x){
-    document.getElementById(x).style.backgroundImage = "url(images/poi.png)";
+function unhighlight(x) {
+    document.getElementById(x).style.backgroundImage = 'url(images/poi.png)';
 }
 
 // Highlights a chest location (but for dungeons)
-function highlightDungeon(x){
-    document.getElementById("dungeon"+x).style.backgroundImage = "url(images/highlighted.png)";
+function highlightDungeon(x) {
+    document.getElementById('dungeon' + x).style.backgroundImage = 'url(images/highlighted.png)';
 }
 
-function unhighlightDungeon(x){
+function unhighlightDungeon(x) {
     if (dungeonSelect != x)
-        document.getElementById("dungeon"+x).style.backgroundImage = "url(images/poi.png)";
+        document.getElementById('dungeon' + x).style.backgroundImage = 'url(images/poi.png)';
 }
 
-function clickDungeon(d){
-    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/poi.png)";
+function clickDungeon(d) {
+    document.getElementById('dungeon' + dungeonSelect).style.backgroundImage = 'url(images/poi.png)';
     dungeonSelect = d;
-    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/highlighted.png)";
+    document.getElementById('dungeon' + dungeonSelect).style.backgroundImage = 'url(images/highlighted.png)';
 
     document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
-    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
+    document.getElementById('submaparea').className = 'DC' + dungeons[dungeonSelect].isBeatable();
     var DClist = document.getElementById('submaplist');
-    DClist.innerHTML = ""
+    DClist.innerHTML = '';
 
     for (var key in dungeons[dungeonSelect].chestlist) {
         var s = document.createElement('li');
-        s.innerHTML = key
+        s.innerHTML = key;
 
-        if ( dungeons[dungeonSelect].chestlist[key].isOpened)
-            s.className = "DCopened";               
-        else if ( dungeons[dungeonSelect].chestlist[key].isAvailable())
-            s.className = "DCavailable";               
-        else
-            s.className = "DCunavailable";               
+        if (dungeons[dungeonSelect].chestlist[key].isOpened) {
+            s.className = "DCopened";
+        } else if ( dungeons[dungeonSelect].chestlist[key].isAvailable()) {
+            s.className = "DCavailable";
+        } else {
+            s.className = "DCunavailable";
+        }
 
-        s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
+        s.onclick = new Function('toggleDungeonChest(this,' + dungeonSelect + ',"' + key + '")');
         s.onmouseover = new Function('highlightDungeonChest(this)');
         s.onmouseout = new Function('unhighlightDungeonChest(this)');
         s.style.cursor = "pointer";
 
-        DClist.appendChild(s)
+        DClist.appendChild(s);
     }
 }
 
-function toggleDungeonChest(sender, d, c){
+function toggleDungeonChest(sender, d, c) {
     dungeons[d].chestlist[c].isOpened = !dungeons[d].chestlist[c].isOpened;
-    if(dungeons[d].chestlist[c].isOpened)
-        sender.className = "DCopened";
-    else if(dungeons[d].chestlist[c].isAvailable())
-        sender.className = "DCavailable";     
+    if (dungeons[d].chestlist[c].isOpened)
+        sender.className = 'DCopened';
+    else if (dungeons[d].chestlist[c].isAvailable())
+        sender.className = 'DCavailable';
     else
-        sender.className = "DCunavailable";
+        sender.className = 'DCunavailable';
 
     updateMap();
     saveCookie();
 }
 
-function highlightDungeonChest(x){
-    x.style.backgroundColor = "#282828"
+function highlightDungeonChest(x) {
+    x.style.backgroundColor = '#282828';
 }
 
-function unhighlightDungeonChest(x){
-    x.style.backgroundColor = ""
+function unhighlightDungeonChest(x) {
+    x.style.backgroundColor = '';
 }
 
 function setOrder(H) {
     if (H) {
         document.getElementById('layoutdiv').classList.remove('flexcontainer');
-    } 
-    else {
+    } else {
         document.getElementById('layoutdiv').classList.add('flexcontainer');
     }
     saveCookie();
@@ -253,8 +270,8 @@ function setZoom(target, sender) {
     document.getElementById(target).style.zoom = sender.value / 100;
     document.getElementById(target).style.zoom = sender.value / 100;
 
-    document.getElementById(target).style.MozTransform = "scale(" + (sender.value / 100) + ")";
-    document.getElementById(target).style.MozTransformOrigin = "0 0";
+    document.getElementById(target).style.MozTransform = 'scale(' + (sender.value / 100) + ')';
+    document.getElementById(target).style.MozTransformOrigin = '0 0';
 
     document.getElementById(target + 'size').innerHTML = (sender.value) + '%';
     saveCookie();
@@ -296,7 +313,7 @@ function showSettings(sender) {
         sender.innerHTML = '🔧';
         saveCookie();
     } else {
-        var x = document.getElementById("settings");
+        var x = document.getElementById('settings');
         if (!x.style.display || x.style.display == 'none') {
             x.style.display = 'initial';
             sender.innerHTML = 'X';
@@ -345,7 +362,7 @@ function EditMode() {
 
     editmode = true;
     updateGridItemAll();
-    showTracker('mapdiv', {checked:false});
+    showTracker('mapdiv', {checked: false});
     document.getElementById('settings').style.display = 'none';
     document.getElementById('itemconfig').style.display = '';
 
@@ -403,21 +420,21 @@ function createItemTracker(sender) {
                 tdt.appendChild(tdtr1);
                     itemGrid[r][i][0] = document.createElement('th');
                     itemGrid[r][i][0].className = 'corner';
-                    itemGrid[r][i][0].onclick = new Function("gridItemClick("+r+","+i+",0)");
+                    itemGrid[r][i][0].onclick = new Function("gridItemClick(" + r + "," + i + ",0)");
                     tdtr1.appendChild(itemGrid[r][i][0]);
                     itemGrid[r][i][1] = document.createElement('th');
                     itemGrid[r][i][1].className = 'corner';
-                    itemGrid[r][i][1].onclick = new Function("gridItemClick("+r+","+i+",1)");
+                    itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
                     tdtr1.appendChild(itemGrid[r][i][1]);
                 var tdtr2 = document.createElement('tr');
                 tdt.appendChild(tdtr2);
                     itemGrid[r][i][2] = document.createElement('th');
                     itemGrid[r][i][2].className = 'corner';
-                    itemGrid[r][i][2].onclick = new Function("gridItemClick("+r+","+i+",2)");
+                    itemGrid[r][i][2].onclick = new Function("gridItemClick(" + r + "," + i + ",2)");
                     tdtr2.appendChild(itemGrid[r][i][2]);
                     itemGrid[r][i][3] = document.createElement('th');
                     itemGrid[r][i][3].className = 'corner';
-                    itemGrid[r][i][3].onclick = new Function("gridItemClick("+r+","+i+",3)");
+                    itemGrid[r][i][3].onclick = new Function("gridItemClick(" + r + "," + i + ",3)");
                     tdtr2.appendChild(itemGrid[r][i][3]);
         }
 
@@ -426,9 +443,9 @@ function createItemTracker(sender) {
         tr.appendChild(half);
         itemGrid[r]['button'] = document.createElement('button');
         itemGrid[r]['button'].innerHTML = '-';
-        itemGrid[r]['button'].style.backgroundColor = 'red';		
-        itemGrid[r]['button'].style.color = 'white';	
-        itemGrid[r]['button'].onclick = new Function("clickRowButton(" + r + ")");;
+        itemGrid[r]['button'].style.backgroundColor = 'red';
+        itemGrid[r]['button'].style.color = 'white';
+        itemGrid[r]['button'].onclick = new Function("clickRowButton(" + r + ")");
         half.appendChild(itemGrid[r]['button']);
     }
 }
@@ -438,13 +455,11 @@ function updateGridItem(row, index) {
 
     if (editmode) {
         if (!item || item == 'blank') {
-            itemGrid[row][index]['item'].style.backgroundImage = ("url(images/blank.png)");
-        }
-        else if((typeof items[item]) == "boolean"){
-            itemGrid[row][index]['item'].style.backgroundImage = "url(images/" + item + ".png)";
-        }
-        else{
-            itemGrid[row][index]['item'].style.backgroundImage = "url(images/" + item + itemsMax[item] + ".png)";
+            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/blank.png)';
+        } else if ((typeof items[item]) == 'boolean') {
+            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + '.png)';
+        } else {
+            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + itemsMax[item] + '.png)';
         }
 
         itemGrid[row][index]['item'].style.border = '1px solid white';
@@ -461,20 +476,20 @@ function updateGridItem(row, index) {
         return;
     }
 
-    if((typeof items[item]) == "boolean"){
-        itemGrid[row][index]['item'].style.backgroundImage = "url(images/" + item + ".png)";
-    }
-    else{
-        itemGrid[row][index]['item'].style.backgroundImage = "url(images/" + item + items[item] + ".png)";
+    if ((typeof items[item]) == 'boolean') {
+        itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + '.png)';
+    } else {
+        itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + items[item] + '.png)';
     }
 
-    itemGrid[row][index]['item'].className = "griditem " + (!!items[item]);
+    itemGrid[row][index]['item'].className = 'griditem ' + !!items[item];
 
-    if (medallions[item] !== undefined){
-        if (showprizes)
-            itemGrid[row][index][3].style.backgroundImage = "url(images/" + dungeonImg[medallions[item]] + ".png)";
-        else
-            itemGrid[row][index][3].style.backgroundImage = "";           
+    if (medallions[item] !== undefined) {
+        if (showprizes) {
+            itemGrid[row][index][3].style.backgroundImage = 'url(images/' + dungeonImg[medallions[item]] + '.png)';
+        } else {
+            itemGrid[row][index][3].style.backgroundImage = '';
+        }
     }
 }
 
@@ -489,9 +504,10 @@ function updateGridItemAll() {
 function setGridItem(item, row, index) {
     var previtem = itemLayout[row][index];
     itemLayout[row][index] = item;
-    if (item != 'blank')
+    if (item != 'blank') {
         document.getElementById(item).style.opacity = 0.25;
-    updateGridItem(row, index)
+    }
+    updateGridItem(row, index);
 }
 
 function initGridRow(itemsets) {
@@ -573,8 +589,9 @@ function gridItemClick(row, col, corner) {
                         }
                     }
 
-                    if (found)
+                    if (found) {
                         break;
+                    }
                 }
             }
 
@@ -587,7 +604,7 @@ function gridItemClick(row, col, corner) {
         } else if (selected.row !== undefined) {
             itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
 
-            var temp = itemLayout[row][col]
+            var temp = itemLayout[row][col];
             itemLayout[row][col] = itemLayout[selected.row][selected.col];
             itemLayout[selected.row][selected.col] = temp;
             updateGridItem(row, col);
@@ -596,77 +613,80 @@ function gridItemClick(row, col, corner) {
             selected = {};
         } else {
             itemGrid[row][col]['item'].style.border = '3px solid yellow';
-            selected = {row:row, col:col};		
+            selected = {row: row, col: col};
         }
-        return;
     }
 
     var item = itemLayout[row][col];
 
-    if(medallions[item] !== undefined && showprizes){
+    if (medallions[item] !== undefined && showprizes) {
         if (corner == 3) {
             medallions[item]++;
-            if (medallions[item] >=  9)
+            if (medallions[item] >=  9) {
                 medallions[item] = 0;
+            }
         } 
         else {
             items[item] = !items[item];
         }
     }
-    else if((typeof items[item]) == "boolean"){
+    else if ((typeof items[item]) == 'boolean') {
         items[item] = !items[item];
     }
-    else{
+    else {
         items[item]++;
-        if(items[item] > itemsMax[item]){
+        if (items[item] > itemsMax[item]) {
             items[item] = itemsMin[item];
         }
     }
 
-    updateMap()
+    updateMap();
     updateGridItem(row,col);
     saveCookie();
 }
 
 function updateMap() {
-    for(k=0; k<chests.length; k++){
-        if(!chests[k].isOpened)
-            document.getElementById(k).className = "mapspan chest " + chests[k].isAvailable();
+    for (k = 0; k < chests.length; k++) {
+        if (!chests[k].isOpened)
+            document.getElementById(k).className = 'mapspan chest ' + chests[k].isAvailable();
     }
-    for(k=0; k<dungeons.length; k++){
-        document.getElementById("dungeon"+k).className = "mapspan dungeon " + dungeons[k].canGetChest();
+    for (k = 0; k < dungeons.length; k++) {
+        document.getElementById('dungeon' + k).className = 'mapspan dungeon ' + dungeons[k].canGetChest();
 
         var DCcount = 0;
         for (var key in dungeons[k].chestlist) {
             if (dungeons[k].chestlist.hasOwnProperty(key)) {
-                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable())
+                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable()) {
                     DCcount++;
+                }
             }
         }
 
-        var child = document.getElementById("dungeon"+k).firstChild;
+        var child = document.getElementById('dungeon' + k).firstChild;
         while (child) {
-            if (child.className == "chestCount") {
-                if (DCcount == 0)
-                    child.innerHTML = "";
-                else
+            if (child.className == 'chestCount') {
+                if (DCcount == 0) {
+                    child.innerHTML = '';
+                } else {
                     child.innerHTML = DCcount;
+                }
                 break;
             }
             child = child.nextSibling;
         }
     }
 
-    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
-    var itemlist = document.getElementById('submaplist').children
+    document.getElementById('submaparea').className = 'DC' + dungeons[dungeonSelect].isBeatable();
+    var itemlist = document.getElementById('submaplist').children;
     for (var item in itemlist) {
         if (itemlist.hasOwnProperty(item)) {
-            if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isOpened)
-                itemlist[item].className = "DCopened";            
-            else if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isAvailable())
-                itemlist[item].className = "DCavailable";        
-            else
-                itemlist[item].className = "DCunavailable";                
+            if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isOpened) {
+                itemlist[item].className = 'DCopened';
+            } else if ( dungeons[dungeonSelect].chestlist[itemlist[item].innerHTML].isAvailable()) {
+                itemlist[item].className = 'DCavailable';
+            } else {
+                itemlist[item].className = 'DCunavailable';
+            }
         }
     }
 }
@@ -677,7 +697,7 @@ function itemConfigClick (sender) {
     if (selected.item) {
         document.getElementById(selected.item).style.border = '0px';
         sender.style.border = '3px solid yellow';
-        selected = {item:item};	
+        selected = {item: item};	
     } else if (selected.row !== undefined) {
         itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
         var old = itemLayout[selected.row][selected.col];
@@ -690,7 +710,7 @@ function itemConfigClick (sender) {
         if (item != 'blank') {
             sender.style.opacity = 0.25;
 
-            var r,c;
+            var r, c;
             var found = false;
             for (r = 0; r < 8; r++) {
                 for (c = 0; c < 7; c++) {
@@ -702,8 +722,9 @@ function itemConfigClick (sender) {
                     }
                 }
 
-                if (found)
+                if (found) {
                     break;
+                }
             }
         }
 
@@ -715,7 +736,7 @@ function itemConfigClick (sender) {
         selected = {};
     } else {
         sender.style.border = '3px solid yellow';
-        selected = {item:item}
+        selected = {item: item}
     }
 }
 
@@ -723,23 +744,24 @@ function populateMapdiv() {
     var mapdiv = document.getElementById('mapdiv');
 
     // Initialize all chests on the map
-    for(k=0; k<chests.length; k++){
+    for (k = 0; k < chests.length; k++) {
         var s = document.createElement('span');
         s.style.backgroundImage = 'url(images/poi.png)';
         s.style.color = 'black';
         s.id = k;
-        s.onclick = new Function('toggleChest('+k+')');
-        s.onmouseover = new Function('highlight('+k+')');
-        s.onmouseout = new Function('unhighlight('+k+')');
+        s.onclick = new Function('toggleChest(' + k + ')');
+        s.onmouseover = new Function('highlight(' + k + ')');
+        s.onmouseout = new Function('unhighlight(' + k + ')');
         s.style.left = chests[k].x;
         s.style.top = chests[k].y;
-        if(chests[k].isOpened)
-            s.className = "mapspan chest opened";
-        else
-            s.className = "mapspan chest " + chests[k].isAvailable();
+        if (chests[k].isOpened) {
+            s.className = 'mapspan chest opened';
+        } else {
+            s.className = 'mapspan chest ' + chests[k].isAvailable();
+        }
 
         var ss = document.createElement('span');
-        ss.className = "tooltip";
+        ss.className = 'tooltip';
         ss.innerHTML = chests[k].name;
         s.appendChild(ss);
 
@@ -747,40 +769,42 @@ function populateMapdiv() {
     }
 
     // Dungeon bosses & chests
-    for(k=0; k<dungeons.length; k++){
+    for (k=0; k<dungeons.length; k++) {
         s = document.createElement('span');
         s.style.backgroundImage = 'url(images/poi.png)';
         s.id = 'dungeon' + k;
 
-        s.onclick = new Function('clickDungeon('+k+')');
-        s.onmouseover = new Function('highlightDungeon('+k+')');
-        s.onmouseout = new Function('unhighlightDungeon('+k+')');
+        s.onclick = new Function('clickDungeon(' + k + ')');
+        s.onmouseover = new Function('highlightDungeon(' + k + ')');
+        s.onmouseout = new Function('unhighlightDungeon(' + k + ')');
         s.style.left = dungeons[k].x;
         s.style.top = dungeons[k].y;
-        s.className = "mapspan dungeon " + dungeons[k].canGetChest();
+        s.className = 'mapspan dungeon ' + dungeons[k].canGetChest();
 
         var DCcount = 0;
         for (var key in dungeons[k].chestlist) {
             if (dungeons[k].chestlist.hasOwnProperty(key)) {
-                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable())
+                if (!dungeons[k].chestlist[key].isOpened && dungeons[k].chestlist[key].isAvailable()) {
                     DCcount++;
+                }
             }
         }
 
         var ss = document.createElement('span');
-        ss.className = "chestCount";
-        if (DCcount == 0)
-            ss.innerHTML = "";
-        else
+        ss.className = 'chestCount';
+        if (DCcount == 0) {
+            ss.innerHTML = '';
+        } else {
             ss.innerHTML = DCcount;
-        ss.style.color = "black"
-        s.style.textAlign = "center";
-        ss.display = "inline-block";
-        ss.style.lineHeight = "24px";
+        }
+        ss.style.color = 'black'
+        s.style.textAlign = 'center';
+        ss.display = 'inline-block';
+        ss.style.lineHeight = '24px';
         s.appendChild(ss);
 
         var ss = document.createElement('span');
-        ss.className = "tooltipgray";
+        ss.className = 'tooltipgray';
         ss.innerHTML = dungeons[k].name;
         s.appendChild(ss);
 
@@ -788,25 +812,28 @@ function populateMapdiv() {
     }
 
     document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
-    document.getElementById('submaparea').className = "DC" + dungeons[dungeonSelect].isBeatable();
-    document.getElementById("dungeon"+dungeonSelect).style.backgroundImage = "url(images/highlighted.png)";
+    document.getElementById('submaparea').className = 'DC' + dungeons[dungeonSelect].isBeatable();
+    document.getElementById('dungeon' + dungeonSelect).style.backgroundImage = 'url(images/highlighted.png)';
     for (var key in dungeons[dungeonSelect].chestlist) {
         var s = document.createElement('li');
         s.innerHTML = key
 
-        if ( dungeons[dungeonSelect].chestlist[key].isOpened)
-            s.className = "DCopened";               
-        else if ( dungeons[dungeonSelect].chestlist[key].isAvailable())
-            s.className = "DCavailable";               
-        else
-            s.className = "DCunavailable";               
+        if (dungeons[dungeonSelect].chestlist[key].isOpened) {
+            s.className = 'DCopened';
+        }
+        else if ( dungeons[dungeonSelect].chestlist[key].isAvailable()) {
+            s.className = 'DCavailable';
+        }
+        else {
+            s.className = 'DCunavailable';
+        }
 
-        s.onclick = new Function('toggleDungeonChest(this,'+dungeonSelect+',"'+key+'")');
+        s.onclick = new Function('toggleDungeonChest(this,' + dungeonSelect + ',"' + key + '")');
         s.onmouseover = new Function('highlightDungeonChest(this)');
         s.onmouseout = new Function('unhighlightDungeonChest(this)');
-        s.style.cursor = "pointer";
+        s.style.cursor = 'pointer';
 
-        document.getElementById('submaplist').appendChild(s)
+        document.getElementById('submaplist').appendChild(s);
     }
 }
 
@@ -818,7 +845,7 @@ function populateItemconfig() {
     var row;
 
     for (var key in items) {
-        if (i % 10 == 0){
+        if (i % 10 == 0) {
             row = document.createElement('tr');
             grid.appendChild(row);
         }
@@ -829,11 +856,10 @@ function populateItemconfig() {
         rowitem.id = key;
         rowitem.style.backgroundSize = '100% 100%';
         rowitem.onclick = new Function('itemConfigClick(this)');
-        if((typeof items[key]) == "boolean"){
-            rowitem.style.backgroundImage = "url(images/" + key + ".png)";
-        }
-        else{
-            rowitem.style.backgroundImage = "url(images/" + key + itemsMax[key] + ".png)";
+        if ((typeof items[key]) == 'boolean') {
+            rowitem.style.backgroundImage = 'url(images/' + key + '.png)';
+        } else {
+            rowitem.style.backgroundImage = 'url(images/' + key + itemsMax[key] + '.png)';
         }
         row.appendChild(rowitem);
     }		
@@ -841,19 +867,27 @@ function populateItemconfig() {
 
 function isBridgeOpen() {
     switch (ganonlogic) {
-        case "Open":
+        case 'Open':
             return true;
-        case "Vanilla":
-            return (items['ShadowMedallion'] && items['SpiritMedallion']);
-        case "Medallions":
-            return (items['ForestMedallion'] && items['FireMedallion'] && 
-                items['WaterMedallion'] && items['LightMedallion'] && 
-                items['ShadowMedallion'] && items['SpiritMedallion']);
-        case "Dungeons":
-            return (items['KokiriEmerald'] && items['GoronRuby'] && items['ZoraSapphire'] && 
-                items['ForestMedallion'] && items['FireMedallion'] && 
-                items['WaterMedallion'] && items['LightMedallion'] && 
-                items['ShadowMedallion'] && items['SpiritMedallion']);
+        case 'Vanilla':
+            return items['ShadowMedallion'] && items['SpiritMedallion'];
+        case 'Medallions':
+            return items['ForestMedallion'] &&
+                items['FireMedallion'] &&
+                items['WaterMedallion'] &&
+                items['LightMedallion'] &&
+                items['ShadowMedallion'] &&
+                items['SpiritMedallion'];
+        case 'Dungeons':
+            return items['KokiriEmerald'] &&
+                items['GoronRuby'] &&
+                items['ZoraSapphire'] &&
+                items['ForestMedallion'] &&
+                items['FireMedallion'] &&
+                items['WaterMedallion'] &&
+                items['LightMedallion'] &&
+                items['ShadowMedallion'] &&
+                items['SpiritMedallion'];
     }
     return false;
 }
@@ -864,26 +898,25 @@ function init() {
     populateItemconfig();
 
     loadCookie();
-    saveCookie();  
+    saveCookie();
 }
 
 function preloader() {
     for (item in items) {
-        if((typeof items[item]) == "boolean") {
+        if ((typeof items[item]) == 'boolean') {
             var img = new Image();
-            img.src = "images/" + item + ".png";
-        }
-        else{
+            img.src = 'images/' + item + '.png';
+        } else {
             for (i = itemsMin[item]; i < itemsMax[item]; i++) {
                 var img = new Image();
-                img.src = "images/" + item + i + ".png";
+                img.src = 'images/' + item + i + '.png';
             }
         }
     }
 
     for (medallion in dungeonImg) {
         var img = new Image();
-        img.src = "images/" + dungeonImg[medallion] + ".png";
+        img.src = 'images/' + dungeonImg[medallion] + '.png';
     }
 }
 function addLoadEvent(func) {
