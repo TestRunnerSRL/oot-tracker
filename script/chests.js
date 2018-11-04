@@ -229,9 +229,9 @@ var dungeons = [
             'Center Small Chest': { isAvailable: function () {
                 return items.SongofStorms && items.Lens && items.Magic; } },
             'Back Left Bombable': { isAvailable: function () {
-                return items.SongofStorms && (items.ZeldasLullaby || items.Scale); } },
-            'Coffin Key': { isAvailable: function () {
                 return items.SongofStorms && items.Bombs; } },
+            'Coffin Key': { isAvailable: function () {
+                return items.SongofStorms && (items.ZeldasLullaby || items.Scale); } },
             'Defeat Boss': { isAvailable: function () {
                 return items.SongofStorms && items.ZeldasLullaby && items.KokiriSword; } },
             'Invisible Chest': { isAvailable: function () {
@@ -1102,7 +1102,10 @@ var chests = [
         x: "75.5%",
         y: "34.5%",
         isAvailable: function() {
-            return "available";
+            if (items.Scale || items.Bombs || items.HoverBoots) {
+                return "available";
+            }
+            return "unavailable";
         },
     },
 ]
