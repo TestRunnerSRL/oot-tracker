@@ -461,26 +461,26 @@ var dungeons = [
             'Outside Hookshot Chest': { isAvailable: function () {
                 return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Falling Room Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)); }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Glove) && (items.Bow || (items.Dins && items.Magic)); }, },
             'Block Push Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow && items.Glove; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow && items.Glove; }, },
             'Floormaster Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Glove; }, },
             'Bow Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Glove; }, },
             'Red Poe Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow && items.Glove; }, },
             'Blue Poe Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow && items.Glove; }, },
             'Near Boss Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow; }, },
+                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow && items.Glove; }, },
             'Phantom Ganon': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow); }, },
+                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow && items.Glove); }, },
         },
         isBeatable: function() {
-            if ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow) {
+            if ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow && items.Glove) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
