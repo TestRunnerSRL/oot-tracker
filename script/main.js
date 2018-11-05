@@ -10,6 +10,7 @@ var dungeonImg = [
     'HoverBoots',
     'MirrorShield'
 ];
+dotlogic = 'Open';
 ganonlogic = 'Open';
 showprizes = false;
 
@@ -262,6 +263,12 @@ function showPrizes(sender) {
 
 function setGanonLogic(sender) {
     ganonlogic = sender.value;
+    updateMap();
+    saveCookie();
+}
+
+function setDOTLogic(sender) {
+    dotlogic = sender.value;
     updateMap();
     saveCookie();
 }

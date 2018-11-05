@@ -25,6 +25,10 @@ function generalCanGetChest(chestlist) {
     return "possible";
 }
 
+function canBecomeAdult() {
+    return dotlogic == 'Open' || (items.Ocarina && items.SongofTime);
+}
+
 // define dungeon chests
 var dungeons = [
     {
