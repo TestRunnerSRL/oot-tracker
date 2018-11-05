@@ -1108,5 +1108,13 @@ var chests = [
             return "unavailable";
         },
     },
+    {
+        name: "Saria on the Bridge",
+        x: "74.5%",
+        y: "57.5%",
+        isAvailable: function() {
+            return "available";
+        },
+    },
 ]
 
