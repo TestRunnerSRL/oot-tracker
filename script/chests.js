@@ -64,30 +64,30 @@ var dungeons = [
         y: "91.0%",
         chestlist: {
             'Map Chest': { isAvailable: function () {
-                return items.ZoraTunic && items.IronBoots && items.Hookshot; }, },
+                return canBecomeAdult() && items.ZoraTunic && items.IronBoots && items.Hookshot; }, },
             'Compass Chest': { isAvailable: function () {
-                return items.ZoraTunic && items.IronBoots && items.Hookshot; }, },
+                return canBecomeAdult() && items.ZoraTunic && items.IronBoots && items.Hookshot; }, },
             'Torches Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)) && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)) && items.ZeldasLullaby; }, },
             'Dragon Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && items.SongofTime && items.Bow; }, },
             'Central Bow Target Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.Bow && items.Glove && items.ZeldasLullaby && (items.HoverBoots || items.Hookshot >= 2); }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.Bow && items.Glove && items.ZeldasLullaby && (items.HoverBoots || items.Hookshot >= 2); }, },
             'Boss Key Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && ((items.Bombs && items.Glove) || items.HoverBoots) && items.Hookshot >= 2; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && ((items.Bombs && items.Glove) || items.HoverBoots) && items.Hookshot >= 2; }, },
             'Central Pillar Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby; }, },
             'Cracked Wall Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.Bombs && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.Bombs && items.ZeldasLullaby; }, },
             'Dark Link Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby; }, },
             'River Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.SongofTime && items.Bow && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.SongofTime && items.Bow && items.ZeldasLullaby; }, },
             'Morpha': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot >= 2); }, },
+                return canBecomeAdult() && items.ZoraTunic && items.IronBoots && items.Hookshot >= 2; }, },
         },
         isBeatable: function() {
-            if (items.ZoraTunic && items.IronBoots && items.Hookshot >= 2) {
+            if (canBecomeAdult() && items.ZoraTunic && items.IronBoots && items.Hookshot >= 2) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -106,49 +106,49 @@ var dungeons = [
         y: "28.0%",
         chestlist: {
             'Lobby Left Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Bow; }, },
             'Lobby Right Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Bow; }, },
             'Stalfos Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots); }, },
             'Beamos Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Bombs; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot || items.HoverBoots) && items.Bombs; }, },
             'Hidden Ceiling Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot) && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && (items.Bow || items.Hookshot) && items.Lens && items.Magic; }, },
             'Maze Path First Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Path Second Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Path Third Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Path Final Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Right Central Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Right Side Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Maze Right Side Key': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic && items.SongofTime && items.Bow; }, },
             'Underwater Silver Rupee Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.SongofTime && items.IronBoots; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.SongofTime && items.IronBoots; }, },
             'Hammer Room Clear Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
             'Hammer Room Switch Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Hammer && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Hammer && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
             'Eye Statue Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Bow && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Bow && (items.SongofTime || items.HoverBoots || items.Hookshot >=2 || (items.Lens && items.Magic)); }, },
             'Near Scarecrow Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Lens && items.Magic; }, },
             'Before Heavy Block Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot; }, },
             'Heavy Block First Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
             'Heavy Block Second Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
             'Heavy Block Third Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
             'Heavy Block Fourth Chest': { isAvailable: function () {
-                return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
+                return canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -167,44 +167,44 @@ var dungeons = [
             'Child Right Chest': { isAvailable: function () {
                 return items.RequiemofSpirit && (items.Boomerang || items.Slingshot); }, },
             'Compass Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.Hookshot && items.ZeldasLullaby; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.Hookshot && items.ZeldasLullaby; }, },
             'Early Adult Right Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Bow || items.Hookshot || items.Bombs); }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && (items.Bow || items.Hookshot || items.Bombs); }, },
             'First Mirror Right Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult(); }, },
             'First Mirror Left Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult(); }, },
             'Map Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2)) && items.Magic && (items.Dins || (items.Fire && items.Bow && items.Glove >= 2)); }, },
+                return ((items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult())) && items.Magic && (items.Dins || (items.Fire && items.Bow && items.Glove >= 2 && canBecomeAdult())); }, },
             'Child Climb East Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Hookshot || items.Bow))); }, },
+                return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && (items.Hookshot || items.Bow))); }, },
             'Child Climb North Chest': { isAvailable: function () {
-                 return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Hookshot || items.Bow))); }, },
+                 return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && (items.Hookshot || items.Bow))); }, },
             'Sun Block Room Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Lens && items.Magic && items.Glove >= 2 && (items.Dins || (items.Fire && items.Bow)) && items.Magic)); }, },
+                return (items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Lens && items.Magic && items.Glove >= 2 && canBecomeAdult() && (items.Dins || (items.Fire && items.Bow)) && items.Magic); }, },
             'Statue Hand Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.ZeldasLullaby; }, },
             'NE Main Room Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby && items.Hookshot; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.ZeldasLullaby && items.Hookshot; }, },
             'Silver Gauntlets Chest': { isAvailable: function () {
-                return (items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2); }, },
+                return (items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult()); }, },
             'Mirror Shield Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2); }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult(); }, },
             'Near Four Armos Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.MirrorShield; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.MirrorShield; }, },
             'Hallway Left Invisible Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.Magic && items.Lens; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.Magic && items.Lens; }, },
             'Hallway Right Invisible Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.Magic && items.Lens; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.Magic && items.Lens; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby && items.Bow && items.Hookshot && (items.Bombs || items.Hammer); }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.ZeldasLullaby && items.Bow && items.Hookshot && (items.Bombs || items.Hammer); }, },
             'Topmost Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && (items.Hookshot || items.Bow || items.Bombs) && items.MirrorShield; }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && (items.Hookshot || items.Bow || items.Bombs) && items.MirrorShield; }, },
             'Twinrova': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.MirrorShield && items.Bombs && items.Hookshot); }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.MirrorShield && items.Bombs && items.Hookshot; }, },
         },
         isBeatable: function() {
-            if (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.MirrorShield && items.Bombs && items.Hookshot) {
+            if (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && canBecomeAdult() && items.MirrorShield && items.Bombs && items.Hookshot) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -264,44 +264,44 @@ var dungeons = [
         y: "21.0%",
         chestlist: {
             'Map Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && (items.HoverBoots || items.Hookshot); }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && (items.HoverBoots || items.Hookshot); }, },
             'Hover Boots Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && (items.HoverBoots || items.Hookshot); }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && (items.HoverBoots || items.Hookshot); }, },
             'Compass Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
             'Early Silver Rupee Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
             'Invisible Blades Visible Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
             'Invisible Blades Invisible Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
             'Falling Spikes Lower Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
             'Falling Spikes Upper Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
             'Falling Spikes Switch Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
             'Invisible Spikes Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
             'Giant Pot Key': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
             'Wind Hint Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
             'After Wind Enemy Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
             'After Wind Hidden Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
             'Spike Walls Left Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
             'Hidden Floormaster Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
             'Bongo Bongo': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow; }, },
+                return canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow; }, },
         },
         isBeatable: function() {
-            if (items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow) {
+            if (canBecomeAdult() && items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -320,22 +320,22 @@ var dungeons = [
         y: "13.5%",
         chestlist: {
             'Map Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()) || items.Glove; }, },
             'Compass Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()) || items.Glove; }, },
             'Bomb Flower Platform': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()) || items.Glove; }, },
             'Bomb Bag Chest': { isAvailable: function () {
-                return (items.Bombs || items.Hammer || items.Glove) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return (items.Bombs || (items.Hammer && canBecomeAdult()) || items.Glove) && (items.Slingshot || (canBecomeAdult() && (items.Bow || items.HoverBoots))); }, },
             'End of Bridge Chest': { isAvailable: function () {
-                return (items.Slingshot || items.Bow || items.HoverBoots) && (items.Bombs || ((items.Bow || items.HoverBoots) && items.Hammer)); }, },
+                return (items.Slingshot || (canBecomeAdult() && (items.Bow || items.HoverBoots))) && (items.Bombs || (canBecomeAdult() && ((items.Bow || items.HoverBoots) && items.Hammer))); }, },
             'Chest Above King Dodongo': { isAvailable: function () {
-                return (items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs; }, },
+                return (items.Slingshot || (canBecomeAdult() && (items.Bow || items.HoverBoots))) && items.Bombs; }, },
             'King Dodongo': { isAvailable: function () {
-                return ((items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs); }, },
+                return ((items.Slingshot || (canBecomeAdult() && (items.Bow || items.HoverBoots))) && items.Bombs); }, },
         },
         isBeatable: function() {
-            if ((items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs) {
+            if ((items.Slingshot || (canBecomeAdult() && (items.Bow || items.HoverBoots))) && items.Bombs) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -354,38 +354,38 @@ var dungeons = [
         y: "06.5%",
         chestlist: {
             'Chest Near Boss': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)); }, },
             'Fire Dancer Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer; }, },
             'Big Lava Room Bombable Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) &&ZeldasLullaby && items.Bombs; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && ZeldasLullaby && items.Bombs; }, },
             'Big Lava Room Open Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)); }, },
             'Boulder Maze Lower Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
             'Boulder Maze Upper Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
             'Boulder Maze Side Room': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
             'Boulder Maze Bombable Pit': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && items.Bombs; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && items.Bombs; }, },
             'Scarecrow Chest': { isAvailable: function () {
-                return items.GoronTunic && items.Glove && (items.Bombs || items.Bow || items.Hookshot) && items.Hookshot; }, },
+                return canBecomeAdult() && items.GoronTunic && items.Glove && (items.Bombs || items.Bow || items.Hookshot) && items.Hookshot; }, },
             'Map Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
             'Compass Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot); }, },
             'Highest Goron Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot) && items.SongofTime && items.Hammer; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && (items.Bombs || items.Bow || items.Hookshot) && items.SongofTime && items.Hammer; }, },
             'Megaton Hammer Chest': { isAvailable: function () {
-                return items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && items.Bombs; }, },
+                return canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Glove && items.Bombs; }, },
             'Volvagia': { isAvailable: function () {
-                return (items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer && (items.HoverBoots || (items.Glove && (items.Bombs || items.Bow || items.Hookshot) && (items.SongofTime || items.Bombs)))); }, },
+                return canBecomeAdult() && (items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer && (items.HoverBoots || (items.Glove && (items.Bombs || items.Bow || items.Hookshot) && (items.SongofTime || items.Bombs)))); }, },
         },
         isBeatable: function() {
-            if (items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer && (items.HoverBoots || (items.Glove && (items.Bombs || items.Bow || items.Hookshot) && (items.SongofTime || items.Bombs)))) {
+            if (canBecomeAdult() && items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer && (items.HoverBoots || (items.Glove && (items.Bombs || items.Bow || items.Hookshot) && (items.SongofTime || items.Bombs)))) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -432,15 +432,15 @@ var dungeons = [
         y: "16.0%",
         chestlist: {
             'Map Chest': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
             'Compass Chest': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
             'Heart Piece': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
             'Iron Boots Chest': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
             'Sheik in Ice Cavern': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -455,36 +455,36 @@ var dungeons = [
         y: "39.0%",
         chestlist: {
             'First Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Chest Behind Lobby': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Well Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Map Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Outside Hookshot Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Falling Room Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)); }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)); }, },
             'Block Push Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
             'Floormaster Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Bow Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Red Poe Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
             'Blue Poe Chest': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Bow; }, },
             'Near Boss Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow; }, },
             'Phantom Ganon': { isAvailable: function () {
-                return ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow); }, },
+                return canBecomeAdult() && ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow); }, },
         },
         isBeatable: function() {
-            if ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow) {
+            if (canBecomeAdult() && (items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Bow) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -503,49 +503,49 @@ var dungeons = [
         y: "10.0%",
         chestlist: {
             'Forest Trial Chest': { isAvailable: function () {
-                return isBridgeOpen(); }, },
+                return canBecomeAdult() && isBridgeOpen(); }, },
             'Water Trial Left Chest': { isAvailable: function () {
-                return isBridgeOpen(); }, },
+                return canBecomeAdult() && isBridgeOpen(); }, },
             'Water Trial Right Chest': { isAvailable: function () {
-                return isBridgeOpen(); }, },
+                return canBecomeAdult() && isBridgeOpen(); }, },
             'Shadow Trial First Chest': { isAvailable: function () {
-                return isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || items.Hookshot >= 2); }, },
+                return canBecomeAdult() && isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || items.Hookshot >= 2); }, },
             'Shadow Trial Second Chest': { isAvailable: function () {
-                return isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || (items.Hookshot >= 2 && items.HoverBoots)); }, },
+                return canBecomeAdult() && isBridgeOpen() && ((items.Magic && items.Bow && items.Fire) || (items.Hookshot >= 2 && items.HoverBoots)); }, },
             'Spirit Trial First Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Hookshot && (items.Magic || items.Bombs); }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Hookshot && (items.Magic || items.Bombs); }, },
             'Spirit Trial Second Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Hookshot && items.Magic && items.Bombs && items.Lens; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Hookshot && items.Magic && items.Bombs && items.Lens; }, },
             'Light Trial First Left Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Second Left Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Third Left Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial First Right Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Second Right Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Third Right Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Invisible Enemies Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); }, },
             'Light Trial Lullaby Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; }, },
         },
         trials: {
             'Forest Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.Magic && items.Bow && items.Light && (items.Fire || (items.Hookshot && items.Dins)); }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Magic && items.Bow && items.Light && (items.Fire || (items.Hookshot && items.Dins)); }, },
             'Fire Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.GoronTunic && items.Glove >= 3 && items.Magic && items.Bow && items.Light && items.Hookshot >= 2; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.GoronTunic && items.Glove >= 3 && items.Magic && items.Bow && items.Light && items.Hookshot >= 2; }, },
             'Water Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.Bottle && items.Hammer && items.Magic && items.Bow && items.Light; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Bottle && items.Hammer && items.Magic && items.Bow && items.Light; }, },
             'Shadow Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.Magic && items.Bow && items.Light && items.Hammer && (items.Fire || items.Hookshot >= 2) && (items.Lens || (items.HoverBoots && items.Hookshot >= 2)); }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Magic && items.Bow && items.Light && items.Hammer && (items.Fire || items.Hookshot >= 2) && (items.Lens || (items.HoverBoots && items.Hookshot >= 2)); }, },
             'Spirit Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.Magic && items.Bow && items.Light && items.MirrorShield && items.Bombs && items.Hookshot; }, },
+                return canBecomeAdult() && isBridgeOpen() && items.Magic && items.Bow && items.Light && items.MirrorShield && items.Bombs && items.Hookshot; }, },
             'Light Trial Clear': { isAvailable: function () {
-                return isBridgeOpen() && items.Glove >= 3 && items.Magic && items.Bow && items.Hookshot && items.Light; } },
+                return canBecomeAdult() && isBridgeOpen() && items.Glove >= 3 && items.Magic && items.Bow && items.Hookshot && items.Light; } },
         },
         isBeatable: function() {
             return generalCanGetChest(this.trials);
@@ -572,11 +572,11 @@ var dungeons = [
             'Dog Lady': { isAvailable: function () {
                 return true; }, },
             '10 Big Poes': { isAvailable: function () {
-                return items.Bow && items.EponasSong && items.Bottle; }, },
+                return canBecomeAdult() && items.Bow && items.EponasSong && items.Bottle; }, },
             'Hyrule Castle Fairy': { isAvailable: function () {
                 return items.Bombs && items.ZeldasLullaby; }, },
             'Ganon\'s Castle Fairy': { isAvailable: function () {
-                return items.Glove >= 3 && items.ZeldasLullaby; }, },
+                return canBecomeAdult() && items.Glove >= 3 && items.ZeldasLullaby; }, },
             'Prelude of Light': { isAvailable: function () {
                 return items.ForestMedallion; }, },
             'Light Arrows': { isAvailable: function () {
@@ -596,27 +596,27 @@ var dungeons = [
         y: "24.0%",
         chestlist: {
             'Anju as Adult': { isAvailable: function () {
-                return true; }, },
+                return canBecomeAdult(); }, },
             'Anju\'s Chickens': { isAvailable: function () {
                 return true; }, },
             'Kakariko Grotto Chest': { isAvailable: function () {
                 return true; }, },
             'Kakariko Redead Grotto Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()); }, },
             'Cow Heart Piece': { isAvailable: function () {
                 return true; }, },
             'Man on Roof': { isAvailable: function () {
-                return items.Hookshot; }, },
+                return items.Hookshot && canBecomeAdult(); }, },
             'Adult Shooting Gallery': { isAvailable: function () {
-                return items.Bow; }, },
+                return items.Bow && canBecomeAdult(); }, },
             'Song of Storms': { isAvailable: function () {
-                return true; }, },
+                return canBecomeAdult(); }, },
             'Windmill Heart Piece': { isAvailable: function () {
-                return items.SongofTime || items.Boomerang; }, },
+                return (items.SongofTime && canBecomeAdult()) || items.Boomerang; }, },
             'Dampe Race 1': { isAvailable: function () {
-                return true; }, },
+                return canBecomeAdult(); }, },
             'Dampe Race 2': { isAvailable: function () {
-                return true; }, },
+                return canBecomeAdult(); }, },
             'Dampe Digging': { isAvailable: function () {
                 return true; }, },
             'Shield Grave Chest': { isAvailable: function () {
@@ -626,11 +626,11 @@ var dungeons = [
             'Sun\'s Song': { isAvailable: function () {
                 return items.ZeldasLullaby; }, },
             'Sun\'s Song Chest': { isAvailable: function () {
-                return (items.ZeldasLullaby && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)); }, },
+                return (items.ZeldasLullaby && ((items.Dins || (items.Fire && items.Bow && canBecomeAdult())) && items.Magic)); }, },
             'Magic Bean Heart Piece': { isAvailable: function () {
-                return items.Scale || items.Bombs || items.Hookshot >= 2; }, },
+                return canBecomeAdult() && (items.Scale || items.Bombs || items.Hookshot >= 2); }, },
             'Nocturne of Shadow': { isAvailable: function () {
-                return items.ForestMedallion && items.FireMedallion && items.WaterMedallion; }, },
+                return items.ForestMedallion && items.FireMedallion && items.WaterMedallion && canBecomeAdult(); }, },
             'Skulltula House 10': { isAvailable: function () {
                 return items.Skulltula >= 1; }, },
             'Skulltula House 20': { isAvailable: function () {
@@ -655,15 +655,15 @@ var dungeons = [
         y: "06.5%",
         chestlist: {
             'Left Boulder Maze Chest': { isAvailable: function () {
-                return items.Glove >= 2 || items.Hammer; }, },
+                return canBecomeAdult() && (items.Glove >= 2 || items.Hammer); }, },
             'Center Boulder Maze Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove >= 2; }, },
+                return items.Bombs || (canBecomeAdult() && (items.Hammer || items.Glove >= 2)); }, },
             'Right Boulder Maze Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove >= 2; }, },
+                return items.Bombs || (canBecomeAdult() && (items.Hammer || items.Glove >= 2)); }, },
             'Hot Rodder Goron': { isAvailable: function () {
                 return items.Bombs; }, },
             'Link the Goron': { isAvailable: function () {
-                return items.Glove || items.Bombs || items.Bow; }, },
+                return canBecomeAdult() && (items.Glove || items.Bombs || items.Bow); }, },
             'Spinning Pot Heart Piece': { isAvailable: function () {
                 return ((items.Glove || items.Bombs) && (items.ZeldasLullaby || (items.Magic && items.Dins))); }, },
             'Darunia\'s Joy': { isAvailable: function () {
@@ -690,15 +690,15 @@ var dungeons = [
             'Target in Woods': { isAvailable: function () {
                 return items.Slingshot; }, },
             'Bomb Grotto Chest': { isAvailable: function () {
-                return (items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest))); }, },
+                return items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest) && canBecomeAdult()); }, },
             'Deku Salesman Grotto': { isAvailable: function () {
-                return (items.Bombs || items.Hammer); }, },
+                return items.Bombs || (canBecomeAdult() && items.Hammer); }, },
             'Wolfos Grotto Chest': { isAvailable: function () {
-                return (items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest))); }, },
+                return items.Bombs || (items.Hammer && (item.SariasSong || items.MinuetofForest) && canBecomeAdult()); }, },
             'Saria\'s Song': { isAvailable: function () {
                 return true; }, },
             'Minuet of Forest': { isAvailable: function () {
-                return items.SariasSong || items.MinuetofForest; }, },
+                return canBecomeAdult() && (items.SariasSong || items.MinuetofForest); }, },
             'Deku Theater Skull Mask': { isAvailable: function () {
                 return true; }, },
             'Deku Theater Mask of Truth': { isAvailable: function () {
@@ -723,11 +723,11 @@ var dungeons = [
             'Fairy Fountain': { isAvailable: function () {
                 return (items.ZoraLetter && items.Bombs && items.ZeldasLullaby); }, },
             'Iceberg Heart Piece': { isAvailable: function () {
-                return (items.ZoraLetter && (items.Bombs || items.Scale) && items.ZeldasLullaby); }, },
+                return canBecomeAdult() && items.ZoraLetter && (items.Bombs || items.Scale) && items.ZeldasLullaby; }, },
             'Underwater Heart Piece': { isAvailable: function () {
-                return (items.ZoraLetter && (items.Bombs || items.Scale) && items.IronBoots && items.ZeldasLullaby); }, },
+                return canBecomeAdult() && items.ZoraLetter && (items.Bombs || items.Scale) && items.IronBoots && items.ZeldasLullaby; }, },
             'King Zora Thawed': { isAvailable: function () {
-                return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet >= 2)); }, },
+                return canBecomeAdult() && items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet >= 2); }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -744,23 +744,23 @@ var dungeons = [
             'Heart Piece Above Dodongo Cavern': { isAvailable: function () {
                 return (items.Bombs || (items.Glove && items.Scale)); }, },
             'Outside Goron City Chest': { isAvailable: function () {
-                return items.Bombs || items.Hammer; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()); }, },
             'Outside Goron City Grotto': { isAvailable: function () {
                 return items.SongofStorms; }, },
             'Bolero of Fire': { isAvailable: function () {
-                return (items.BoleroofFire || (items.HoverBoots && (items.Hammer || items.Bombs || items.Glove)) || (items.Hookshot && items.Glove)); }, },
+                return items.BoleroofFire || (canBecomeAdult() && (items.HoverBoots && (items.Hammer || items.Bombs || items.Glove)) || (items.Hookshot && items.Glove)); }, },
             'Crater Wall Heart Piece': { isAvailable: function () {
-                return (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); }, },
+                return items.Bombs || (canBecomeAdult() && (items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove)); }, },
             'Crater Magic Bean Heart Piece': { isAvailable: function () {
-                return ((items.Bombs || items.Scale) && items.BoleroofFire); }, },
+                return canBecomeAdult() && (items.Bombs || items.Scale) && items.BoleroofFire; }, },
             'Crater Grotto': { isAvailable: function () {
-                return items.Bombs || items.Hammer; }, },
+                return items.Bombs || (items.Hammer && canBecomeAdult()); }, },
             'Crater Fairy Fountain': { isAvailable: function () {
-                return (items.Hammer && items.ZeldasLullaby && (items.Glove || (items.BoleroofFire && items.Hookshot) || items.HoverBoots)); }, },
+                return canBecomeAdult() && items.Hammer && items.ZeldasLullaby && (items.Glove || (items.BoleroofFire && items.Hookshot) || items.HoverBoots); }, },
             'Summit Fairy Fountain': { isAvailable: function () {
-                return ((items.Bombs || items.Hammer) && items.ZeldasLullaby); }, },
+                return (items.Bombs || (items.Hammer && canBecomeAdult())) && items.ZeldasLullaby; }, },
             'Biggoron Sword': { isAvailable: function () {
-                return (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); }, },
+                return canBecomeAdult() && (items.Bombs || items.Hammer || (items.BoleroofFire && (items.HoverBoots || items.Hookshot)) || items.Glove); }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -819,7 +819,7 @@ var chests = [
         x: "50.0%",
         y: "28.0%",
         isAvailable: function() {
-            if (items.Bombs || items.Hammer) {
+            if (items.Bombs || (items.Hammer && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
@@ -830,7 +830,7 @@ var chests = [
         x: "60.0%",
         y: "59.0%",
         isAvailable: function() {
-            if (items.Bombs || items.Hammer) {
+            if (items.Bombs || (items.Hammer && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
@@ -849,7 +849,7 @@ var chests = [
         x: "42.0%",
         y: "64.0%",
         isAvailable: function() {
-            if (items.Bombs || items.Hammer) {
+            if (items.Bombs || (items.Hammer && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
@@ -860,7 +860,7 @@ var chests = [
         x: "44.0%",
         y: "32.0%",
         isAvailable: function() {
-            if ((items.Bombs || items.Hammer) && (items.Scale >= 2 || items.IronBoots)) {
+            if ((items.Bombs || (items.Hammer && canBecomeAdult())) && (items.Scale >= 2 || (items.IronBoots && canBecomeAdult()))) {
                 return "available";
             }
             return "unavailable";
@@ -895,8 +895,9 @@ var chests = [
         x: "38.6%",
         y: "80.0%",
         isAvailable: function() {
-            if (items.Scale)
+            if (items.Scale) {
                 return "available";
+            }
             return "unavailable";
         },
     },
@@ -905,7 +906,7 @@ var chests = [
         x: "41.5%",
         y: "91.0%",
         isAvailable: function() {
-            if (items.Hookshot >= 2 && items.Bow) {
+            if (canBecomeAdult() && items.Hookshot >= 2 && items.Bow) {
                 return "available";
             }
             return "unavailable";
@@ -916,8 +917,9 @@ var chests = [
         x: "35.2%",
         y: "77.4%",
         isAvailable: function() {
-            if (items.Scale >= 2)
+            if (items.Scale >= 2) {
                 return "available";
+            }
             return "unavailable";
         },
     },
@@ -926,7 +928,7 @@ var chests = [
         x: "35.2%",
         y: "74.0%",
         isAvailable: function() {
-            if (items.Scale || items.Bombs || items.Hookshot) {
+            if (canBecomeAdult() && (items.Scale || items.Bombs || (items.Hookshot && items.Ocarina))) {
                 return "available";
             }
             return "unavailable";
@@ -937,8 +939,9 @@ var chests = [
         x: "45.0%",
         y: "78.0%",
         isAvailable: function() {
-            if (items.KokiriSword)
+            if (items.KokiriSword) {
                 return "available";
+            }
             return "unavailable";
         },
     },
@@ -947,7 +950,7 @@ var chests = [
         x: "46.9%",
         y: "78.0%",
         isAvailable: function() {
-            if (items.Hookshot || items.Scale || items.Bombs) {
+            if (canBecomeAdult() && ((items.Hookshot && items.Ocarina) || items.Scale || items.Bombs)) {
                 return "available";
             }
             return "unavailable";
@@ -958,7 +961,7 @@ var chests = [
         x: "22.0%",
         y: "38.0%",
         isAvailable: function() {
-            if ((items.EponasSong || items.Hookshot >= 2) && items.Hammer) {
+            if (canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.Hammer) {
                 return "available";
             }
             return "unavailable";
@@ -985,7 +988,7 @@ var chests = [
         x: "18.8%",
         y: "23.0%",
         isAvailable: function() {
-            if ((items.EponasSong || items.Hookshot >= 2) && items.HoverBoots || items.Hookshot >= 2) {
+            if (canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.HoverBoots || items.Hookshot >= 2) {
                 return "available";
             }
             return "unavailable";
@@ -996,7 +999,7 @@ var chests = [
         x: "21.7%",
         y: "28.0%",
         isAvailable: function() {
-            if ((items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow) {
+            if (canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow) {
                 return "available";
             }
             return "unavailable";
@@ -1007,7 +1010,7 @@ var chests = [
         x: "23.5%",
         y: "28.0%",
         isAvailable: function() {
-            if ((items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow) {
+            if (canBecomeAdult() && (items.EponasSong || items.Hookshot >= 2) && items.EponasSong && items.Bow) {
                 return "available";
             }
             return "unavailable";
@@ -1018,7 +1021,7 @@ var chests = [
         x: "14.0%",
         y: "25.0%",
         isAvailable: function() {
-            if (((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)) {
+            if (canBecomeAdult() && ((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)) {
                 return "available";
             }
             return "unavailable";
@@ -1029,7 +1032,7 @@ var chests = [
         x: "04.5%",
         y: "21.5%",
         isAvailable: function() {
-            if ( (((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) {
+            if ((canBecomeAdult() && ((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) {
                 return "available";
             }
             return "unavailable";
@@ -1040,7 +1043,7 @@ var chests = [
         x: "08.0%",
         y: "19.0%",
         isAvailable: function() {
-            if ( ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Bombs && items.ZeldasLullaby) {
+            if (((canBecomeAdult() && ((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Bombs && items.ZeldasLullaby) {
                 return "available";
             }
             return "unavailable";
@@ -1051,7 +1054,7 @@ var chests = [
         x: "06.4%",
         y: "23.5%",
         isAvailable: function() {
-            if (items.RequiemofSpirit && (items.Bombs || items.Scale)) {
+            if (canBecomeAdult() && items.RequiemofSpirit && (items.Bombs || items.Scale)) {
                 return "available";
             }
             return "unavailable";
@@ -1084,7 +1087,7 @@ var chests = [
         x: "75.0%",
         y: "30.0%",
         isAvailable: function() {
-            if (items.Scale || items.Bombs || items.HoverBoots) {
+            if (items.Scale || items.Bombs || (items.HoverBoots && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
@@ -1095,7 +1098,7 @@ var chests = [
         x: "86.0%",
         y: "29.2%",
         isAvailable: function() {
-            if (items.Scale || items.Bombs || items.HoverBoots) {
+            if (items.Scale || items.Bombs || (items.HoverBoots && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
@@ -1106,7 +1109,7 @@ var chests = [
         x: "75.5%",
         y: "34.5%",
         isAvailable: function() {
-            if (items.Scale || items.Bombs || items.HoverBoots) {
+            if (items.Scale || items.Bombs || (items.HoverBoots && canBecomeAdult())) {
                 return "available";
             }
             return "unavailable";
