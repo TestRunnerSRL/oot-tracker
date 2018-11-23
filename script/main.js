@@ -100,6 +100,13 @@ function loadCookie() {
         }
     }
 
+    for (rbuttonID in document.getElementsByName('dotlogic')) {
+        rbutton = document.getElementsByName('dotlogic')[rbuttonID];
+        if (rbutton.value == cookieobj.dotlogic) {
+            rbutton.click();
+        }
+    }
+
     cookielock = false;
 }
 
@@ -124,6 +131,13 @@ function saveCookie() {
         rbutton = document.getElementsByName('ganonlogic')[rbuttonID];
         if (rbutton.checked) {
             cookieobj.glogic = rbutton.value;
+        }
+    }
+
+    for (rbuttonID in document.getElementsByName('dotlogic')) {
+        rbutton = document.getElementsByName('dotlogic')[rbuttonID];
+        if (rbutton.checked) {
+            cookieobj.dotlogic = rbutton.value;
         }
     }
 
