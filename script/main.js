@@ -1,4 +1,15 @@
-var medallions = [];
+var defaultMedallions = {
+    ForestMedallion: 0,
+    FireMedallion: 0,
+    WaterMedallion: 0,
+    ShadowMedallion: 0,
+    SpiritMedallion: 0,
+    LightMedallion: 0,
+    KokiriEmerald: 0,
+    GoronRuby: 0,
+    ZoraSapphire: 0,
+};
+var medallions = defaultMedallions;
 var dungeonImg = [
     'Unknown',
     'Slingshot0',
@@ -51,6 +62,7 @@ var cookieDefault = {
     mPos: 0,
     glogic: 'Open',
     prize: 1,
+    medallions: defaultMedallions,
     items: defaultItemGrid,
     obtainedItems: items,
     chests: serializeChests(),
@@ -73,6 +85,7 @@ function loadCookie() {
         }
     });
 
+    medallions = JSON.parse(JSON.stringify(cookieobj.medallions));
     initGridRow(JSON.parse(JSON.stringify(cookieobj.items)));
     items = JSON.parse(JSON.stringify(cookieobj.obtainedItems));
     deserializeChests(JSON.parse(JSON.stringify(cookieobj.chests)));
@@ -126,6 +139,7 @@ function saveCookie() {
         }
     }
 
+    cookieobj.medallions = JSON.parse(JSON.stringify(medallions));
     cookieobj.items = JSON.parse(JSON.stringify(itemLayout));
     cookieobj.obtainedItems = JSON.parse(JSON.stringify(items));
     cookieobj.chests = JSON.parse(JSON.stringify(serializeChests()));
@@ -511,18 +525,6 @@ function setGridItem(item, row, index) {
 }
 
 function initGridRow(itemsets) {
-    medallions = {
-        ForestMedallion: 0,
-        FireMedallion: 0,
-        WaterMedallion: 0,
-        ShadowMedallion: 0,
-        SpiritMedallion: 0,
-        LightMedallion: 0,
-        KokiriEmerald: 0,
-        GoronRuby: 0,
-        ZoraSapphire: 0,
-    };
-
     var r, c;
     var startdraw = false;
     for (r = 7; r >= 0 && !startdraw; r--) {
