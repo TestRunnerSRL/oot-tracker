@@ -25,6 +25,15 @@ function generalCanGetChest(chestlist) {
     return "possible";
 }
 
+function canAccessSpiritAdult() {
+    return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2);
+}
+
+function canAccessHoverShadow() {
+    return (items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots);
+}
+
+
 // define dungeon chests
 var dungeons = [
     {
@@ -64,7 +73,7 @@ var dungeons = [
             'Compass Chest': { isAvailable: function () {
                 return items.ZoraTunic && items.IronBoots && items.Hookshot; }, },
             'Torches Chest': { isAvailable: function () {
-                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && (items.Bow || (items.Dins && items.Magic)) && items.ZeldasLullaby; }, },
+                return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && (items.Bow || (items.Dins && items.Magic)); }, },
             'Dragon Chest': { isAvailable: function () {
                 return (items.ZoraTunic && items.IronBoots && items.Hookshot) && items.ZeldasLullaby && items.SongofTime && items.Bow; }, },
             'Central Bow Target Chest': { isAvailable: function () {
@@ -163,44 +172,44 @@ var dungeons = [
             'Child Right Chest': { isAvailable: function () {
                 return items.RequiemofSpirit && (items.Boomerang || items.Slingshot); }, },
             'Compass Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.Hookshot && items.ZeldasLullaby; }, },
+                return canAccessSpiritAdult() && items.Glove >= 2 && items.Hookshot && items.ZeldasLullaby; }, },
             'Early Adult Right Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Bow || items.Hookshot || items.Bombs); }, },
+                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && (items.Bow || items.Hookshot || items.Bombs); }, },
             'First Mirror Right Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2; }, },
+                return canAccessSpiritAdult(); }, },
             'First Mirror Left Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2; }, },
+                return canAccessSpiritAdult(); }, },
             'Map Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2)) && items.Magic && (items.Dins || (items.Fire && items.Bow && items.Glove >= 2)); }, },
+                return ((items.RequiemofSpirit && items.Bombs) || canAccessSpiritAdult()) && items.Magic && (items.Dins || (items.Fire && items.Bow && items.Glove >= 2)); }, },
             'Child Climb East Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Hookshot || items.Bow))); }, },
+                return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (canAccessSpiritAdult() && (items.Hookshot || items.Bow))); }, },
             'Child Climb North Chest': { isAvailable: function () {
-                 return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && (items.Hookshot || items.Bow))); }, },
+                 return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (canAccessSpiritAdult() && (items.Hookshot || items.Bow))); }, },
             'Sun Block Room Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Lens && items.Magic && items.Glove >= 2 && (items.Dins || (items.Fire && items.Bow)) && items.Magic)); }, },
+                return ((items.RequiemofSpirit && items.Bombs) || (canAccessSpiritAdult() && (items.Dins || (items.Fire && items.Bow)) && items.Magic)); }, },
             'Statue Hand Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby; }, },
+                return canAccessSpiritAdult() && items.ZeldasLullaby; }, },
             'NE Main Room Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby && items.Hookshot; }, },
+                return canAccessSpiritAdult() && items.ZeldasLullaby && (items.Hookshot || items.HoverBoots); }, },
             'Silver Gauntlets Chest': { isAvailable: function () {
-                return (items.RequiemofSpirit && items.Bombs) || (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2); }, },
+                return (items.RequiemofSpirit && items.Bombs) || canAccessSpiritAdult(); }, },
             'Mirror Shield Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2); }, },
+                return canAccessSpiritAdult() && items.Bombs; }, },
             'Near Four Armos Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.MirrorShield; }, },
+                return canAccessSpiritAdult() && items.Bombs && items.MirrorShield; }, },
             'Hallway Left Invisible Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.Magic && items.Lens; }, },
+                return canAccessSpiritAdult() && items.Bombs && items.Magic && items.Lens; }, },
             'Hallway Right Invisible Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.Magic && items.Lens; }, },
+                return canAccessSpiritAdult() && items.Bombs && items.Magic && items.Lens; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && items.ZeldasLullaby && items.Bow && items.Hookshot && (items.Bombs || items.Hammer); }, },
+                return canAccessSpiritAdult() && items.ZeldasLullaby && items.Bow && items.Hookshot && (items.Bombs || items.Hammer); }, },
             'Topmost Chest': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2) && (items.Hookshot || items.Bow || items.Bombs) && items.MirrorShield; }, },
+                return (canAccessSpiritAdult() && (items.Hookshot || items.Bow) && items.MirrorShield); }, },
             'Twinrova': { isAvailable: function () {
-                return (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.MirrorShield && items.Bombs && items.Hookshot); }, },
+                return canAccessSpiritAdult() && items.MirrorShield && items.Bombs && items.Hookshot; }, },
         },
         isBeatable: function() {
-            if (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Glove >= 2 && items.MirrorShield && items.Bombs && items.Hookshot) {
+            if (canAccessSpiritAdult() && items.MirrorShield && items.Bombs && items.Hookshot) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -241,7 +250,7 @@ var dungeons = [
             'Underwater Left Chest': { isAvailable: function () {
                 return items.SongofStorms && items.ZeldasLullaby; } },
             'Basement Chest': { isAvailable: function () {
-                return items.SongofStorms && items.Bombs; } },
+                return items.SongofStorms && (items.Bombs || (item.Glove && items.Dins); } },
             'Locked Pits': { isAvailable: function () {
                 return items.SongofStorms && items.Lens && items.Magic; } },
             'Behind Right Grate': { isAvailable: function () {
@@ -264,40 +273,40 @@ var dungeons = [
             'Hover Boots Chest': { isAvailable: function () {
                 return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && (items.HoverBoots || items.Hookshot); }, },
             'Compass Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
+                return canAccessHoverShadow(); }, },
             'Early Silver Rupee Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots; }, },
+                return canAccessHoverShadow(); }, },
             'Invisible Blades Visible Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canAccessHoverShadow() && items.Bombs; }, },
             'Invisible Blades Invisible Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canAccessHoverShadow() && items.Bombs; }, },
             'Falling Spikes Lower Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canAccessHoverShadow() && items.Bombs; }, },
             'Falling Spikes Upper Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Glove; }, },
             'Falling Spikes Switch Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Glove; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Glove; }, },
             'Invisible Spikes Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs; }, },
+                return canAccessHoverShadow() && items.Bombs; }, },
             'Giant Pot Key': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot; }, },
             'Wind Hint Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot; }, },
             'After Wind Enemy Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot; }, },
             'After Wind Hidden Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot; }, },
             'Spike Walls Left Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot && items.ZeldasLullaby; }, },
             'Boss Key Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot && items.ZeldasLullaby; }, },
             'Hidden Floormaster Chest': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot && items.ZeldasLullaby; }, },
             'Bongo Bongo': { isAvailable: function () {
-                return items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow; }, },
+                return canAccessHoverShadow() && items.Bombs && items.Hookshot && items.ZeldasLullaby && (items.Bow || items.Hookshot); }, },
         },
         isBeatable: function() {
-            if (items.NocturneofShadow && items.Dins && items.Magic && items.Lens && items.HoverBoots && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && items.Bow) {
+            if (canAccessHoverShadow() && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && (items.Bow || items.Hookshot)) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -320,18 +329,18 @@ var dungeons = [
             'Compass Chest': { isAvailable: function () {
                 return items.Bombs || items.Hammer || items.Glove; }, },
             'Bomb Flower Platform': { isAvailable: function () {
-                return items.Bombs || items.Hammer || items.Glove; }, },
+                return items.Bombs || (items.Hammer && items.Dins) || items.Glove; }, },
             'Bomb Bag Chest': { isAvailable: function () {
-                return (items.Bombs || items.Hammer || items.Glove) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return (items.Bombs || (items.Hammer && items.Dins) || items.Glove) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
             'End of Bridge Chest': { isAvailable: function () {
-                return (items.Slingshot || items.Bow || items.HoverBoots) && (items.Bombs || ((items.Bow || items.HoverBoots) && items.Hammer)); }, },
+                return (items.Bombs || (items.Hammer && items.Dins)) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
             'Chest Above King Dodongo': { isAvailable: function () {
-                return (items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs; }, },
+                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots); }, },
             'King Dodongo': { isAvailable: function () {
-                return ((items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs); }, },
+                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots); }, },
         },
         isBeatable: function() {
-            if ((items.Slingshot || items.Bow || items.HoverBoots) && items.Bombs) {
+            if (items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots)) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
