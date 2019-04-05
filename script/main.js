@@ -12,6 +12,7 @@ var dungeonImg = [
 ];
 ganonlogic = 'Open';
 showprizes = false;
+lensLogic = 'Everywhere'
 
 var itemGrid = [];
 var itemLayout = [];
@@ -260,6 +261,11 @@ function showPrizes(sender) {
     saveCookie();
 }
 
+function setLensLogic(sender) {
+    lensLogic = sender.value;
+    updateGridItemAll();
+    saveCookie()
+}
 function setGanonLogic(sender) {
     ganonlogic = sender.value;
     updateMap();
