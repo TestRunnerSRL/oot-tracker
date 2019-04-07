@@ -772,7 +772,7 @@ var dungeons = [
             'Summit Fairy Fountain': { isAvailable: function () {
                 return ((items.Bombs || items.Hammer) && items.ZeldasLullaby); }, },
             'Biggoron Sword': { isAvailable: function () {
-                return (items.Bombs || items.Hammer; }, },
+                return (items.Bombs || items.Hammer); }, },
         },
         isBeatable: function() {
             return this.canGetChest();
