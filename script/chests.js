@@ -257,7 +257,7 @@ var dungeons = [
             'Underwater Left Chest': { isAvailable: function () {
                 return items.SongofStorms && items.ZeldasLullaby; } },
             'Basement Chest': { isAvailable: function () {
-                return items.SongofStorms && (items.Bombs || (item.Glove && items.Dins)); } },
+                return items.SongofStorms && (items.Bombs || (items.Glove && items.Dins)); } },
             'Locked Pits': { isAvailable: function () {
                 return items.SongofStorms && items.Lens && items.Magic; } },
             'Behind Right Grate': { isAvailable: function () {
