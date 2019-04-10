@@ -39,10 +39,11 @@
                 <span id='itemdivsize'>100%</span><br>
                 <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
                 <legend>Lens Logic</legend>
-                <input type="Radio" name="showprizes" value="Everywhere" checked='true' onchange="showPrizes(this)">Everywhere<br>
-                <input type="Radio" name="showprizes" value="Everywhere" checked='true' onchange="showPrizes(this)">Wasteland + Tresure Minigame<br>
-                <input type="Radio" name="showprizes" value="Everywhere" checked='true' onchange="showPrizes(this)">Tresure Minigame Only<br>
+                <input type="Radio" name="Everywhere" value="Everywhere" checked='true' onchange="lensLogic(this)">Everywhere<br>
+                <input type="Radio" name="Wastetreasure" value="Someplace" checked='false' onchange="lensLogic(this)">Wasteland + Tresure Minigame<br>
+                <input type="Radio" name="treasure" value="Nowhere" checked='false' onchange="lensLogic(this)">Tresure Minigame Only<br>
             </fieldset>
+            <script> </script>
             <fieldset>
                 <legend>Map Tracker</legend>
                 <input type="checkbox" name="showmap" checked='true' onchange="showTracker('mapdiv', this)">Enabled<br>
