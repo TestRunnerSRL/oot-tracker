@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
     
-        <script src="script/items.js"></script>
-        <script src="script/chests.js"></script>
-        <script src="script/main.js"></script>
+
     </head>
 
     <body>
-    
+        <script src="script/items.js"></script>
+        <script src="script/chests.js"></script>
+        <script src="script/main.js"></script>
         <div id='layoutdiv'>
             <div id='itemdiv' class='itemdiv'>
             </div>
@@ -25,7 +25,7 @@
         </div>
         
         <!-- Setting panel-->
-        
+
         <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
         <fieldset id='settings' class='settings'>
             <legend>Settings</legend>
@@ -39,11 +39,10 @@
                 <span id='itemdivsize'>100%</span><br>
                 <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
                 <legend>Lens Logic</legend>
-                <input type="Radio" name="Everywhere" value="Everywhere" checked='true' onchange="lensLogic(this)">Everywhere<br>
-                <input type="Radio" name="Wastetreasure" value="Someplace" checked='false' onchange="lensLogic(this)">Wasteland + Tresure Minigame<br>
-                <input type="Radio" name="treasure" value="Nowhere" checked='false' onchange="lensLogic(this)">Tresure Minigame Only<br>
+                <input type="Radio" name="lens" value="All" checked='true' onchange="setLens(this)">Everywhere<br>
+                <input type="Radio" name="lens" value="Semi"  onchange="setLens(this)">Wasteland + Tresure Minigame<br>
+                <input type="Radio" name="lens" value="Low"  onchange="setLens(this)">Tresure Minigame Only<br>
             </fieldset>
-            <script> </script>
             <fieldset>
                 <legend>Map Tracker</legend>
                 <input type="checkbox" name="showmap" checked='true' onchange="showTracker('mapdiv', this)">Enabled<br>
@@ -63,7 +62,7 @@
         </fieldset>
         
         <table id='itemconfig' class='itemconfig' style='display:none'></table>
-        
+
         <script>
             init();
         </script>

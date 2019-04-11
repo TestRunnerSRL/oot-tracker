@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7560f2c9-fde6-45b5-88bf-e479aff6fc18" name="Default Changelist" comment="" />
+    <list default="true" id="7560f2c9-fde6-45b5-88bf-e479aff6fc18" name="Default Changelist" comment="Added theoretical Lens Logic, not implemented yet" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -12,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/items.js">
           <provider selected="true" editor-type-id="text-editor" />
@@ -21,8 +21,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/chests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="271" column="126" selection-start-line="271" selection-start-column="126" selection-end-line="271" selection-end-column="126" />
+            <state relative-caret-position="476">
+              <caret line="28" column="86" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -30,17 +39,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="264" column="29" lean-forward="true" selection-start-line="264" selection-start-column="29" selection-end-line="264" selection-end-column="29" />
+            <state relative-caret-position="1972">
+              <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="42" column="78" selection-start-line="42" selection-start-column="78" selection-end-line="43" selection-end-column="56" />
+            <state relative-caret-position="782">
+              <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#hr#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -49,50 +61,70 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>show</find>
-      <find>show</find>
       <find>showpr</find>
+      <find>ganon</find>
+      <find>isBrid</find>
+      <find>case 'every</find>
+      <find>deku</find>
+      <find>deku tree</find>
+      <find>canAccessSpiritAdult() {</find>
+      <find>Tre</find>
+      <find>isL</find>
+      <find>deku tr</find>
+      <find>show</find>
+      <find>showP</find>
+      <find>rad</find>
+      <find>switch</find>
+      <find>swit</find>
+      <find>wast</find>
+      <find>islen</find>
+      <find>this.name</find>
+      <find>x</find>
+      <find>unhighlightDungeon</find>
+      <find>this.</find>
+      <find>alert</find>
+      <find>Chests</find>
+      <find>lens</find>
+      <find>init</find>
+      <find>items.Lens</find>
+      <find>Req</find>
+      <find>lens(</find>
     </findStrings>
+    <replaceStrings>
+      <replace>lens('All')</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Brady &lt;oskiekid@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/script/chests.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/script/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/script/chests.js" />
+        <option value="$PROJECT_DIR$/style.css" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="580" />
-    <option name="y" value="200" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="581" />
+    <option name="y" value="63" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="oot-tracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oot-tracker" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="oot-tracker" type="b2602c69:ProjectViewProjectNode" />
-              <item name="oot-tracker" type="462c0819:PsiDirectoryNode" />
-              <item name="script" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -101,9 +133,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="liveEdit" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -117,13 +156,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/oot-tracker/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="chests.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="chests.js" working-dir="$PROJECT_DIR$/script">
+      <method v="2" />
+    </configuration>
+    <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="main.js" working-dir="$PROJECT_DIR$/script">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="Node.js.main.js" />
+        <item itemvalue="Node.js.chests.js" />
       </list>
     </recent_temporary>
   </component>
@@ -137,7 +184,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554413678459</updated>
-      <workItem from="1554413679612" duration="3801000" />
+      <workItem from="1554413679612" duration="4423000" />
+      <workItem from="1554863770507" duration="4671000" />
+      <workItem from="1554934189854" duration="1357000" />
+      <workItem from="1554943625361" duration="8025000" />
+      <workItem from="1554954027436" duration="17000" />
+      <workItem from="1554954059354" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="this one butterfly">
       <created>1554481092347</created>
@@ -146,31 +198,37 @@
       <option name="project" value="LOCAL" />
       <updated>1554481092347</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added theoretical Lens Logic, not implemented yet">
+      <created>1554869410701</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554869410701</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3801000" />
+    <option name="totallyTimeSpent" value="18556000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="580" y="200" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2496329" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.071710005" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.3298731" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39907727" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49960598" weight="0.22291504" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49853158" weight="0.3298731" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49527186" weight="0.3990647" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.501182" side_tool="true" visible="true" weight="0.32969603" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49881798" visible="true" weight="0.32969603" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -181,30 +239,44 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="this one butterfly" />
-    <option name="LAST_COMMIT_MESSAGE" value="this one butterfly" />
+    <MESSAGE value="Added theoretical Lens Logic, not implemented yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added theoretical Lens Logic, not implemented yet" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/script/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="264" column="29" lean-forward="true" selection-start-line="264" selection-start-column="29" selection-end-line="264" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/chests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="271" column="126" selection-start-line="271" selection-start-column="126" selection-end-line="271" selection-end-column="126" />
-        </state>
-      </provider>
+    <entry file="http://localhost:63342/oot-tracker/script/chests.js">
+      <provider selected="true" editor-type-id="httpFileEditor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/script/items.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/chests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="86" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="42" column="78" selection-start-line="42" selection-start-column="78" selection-end-line="43" selection-end-column="56" />
+        <state relative-caret-position="782">
+          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#hr#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
         </state>
       </provider>
     </entry>

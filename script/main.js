@@ -12,7 +12,9 @@ var dungeonImg = [
 ];
 ganonlogic = 'Open';
 showprizes = false;
-lensLogic = 'Everywhere'
+
+lensLogic = 'All'
+
 
 var itemGrid = [];
 var itemLayout = [];
@@ -260,11 +262,11 @@ function showPrizes(sender) {
     updateGridItemAll();
     saveCookie();
 }
-
-function setLensLogic(sender) {
+function setLens(sender){
     lensLogic = sender.value;
-    updateGridItemAll();
-    saveCookie()
+
+    updateMap()
+
 }
 function setGanonLogic(sender) {
     ganonlogic = sender.value;
@@ -870,7 +872,39 @@ function populateItemconfig() {
         row.appendChild(rowitem);
     }		
 }
-
+function returnLens(){
+    return items.lens
+}
+// function lens(loc){
+//     switch(lensLogic){
+//         case '':
+//
+//             throw "WutFace"
+//             break;
+//
+//         case ('All'):
+//             //  alert('returned lens')
+//             return items.lens
+//
+//         case 'Semi':
+//             if(loc != 'Semi' || 'Low'){
+//                 return true
+//             }else {
+//                 return (items.lens)
+//             }
+//
+//
+//         case 'Low':
+//             if(loc != 'Low'){
+//                 return true
+//             }else {
+//                 return (items.lens)
+//             }
+//         default :
+//             throw loc
+//
+//     }
+// }
 function isBridgeOpen() {
     switch (ganonlogic) {
         case 'Open':

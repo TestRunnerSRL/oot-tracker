@@ -60,8 +60,8 @@ body{
 }
 
 .stoops{
-    width: 128;
-    height: 128;
+    width: 128px;
+    height: 128px;
     background-size: 200% 200%;
 }
 
@@ -106,14 +106,14 @@ label {
 }
 
 .mini{
-    width: 16;
-    height: 16;
+    width: 16px;
+    height: 16px;
     vertical-align: text-bottom;
 }
 
 .boss{
-    width: 12;
-    height: 12;
+    width: 12px;
+    height: 12px;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -127,8 +127,8 @@ label {
 }
 
 .dungeon{
-    width: 24;
-    height: 24;
+    width: 24px;
+    height: 24px;
     background-size: 100% 100%;
 
     position: absolute;
