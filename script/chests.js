@@ -544,6 +544,8 @@ var dungeons = [
                 return isBridgeOpen() && items.Glove >= 3 && (items.Magic && items.Lens); }, },
             'Light Trial Lullaby Chest': { isAvailable: function () {
                 return isBridgeOpen() && items.Glove >= 3 && items.ZeldasLullaby; }, },
+            'Boss Key Chest': { isAvailable: function() {
+                return isBridgeOpen() && items.Magic && items.Bow && items.Light && (items.Fire || items.Dins) && items.GoronTunic && items.Glove >= 3 && items.Hookshot >= 2 && items.Bottle && items.Hammer && (items.Lens || items.HoverBoots) && items.MirrorShield && items.Bombs; }, },
         },
         trials: {
             'Forest Trial Clear': { isAvailable: function () {
