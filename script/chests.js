@@ -34,7 +34,7 @@ function canAccessHoverShadow() {
 }
 
 function canAccessFire() {
-    return (items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)));
+    return (items.GoronTunic && (items.BoleroofFire || ((items.HoverBoots || items.Hookshot) && (items.Bow || items.Glove || items.Bombs)) || (items.HoverBoots && items.Hammer)));
 }
 
 function canAccessDeepFire() {
@@ -181,13 +181,13 @@ var dungeons = [
             'Compass Chest': { isAvailable: function () {
                 return canAccessSpiritAdult() && items.Glove >= 2 && items.Hookshot && items.ZeldasLullaby; }, },
             'Early Adult Right Chest': { isAvailable: function () {
-                return ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && (items.Bow || items.Hookshot || items.Bombs); }, },
+                return canAccessSpiritAdult(); }, },
             'First Mirror Right Chest': { isAvailable: function () {
                 return canAccessSpiritAdult(); }, },
             'First Mirror Left Chest': { isAvailable: function () {
                 return canAccessSpiritAdult(); }, },
             'Map Chest': { isAvailable: function () {
-                return ((items.RequiemofSpirit && items.Bombs) || canAccessSpiritAdult()) && items.Magic && (items.Dins || (items.Fire && items.Bow && items.Glove >= 2)); }, },
+                return ((items.RequiemofSpirit && items.Bombs) || (canAccessSpiritAdult() && items.Magic && (items.Dins || (items.Fire && items.Bow)))); }, },
             'Child Climb East Chest': { isAvailable: function () {
                 return ((items.RequiemofSpirit && (items.Boomerang || items.Slingshot)) || (canAccessSpiritAdult() && (items.Hookshot || items.Bow))); }, },
             'Child Climb North Chest': { isAvailable: function () {
@@ -257,7 +257,7 @@ var dungeons = [
             'Underwater Left Chest': { isAvailable: function () {
                 return items.SongofStorms && items.ZeldasLullaby; } },
             'Basement Chest': { isAvailable: function () {
-                return items.SongofStorms && (items.Bombs || (items.Glove && items.Dins)); } },
+                return items.SongofStorms && (items.Bombs || (items.Glove && (items.Dins || items.Lens) && items.Magic)); } },
             'Locked Pits': { isAvailable: function () {
                 return items.SongofStorms && items.Lens && items.Magic; } },
             'Behind Right Grate': { isAvailable: function () {
@@ -338,13 +338,13 @@ var dungeons = [
             'Bomb Flower Platform': { isAvailable: function () {
                 return items.Bombs || (items.Hammer && items.Dins) || items.Glove; }, },
             'Bomb Bag Chest': { isAvailable: function () {
-                return (items.Bombs || (items.Hammer && items.Dins) || items.Glove) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return (items.Bombs || (items.Hammer && items.Dins) || items.Glove) && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2); }, },
             'End of Bridge Chest': { isAvailable: function () {
-                return (items.Bombs || (items.Hammer && items.Dins)) && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return (items.Bombs || (items.Hammer && items.Dins)) && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2); }, },
             'Chest Above King Dodongo': { isAvailable: function () {
-                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2); }, },
             'King Dodongo': { isAvailable: function () {
-                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots); }, },
+                return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2); }, },
         },
         isBeatable: function() {
             if (items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots)) {
@@ -475,7 +475,7 @@ var dungeons = [
             'Map Chest': { isAvailable: function () {
                 return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
             'Outside Hookshot Chest': { isAvailable: function () {
-                return (items.SariasSong || items.MinuetofForest) && items.Hookshot; }, },
+                return (items.SariasSong || items.MinuetofForest) && items.Hookshot && (items.Bow || items.HoverBoots || items.SongofTime); }, },
             'Falling Room Chest': { isAvailable: function () {
                 return ((items.SariasSong || items.MinuetofForest) && items.Hookshot) && items.Glove && (items.Bow || (items.Dins && items.Magic)); }, },
             'Block Push Chest': { isAvailable: function () {
@@ -774,7 +774,7 @@ var dungeons = [
             'Summit Fairy Fountain': { isAvailable: function () {
                 return ((items.Bombs || items.Hammer) && items.ZeldasLullaby); }, },
             'Biggoron Sword': { isAvailable: function () {
-                return (items.Bombs || items.Hammer); }, },
+                return  (items.Bow || items.Bombs || items.Hammer || items.Glove || (items.BoleroofFire && (items.HoverBoots || items.Hookshot))); }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -1041,7 +1041,7 @@ var chests = [
         x: "04.5%",
         y: "21.5%",
         isAvailable: function() {
-            if (canAccessSpiritAdult()) {
+            if ((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) {
                 return "available";
             }
             return "unavailable";
@@ -1052,7 +1052,7 @@ var chests = [
         x: "08.0%",
         y: "19.0%",
         isAvailable: function() {
-            if (canAccessSpiritAdult() && items.Bombs && items.ZeldasLullaby) {
+            if (((((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic) || items.RequiemofSpirit) && items.Bombs && items.ZeldasLullaby) {
                 return "available";
             }
             return "unavailable";
