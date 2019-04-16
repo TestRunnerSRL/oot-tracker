@@ -57,14 +57,7 @@ var dungeons = [
             'Gohma': { isAvailable: function () { return items.Slingshot; }, },
         },
         isBeatable: function() {
-            if (items.Slingshot) {
-                if (this.canGetChest() == 'available') {
-                    return 'available';
-                }
-                return 'possible';
-            } else {
-                return "unavailable";
-            }
+            return this.canGetChest();
         },
         canGetChest: function() {
             return generalCanGetChest(this.chestlist);
@@ -99,7 +92,20 @@ var dungeons = [
                 return (items.ZoraTunic && items.IronBoots && items.Hookshot >= 2); }, },
         },
         isBeatable: function() {
-            if (items.ZoraTunic && items.IronBoots && items.Hookshot >= 2) {
+            /*
+             * Logic allows entrance with the following conditions met:
+             * - Can hit switch to open Temple
+             *    - Longshot
+             *    - Iron boots and Hookshot
+             * - Can get deep enough to reach entrance
+             *    - Iron boots
+             *    - Golden scale
+             *
+             * Note that despite this, no chests can be collected without Iron Boots and Zora Tunic.
+             * Since "unavailable" here only affects dungeon name color, NOT availability on the map,
+             * it should match the entrance criteria, irrespective of chest availability.
+             */
+            if (((items.IronBoots && items.Hookshot) || items.Hookshot >= 2) && (items.Scale >= 2 || item.IronBoots)) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -163,6 +169,7 @@ var dungeons = [
                 return (items.EponasSong || items.Hookshot >= 2) && items.Hookshot && items.Glove >= 2 && items.Lens && items.Magic; }, },
         },
         isBeatable: function() {
+            // Entrance criteria directly encoded in all individual checks, no need for additional logic here
             return this.canGetChest();
         },
         canGetChest: function() {
@@ -216,7 +223,8 @@ var dungeons = [
                 return canAccessSpiritAdult() && items.MirrorShield && items.Bombs && items.Hookshot; }, },
         },
         isBeatable: function() {
-            if (canAccessSpiritAdult() && items.MirrorShield && items.Bombs && items.Hookshot) {
+            // Entrance criteria is Requiem or both a way to cross bridge AND a way to cross wasteland
+            if (items.RequiemofSpirit || (((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && items.Lens && items.Magic)) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -264,7 +272,14 @@ var dungeons = [
                 return items.SongofStorms && items.Lens && items.Magic; } },
         },
         isBeatable: function(){
-            return this.canGetChest();
+            if (items.SongofStorms) {
+              if (this.canGetChest() == 'available') {
+                  return 'available';
+              }
+              return 'possible';
+          } else {
+              return "unavailable";
+          }
         },
         canGetChest: function() {
             return generalCanGetChest(this.chestlist);
@@ -313,7 +328,8 @@ var dungeons = [
                 return canAccessHoverShadow() && items.Bombs && items.Hookshot && items.ZeldasLullaby && (items.Bow || items.Hookshot); }, },
         },
         isBeatable: function() {
-            if (canAccessHoverShadow() && items.Bombs && items.Hookshot && items.Glove && items.ZeldasLullaby && (items.Bow || items.Hookshot)) {
+            // In logic, the entrance criteria requires Din's as the fire source and Nocturne to get up to the temple
+            if (items.Dins && items.Magic && items.NocturneofShadow) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -347,7 +363,7 @@ var dungeons = [
                 return items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2); }, },
         },
         isBeatable: function() {
-            if (items.Bombs && (items.Slingshot || items.Bow || items.HoverBoots)) {
+            if (items.Glove || items.Bombs || items.Hammer) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -397,7 +413,7 @@ var dungeons = [
                 return (canAccessFire() && items.Hammer && (items.HoverBoots || (canAccessDeepFire() && (items.SongofTime || items.Bombs)))); }, },
         },
         isBeatable: function() {
-            if (canAccessFire() && items.Hammer && (items.HoverBoots || (canAccessDeepFire() && (items.SongofTime || items.Bombs)))) {
+            if (canAccessFire()) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -425,7 +441,7 @@ var dungeons = [
                 return (((items.Bombs && items.ZeldasLullaby) || items.Scale) && items.ZoraLetter && items.Bottle && items.Boomerang); }, },
         },
         isBeatable: function() {
-            if (((items.Bombs && items.ZeldasLullaby) || items.Scale) && items.ZoraLetter && items.Bottle && items.Boomerang) {
+            if (((items.Bombs && items.ZeldasLullaby) || items.Scale) && items.ZoraLetter && items.Bottle) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -444,7 +460,7 @@ var dungeons = [
         y: "16.0%",
         chestlist: {
             'Map Chest': { isAvailable: function () {
-                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+                return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby; }, },
             'Compass Chest': { isAvailable: function () {
                 return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
             'Heart Piece': { isAvailable: function () {
@@ -455,6 +471,14 @@ var dungeons = [
                 return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
         },
         isBeatable: function() {
+            /* Entrance criteria directly encoded in all individual checks, no need for additional logic here
+             * Requires:
+             * - A way to get into Zora's Domain as child
+             *    - Bombs and Zelda's Lullaby
+             *    - Silver Scale (can go through Lake Hylia)
+             * - Zora's Letter to move King Zora
+             * - Zelda's Lullaby to enter Zora's Domain as adult
+             */
             return this.canGetChest();
         },
         canGetChest: function() {
@@ -496,7 +520,13 @@ var dungeons = [
                 return ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Glove  && items.Bow); }, },
         },
         isBeatable: function() {
-            if ((items.SariasSong || items.MinuetofForest) && items.Hookshot && items.Glove  && items.Bow) {
+            /* Requires:
+             * - A way to get to Sacred Forest Meadow as Adult
+             *    - Saria's Song (to move Mido)
+             *    - Minuet of Forest (to warp straight there)
+             * - Hookshot to get up to temple entrance
+             */
+            if ((items.SariasSong || items.MinuetofForest) && items.Hookshot) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
                 }
@@ -729,6 +759,7 @@ var dungeons = [
         name: "Zora\'s Domain",
         x: "93.5%",
         y: "29.0%",
+        // TODO: recategorize these chests to avoid hint confusion (Zora's Fountain is separate from Domain)
         chestlist: {
             'Diving Minigame': { isAvailable: function () {
                 return ((items.Bombs && items.ZeldasLullaby) || items.Scale); }, },
@@ -744,6 +775,7 @@ var dungeons = [
                 return (items.ZeldasLullaby && items.Bottle && ((items.ZoraLetter && (items.Bombs || items.Scale)) || isBridgeOpen() || items.Wallet >= 2)); }, },
         },
         isBeatable: function() {
+            // Entrance criteria directly encoded in all individual checks, no need for additional logic here
             return this.canGetChest();
         },
         canGetChest: function() {
@@ -777,6 +809,7 @@ var dungeons = [
                 return  (items.Bow || items.Bombs || items.Hammer || items.Glove || (items.BoleroofFire && (items.HoverBoots || items.Hookshot))); }, },
         },
         isBeatable: function() {
+            // No entrance criteria since we mix Death Mountain Trail and Crater
             return this.canGetChest();
         },
         canGetChest: function() {
@@ -1057,7 +1090,7 @@ var chests = [
             }
             return "unavailable";
         },
-    },    
+    },
     {
         name: "Desert Colossus Heart Piece",
         x: "06.4%",
@@ -1133,4 +1166,3 @@ var chests = [
         },
     },
 ]
-
