@@ -305,17 +305,17 @@ function showSettings(sender) {
                         r++;
                         break;
                     }
-                }		
+                }
 
                 if (!startdraw) {
                     itemGrid[r]['row'].style.display = 'none';
                     itemGrid[r]['half'].style.display = 'none';
-                }	
+                }
             }
         }
 
         for (; r >= 0; r--) {
-            itemGrid[r]['row'].style.display = '';	
+            itemGrid[r]['row'].style.display = '';
             itemGrid[r]['button'].style.display = 'none';
         }
 
@@ -332,9 +332,9 @@ function showSettings(sender) {
             x.style.display = 'initial';
             sender.innerHTML = 'X';
         } else {
-            x.style.display = 'none';		
+            x.style.display = 'none';
             sender.innerHTML = '🔧';
-        } 
+        }
     }
 }
 
@@ -352,13 +352,13 @@ function clickRowButton(row) {
         itemGrid[row]['button'].innerHTML = '-';
         itemGrid[row]['button'].style.backgroundColor = 'red';
         itemGrid[row][6]['item'].style.display = '';
-        itemGrid[row]['half'].style.display = 'none';	
+        itemGrid[row]['half'].style.display = 'none';
         itemLayout[row][6] = 'blank';
     } else {
         itemGrid[row]['button'].innerHTML = '+';
         itemGrid[row]['button'].style.backgroundColor = 'green';
         itemGrid[row][6]['item'].style.display = 'none';
-        itemGrid[row]['half'].style.display = '';	
+        itemGrid[row]['half'].style.display = '';
         document.getElementById(itemLayout[row][6]).style.opacity = 1;
         itemLayout[row].splice(-1, 1);
     }
@@ -393,6 +393,7 @@ function ResetTracker() {
     chests.forEach(chest => delete chest.isOpened);
     dungeons.forEach(dungeon => Object.values(dungeon.chestlist).forEach(chest => delete chest.isOpened));
     items = Object.assign(baseItems);
+    medallions = defaultMedallions;
 
     updateGridItemAll();
     updateMap();
@@ -418,7 +419,7 @@ function createItemTracker(sender) {
         tr.appendChild(itemGrid[r]['half']);
 
         var i;
-        for (i = 0; i < 7; i++) {	
+        for (i = 0; i < 7; i++) {
             itemGrid[r][i] = [];
             itemLayout[r][i] = 'blank';
 
@@ -538,17 +539,17 @@ function initGridRow(itemsets) {
                     r++;
                     break;
                 }
-            }	
+            }
 
             if (!startdraw) {
                 itemGrid[r]['row'].style.display = 'none';
                 itemGrid[r]['half'].style.display = 'none';
-            }			
+            }
         }
     }
 
     for (; r >= 0; r--) {
-        itemGrid[r]['row'].style.display = '';	
+        itemGrid[r]['row'].style.display = '';
 
         if (itemsets[r].length % 2 != 0) {
             itemGrid[r]['half'].style.display = 'none';
@@ -561,13 +562,13 @@ function initGridRow(itemsets) {
         for (c = 0; c < 7; c++) {
             if (itemsets[r][c]) {
                 setGridItem(itemsets[r][c], r, c);
-            } 
+            }
         }
     }
 }
 
 function gridItemClick(row, col, corner) {
-    if (editmode) {		
+    if (editmode) {
         if (selected.item) {
             document.getElementById(selected.item).style.border = '1px solid white';
             var old = itemLayout[row][col];
@@ -627,7 +628,7 @@ function gridItemClick(row, col, corner) {
             if (medallions[item] >=  9) {
                 medallions[item] = 0;
             }
-        } 
+        }
         else {
             items[item] = !items[item];
         }
@@ -699,7 +700,7 @@ function itemConfigClick (sender) {
     if (selected.item) {
         document.getElementById(selected.item).style.border = '0px';
         sender.style.border = '3px solid yellow';
-        selected = {item: item};	
+        selected = {item: item};
     } else if (selected.row !== undefined) {
         itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
         var old = itemLayout[selected.row][selected.col];
@@ -864,7 +865,7 @@ function populateItemconfig() {
             rowitem.style.backgroundImage = 'url(images/' + key + itemsMax[key] + '.png)';
         }
         row.appendChild(rowitem);
-    }		
+    }
 }
 
 function isBridgeOpen() {
