@@ -212,8 +212,15 @@ function clickDungeon(d) {
     dungeonSelect = d;
     document.getElementById('dungeon' + dungeonSelect).style.backgroundImage = 'url(images/highlighted.png)';
 
-    document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
-    document.getElementById('submaparea').className = 'DC' + dungeons[dungeonSelect].isBeatable();
+    // Update the DOM object that shows the dungeon name in the submaparea
+    var dungeonNameDOM = document.getElementById('submaparea');
+    dungeonNameDOM.innerHTML = dungeons[dungeonSelect].name;
+    dungeonNameDOM.onclick = new Function('toggleDungeon(this,' + dungeonSelect + ')');
+    dungeonNameDOM.onmouseover = new Function('highlightListItem(this)');
+    dungeonNameDOM.onmouseout = new Function('unhighlightListItem(this)');
+    dungeonNameDOM.style.cursor = 'pointer';
+    dungeonNameDOM.className = 'DC' + dungeons[dungeonSelect].isBeatable();
+
     var DClist = document.getElementById('submaplist');
     DClist.innerHTML = '';
 
@@ -230,8 +237,8 @@ function clickDungeon(d) {
         }
 
         s.onclick = new Function('toggleDungeonChest(this,' + dungeonSelect + ',"' + key + '")');
-        s.onmouseover = new Function('highlightDungeonChest(this)');
-        s.onmouseout = new Function('unhighlightDungeonChest(this)');
+        s.onmouseover = new Function('highlightListItem(this)');
+        s.onmouseout = new Function('unhighlightListItem(this)');
         s.style.cursor = "pointer";
 
         DClist.appendChild(s);
@@ -251,11 +258,53 @@ function toggleDungeonChest(sender, d, c) {
     saveCookie();
 }
 
-function highlightDungeonChest(x) {
+/**
+ * Opens or closes all chests in a dungeon.
+ * Note: This does not necessarily toggle individual chests!
+ *
+ * @param sender The DOM object that was invoked. Here it will be the submaparea object (dungeon title)
+ * @param dungeonIndex The index of the dungeon currently displayed in the submaparea
+ */
+function toggleDungeon(sender, dungeonIndex) {
+    var DClist = document.getElementById('submaplist');
+    var chestlistNames = Object.keys(dungeons[dungeonIndex].chestlist);
+
+    // If the dungeon is already cleared
+    if (sender.className == 'DCopened') {
+        // Close all chests and set their class to the appropriate value based on their availability
+        for (var chestIndex = 0; chestIndex < chestlistNames.length; chestIndex++) {
+            var currentChestName = chestlistNames[chestIndex];
+            dungeons[dungeonIndex].chestlist[currentChestName].isOpened = false;
+            sender.className = dungeons[dungeonIndex].chestlist[currentChestName].isAvailable()
+                    ? 'DCavailable'
+                    : 'DCunavailable';
+        }
+    // If the dungeon is not cleared (regardless of availability logic)
+    } else if (sender.className == 'DCavailable'
+            || sender.className == 'DCunavailable'
+            || sender.className == 'DCpossible') {
+        // Open all of the chests
+        for (var chestIndex = 0; chestIndex < chestlistNames.length; chestIndex++) {
+            var currentChestName = chestlistNames[chestIndex];
+            dungeons[dungeonIndex].chestlist[currentChestName].isOpened = true;
+            sender.className = 'DCopened';
+        }
+    } else {
+        throw "Dungeon title DOM object was not of an expected class";
+    }
+
+    // Update the dungeon title class
+    sender.className = 'DC' + dungeons[dungeonIndex].isBeatable();
+
+    updateMap();
+    saveCookie();
+}
+
+function highlightListItem(x) {
     x.style.backgroundColor = '#282828';
 }
 
-function unhighlightDungeonChest(x) {
+function unhighlightListItem(x) {
     x.style.backgroundColor = '';
 }
 
@@ -814,8 +863,15 @@ function populateMapdiv() {
         mapdiv.appendChild(s);
     }
 
-    document.getElementById('submaparea').innerHTML = dungeons[dungeonSelect].name;
-    document.getElementById('submaparea').className = 'DC' + dungeons[dungeonSelect].isBeatable();
+    // Update the DOM object that shows the dungeon name in the submaparea
+    var dungeonNameDOM = document.getElementById('submaparea');
+    dungeonNameDOM.innerHTML = dungeons[dungeonSelect].name;
+    dungeonNameDOM.onclick = new Function('toggleDungeon(this,' + dungeonSelect + ')');
+    dungeonNameDOM.onmouseover = new Function('highlightListItem(this)');
+    dungeonNameDOM.onmouseout = new Function('unhighlightListItem(this)');
+    dungeonNameDOM.style.cursor = 'pointer';
+    dungeonNameDOM.className = 'DC' + dungeons[dungeonSelect].isBeatable();
+
     document.getElementById('dungeon' + dungeonSelect).style.backgroundImage = 'url(images/highlighted.png)';
     for (var key in dungeons[dungeonSelect].chestlist) {
         var s = document.createElement('li');
@@ -832,8 +888,8 @@ function populateMapdiv() {
         }
 
         s.onclick = new Function('toggleDungeonChest(this,' + dungeonSelect + ',"' + key + '")');
-        s.onmouseover = new Function('highlightDungeonChest(this)');
-        s.onmouseout = new Function('unhighlightDungeonChest(this)');
+        s.onmouseover = new Function('highlightListItem(this)');
+        s.onmouseout = new Function('unhighlightListItem(this)');
         s.style.cursor = 'pointer';
 
         document.getElementById('submaplist').appendChild(s);
