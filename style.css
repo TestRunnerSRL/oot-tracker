@@ -10,7 +10,7 @@ body{
 }
 
 .settings{
-    background-color: rgb(0,0,0);	
+    background-color: rgb(0,0,0);
     position: fixed;
     right:0;
     bottom: 0;
@@ -22,8 +22,8 @@ body{
     position: fixed;
     right:0;
     bottom:0;
-    z-index:11;	
-    background-color: rgb(0,0,0);	
+    z-index:11;
+    background-color: rgb(0,0,0);
     color: red;
 }
 
@@ -47,12 +47,12 @@ body{
 
 .tracker .halfcell {
     width: 32px;
-    height: 64px;	
+    height: 64px;
 }
 
 .itemconfig {
     border-spacing: 0px;
-    border: 1px solid white;	
+    border: 1px solid white;
 }
 
 * {
@@ -223,27 +223,53 @@ label {
     color: rgb(255,255,0);
 }
 
-
-.mapspan .tooltipgray {
+.mapspan .tooltipdungeon {
     visibility: hidden;
     width: 120px;
-    background-color: gray;
-    color: #fff;
+    background-color: rgb(210,190,30);
+    color: #000;
     text-align: center;
+    font-weight: bold;
+    font-family: Arial;
+    padding: 2px;
     border-radius: 6px;
-    padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 120%;
+    bottom: 160%;
     left: 50%;
     margin-left: -60px;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
 }
 
-.mapspan .tooltipgray:hover {
+.mapspan .tooltipdungeon::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: rgb(0, 0, 0) transparent transparent transparent;
+}
+
+.mapspan .tooltipdungeon::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(210,190,30) transparent transparent transparent;
+}
+
+.mapspan .tooltipdungeon:hover {
     display: none;
 }
 
-.mapspan:hover .tooltipgray {
+.mapspan:hover .tooltipdungeon {
     visibility: visible;
 }
 
@@ -253,8 +279,10 @@ label {
     background-color: black;
     color: #fff;
     text-align: center;
+    font-family: Arial;
+    font-size: 14;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 5px;
     position: absolute;
     z-index: 1;
     bottom: 170%;
@@ -279,4 +307,65 @@ label {
 
 .mapspan:hover .tooltip {
     visibility: visible;
+}
+
+.griditem {
+    position: relative;
+}
+
+.griditem .tooltip {
+    visibility: hidden;
+    width: 128px;
+    background-color: rgba(0, 0, 0, 1);
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 112%;
+    border-style: solid;
+    border-color: #5f00ff;
+    left: -50%;
+}
+
+/* This is a hack to make a triangle. */
+.griditem .tooltip::after {
+    content: "";
+    position: absolute;
+    top: calc(100% + 2px);
+    left: calc(50% - 8px);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #5f00ff transparent transparent transparent;
+}
+
+.griditem .tooltip:hover {
+    display: none;
+}
+
+.griditem:hover .tooltip {
+    visibility: visible;
+}
+
+.tooltip hr{
+    border-color: #5f00ff;
+}
+
+
+.griditembackground {
+    width: 64;
+    height: 64;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.tooltip ul {
+    list-style-type:none;
+    padding: 0;
+    margin: 0;
+}
+
+.tooltip li {
+
 }

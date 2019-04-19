@@ -32,6 +32,38 @@ var selected = {};
 
 var dungeonSelect = 0;
 
+var CheckTypes = {
+    NONE : 'none',
+    DUNGEON : 'dungeon',
+    CHEST : 'chest'
+}
+
+// TODO: Update this to keep a list of all checks to establish a route (run analytics?!?)
+var lastCheckOpened = {
+    checkType: CheckTypes.NONE,
+    dungeonIndex : 0,
+    chestIndex : 0,
+    inLogic : true,
+
+    getCheckName : function() {
+        switch(this.checkType) {
+          case CheckTypes.NONE:
+              return undefined;
+
+          case CheckTypes.DUNGEON:
+              return dungeons[this.dungeonIndex].name + " - " + this.chestIndex;
+
+          case CheckTypes.CHEST:
+              return chests[this.chestIndex].name;
+
+          default:
+            return undefined;
+        }
+    }
+};
+
+var itemLocationMap = {};
+
 function setCookie(obj) {
     var d = new Date();
     d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
@@ -177,9 +209,15 @@ function deserializeDungeonChests(serializedDungeons) {
 }
 
 // Event of clicking a chest on the map
-function toggleChest(x) {
-    chests[x].isOpened = !chests[x].isOpened;
-    refreshChest(x);
+function toggleChest(chestIndex) {
+    chests[chestIndex].isOpened = !chests[chestIndex].isOpened;
+
+    // Update last opened check
+    if (chests[chestIndex].isOpened) {
+      setLastCheckOpened(CheckTypes.CHEST, null, chestIndex, chests[chestIndex].isAvailable() == 'available');
+    }
+
+    refreshChest(chestIndex);
     saveCookie();
 }
 
@@ -245,14 +283,20 @@ function clickDungeon(d) {
     }
 }
 
-function toggleDungeonChest(sender, d, c) {
-    dungeons[d].chestlist[c].isOpened = !dungeons[d].chestlist[c].isOpened;
-    if (dungeons[d].chestlist[c].isOpened)
+function toggleDungeonChest(sender, dungeonIndex, chestIndex) {
+    dungeons[dungeonIndex].chestlist[chestIndex].isOpened = !dungeons[dungeonIndex].chestlist[chestIndex].isOpened;
+    if (dungeons[dungeonIndex].chestlist[chestIndex].isOpened) {
         sender.className = 'DCopened';
-    else if (dungeons[d].chestlist[c].isAvailable())
+
+        // Update last opened check
+        var inLogic = dungeons[dungeonIndex].chestlist[chestIndex].isAvailable();
+        setLastCheckOpened(CheckTypes.DUNGEON, dungeonIndex, chestIndex, inLogic)
+
+    } else if (dungeons[dungeonIndex].chestlist[chestIndex].isAvailable()) {
         sender.className = 'DCavailable';
-    else
+    } else {
         sender.className = 'DCunavailable';
+    }
 
     updateMap();
     saveCookie();
@@ -327,6 +371,58 @@ function setGanonLogic(sender) {
     ganonlogic = sender.value;
     updateMap();
     saveCookie();
+}
+
+/**
+ * Updates global variable to track the last opened check
+ *
+ * @param {checkType} checkType type of check
+ * @param {number} dungeonIndex index in the main dungeon list where the check was done (null if checkType is CHEST)
+ * @param {number} chestIndex index in either the dungeon chestlist or the main chest list corresponding to the check
+ * @param {boolean} inLogic whether or not the check was in logic
+ */
+function setLastCheckOpened(checkType, dungeonIndex, chestIndex, inLogic) {
+    lastCheckOpened.checkType = checkType;
+    lastCheckOpened.dungeonIndex = dungeonIndex;
+    lastCheckOpened.chestIndex = chestIndex;
+    lastCheckOpened.inLogic = inLogic;
+}
+
+/**
+ * Updates the itemLocationMap global variable that tracks where items were found
+ * itemLocationMap is a map of item name to a list of checkData objects
+ *
+ * @param {string} item the name of the item that was picked up
+ */
+function handleItemPickup(item) {
+    // If no checks have been opened, do not update the location map
+    if (lastCheckOpened.checkType == CheckTypes.NONE){
+        return;
+    }
+
+    // Make a deep copy of lastCheckOpened
+    var checkData = {
+        checkType : lastCheckOpened.checkType,
+        dungeonIndex : lastCheckOpened.dungeonIndex,
+        chestIndex : lastCheckOpened.chestIndex,
+        getCheckName : lastCheckOpened.getCheckName
+    }
+
+    if (itemLocationMap[item] == undefined) {
+      itemLocationMap[item] = [];
+    }
+
+    itemLocationMap[item].push(checkData);
+}
+
+/**
+ * Clears the itemLocationMap global variable for an item
+ * itemLocationMap is a map of item name to a list of checkData objects
+ *
+ * @param {string} item the name of the item that was picked up
+ */
+function handleItemDrop(item) {
+    itemLocationMap[item] = undefined;
 }
 
 function setZoom(target, sender) {
@@ -476,9 +572,23 @@ function createItemTracker(sender) {
             itemGrid[r][i]['item'].className = 'griditem';
             tr.appendChild(itemGrid[r][i]['item']);
 
+            // Add tooltip
+            var tooltip = document.createElement('div');
+            tooltip.className = "tooltip";
+            // Set opacity to 0 as a hack to control visibility (since visibility is separately managed through CSS)
+            tooltip.style.opacity = 1;
+            itemGrid[r][i]['tooltip'] = tooltip;
+            itemGrid[r][i]['item'].appendChild(tooltip);
+
+            // Add child with bg img
+            var gridItemBackground = document.createElement('div');
+            gridItemBackground.className = "griditembackground";
+            itemGrid[r][i]['gridItemBackground'] = gridItemBackground;
+            itemGrid[r][i]['item'].appendChild(gridItemBackground);
+
             var tdt = document.createElement('table');
             tdt.className = 'lonk';
-            itemGrid[r][i]['item'].appendChild(tdt);
+            gridItemBackground.appendChild(tdt);
 
                 var tdtr1 = document.createElement('tr');
                 tdt.appendChild(tdtr1);
@@ -516,42 +626,78 @@ function createItemTracker(sender) {
 
 function updateGridItem(row, index) {
     var item = itemLayout[row][index];
+    var itemDOM = itemGrid[row][index]['gridItemBackground'];
+    var itemTooltipDOM = itemGrid[row][index]['tooltip'];
+
+    // If item is blank, ensure no tooltip is shown
+    if (!item || item == 'blank') {
+        itemTooltipDOM.style.opacity = 0;
+    }
 
     if (editmode) {
         if (!item || item == 'blank') {
-            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/blank.png)';
+            itemDOM.style.backgroundImage = 'url(images/blank.png)';
         } else if ((typeof items[item]) == 'boolean') {
-            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + '.png)';
+            itemDOM.style.backgroundImage = 'url(images/' + item + '.png)';
         } else {
-            itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + itemsMax[item] + '.png)';
+            itemDOM.style.backgroundImage = 'url(images/' + item + itemsMax[item] + '.png)';
         }
 
-        itemGrid[row][index]['item'].style.border = '1px solid white';
-        itemGrid[row][index]['item'].style.opacity = 1;
+        itemDOM.style.border = '1px solid white';
+        itemDOM.style.opacity = 1;
 
         return;
     }
 
-    itemGrid[row][index]['item'].style.border = '0px';
-    itemGrid[row][index]['item'].style.opacity = '';
+    itemDOM.style.border = '0px';
+    itemDOM.style.opacity = '';
 
     if (!item || item == 'blank') {
-        itemGrid[row][index]['item'].style.backgroundImage = '';
+        itemDOM.style.backgroundImage = '';
         return;
     }
 
     if ((typeof items[item]) == 'boolean') {
-        itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + '.png)';
+        itemDOM.style.backgroundImage = 'url(images/' + item + '.png)';
     } else {
-        itemGrid[row][index]['item'].style.backgroundImage = 'url(images/' + item + items[item] + '.png)';
+        itemDOM.style.backgroundImage = 'url(images/' + item + items[item] + '.png)';
     }
 
-    itemGrid[row][index]['item'].className = 'griditem ' + !!items[item];
+    itemDOM.className = 'griditembackground ' + !!items[item];
+
+    // If this item has associated locations
+    if (itemLocationMap[item] != undefined) {
+        // Create an unordered list of locations
+        var tooltipListDOM = document.createElement('ul');
+        if (!itemTooltipDOM.firstChild) {
+            itemTooltipDOM.appendChild(tooltipListDOM);
+        } else {
+            itemTooltipDOM.replaceChild(tooltipListDOM, itemTooltipDOM.firstChild);
+        }
+
+        // Append list items for each location
+        for (var i = 0; i < itemLocationMap[item].length; i++) {
+          var tooltipListItemDOM = document.createElement('li');
+          tooltipListItemDOM.innerHTML = itemLocationMap[item][i].getCheckName();
+          tooltipListDOM.appendChild(tooltipListItemDOM);
+          if (i != itemLocationMap[item].length - 1) {
+              tooltipListDOM.appendChild(document.createElement('hr'));
+          }
+        }
+        itemTooltipDOM.style.opacity = 1;
+    } else {
+        if (itemTooltipDOM.firstChild) {
+            itemTooltipDOM.firstChild.remove();
+        }
+        itemTooltipDOM.style.opacity = 0;
+    }
 
     if (medallions[item] !== undefined) {
         if (showprizes) {
+            // Magic number "3" refers to bottom right corner in the itemGrid object
             itemGrid[row][index][3].style.backgroundImage = 'url(images/' + dungeonImg[medallions[item]] + '.png)';
         } else {
+            // Magic number "3" refers to bottom right corner in the itemGrid object
             itemGrid[row][index][3].style.backgroundImage = '';
         }
     }
@@ -618,84 +764,111 @@ function initGridRow(itemsets) {
 
 function gridItemClick(row, col, corner) {
     if (editmode) {
-        if (selected.item) {
-            document.getElementById(selected.item).style.border = '1px solid white';
-            var old = itemLayout[row][col];
-
-            if (old == selected.item) {
-                selected = {};
-                return;
-            }
-
-            if (selected.item != 'blank') {
-                document.getElementById(selected.item).style.opacity = 0.25;
-
-                var r,c;
-                var found = false;
-                for (r = 0; r < 8; r++) {
-                    for (c = 0; c < 7; c++) {
-                        if (itemLayout[r][c] == selected.item) {
-                            itemLayout[r][c] = 'blank';
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (found) {
-                        break;
-                    }
-                }
-            }
-
-            itemLayout[row][col] = selected.item;
-            updateGridItem(row, col);
-
-            document.getElementById(old).style.opacity = 1;
-
-            selected = {};
-        } else if (selected.row !== undefined) {
-            itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
-
-            var temp = itemLayout[row][col];
-            itemLayout[row][col] = itemLayout[selected.row][selected.col];
-            itemLayout[selected.row][selected.col] = temp;
-            updateGridItem(row, col);
-            updateGridItem(selected.row, selected.col);
-
-            selected = {};
-        } else {
-            itemGrid[row][col]['item'].style.border = '3px solid yellow';
-            selected = {row: row, col: col};
-        }
+        gridItemClickEdit(row, col, corner);
     }
 
     var item = itemLayout[row][col];
 
+    // Case when you clicked a medallion (detected by inclusion in medallions list)
     if (medallions[item] !== undefined && showprizes) {
+        // Case when you click the question mark corner
         if (corner == 3) {
             medallions[item]++;
             if (medallions[item] >=  9) {
                 medallions[item] = 0;
             }
-        }
-        else {
+        } else {
+            // Case when you click the medallion itself
             items[item] = !items[item];
+
+            if (items[item]) {
+                handleItemPickup(item)
+            } else {
+                handleItemDrop(item)
+            }
         }
-    }
-    else if ((typeof items[item]) == 'boolean') {
+    } else if ((typeof items[item]) == 'boolean') {
+        // Case when the item is boolean
         items[item] = !items[item];
-    }
-    else {
+
+        if (items[item]) {
+            handleItemPickup(item)
+        } else {
+          handleItemDrop(item)
+        }
+    } else {
+        // Case when the item is progressive
         items[item]++;
         if (items[item] > itemsMax[item]) {
             items[item] = itemsMin[item];
+            handleItemDrop(item)
+        } else {
+          handleItemPickup(item)
         }
     }
 
     updateMap();
-    updateGridItem(row,col);
+    updateGridItem(row, col);
     saveCookie();
 }
+
+/**
+ * Handles logic when the user clicks an item in the grid while in edit mode.
+ */
+function gridItemClickEdit(row, col, corner) {
+    if (selected.item) {
+        document.getElementById(selected.item).style.border = '1px solid white';
+        var old = itemLayout[row][col];
+
+        if (old == selected.item) {
+            selected = {};
+            return;
+        }
+
+        if (selected.item != 'blank') {
+            document.getElementById(selected.item).style.opacity = 0.25;
+
+            var r,c;
+            var found = false;
+            for (r = 0; r < 8; r++) {
+                for (c = 0; c < 7; c++) {
+                    if (itemLayout[r][c] == selected.item) {
+                        itemLayout[r][c] = 'blank';
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found) {
+                    break;
+                }
+            }
+        }
+
+        itemLayout[row][col] = selected.item;
+        updateGridItem(row, col);
+
+        document.getElementById(old).style.opacity = 1;
+
+        selected = {};
+    } else if (selected.row !== undefined) {
+        itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
+
+        var temp = itemLayout[row][col];
+        itemLayout[row][col] = itemLayout[selected.row][selected.col];
+        itemLayout[selected.row][selected.col] = temp;
+        updateGridItem(row, col);
+        updateGridItem(selected.row, selected.col);
+
+        selected = {};
+    } else {
+        itemGrid[row][col]['item'].style.border = '3px solid yellow';
+        selected = {row: row, col: col};
+    }
+}
+
+
+
 
 function updateMap() {
     for (k = 0; k < chests.length; k++) {
@@ -856,7 +1029,7 @@ function populateMapdiv() {
         s.appendChild(ss);
 
         var ss = document.createElement('span');
-        ss.className = 'tooltipgray';
+        ss.className = 'tooltipdungeon';
         ss.innerHTML = dungeons[k].name;
         s.appendChild(ss);
 
