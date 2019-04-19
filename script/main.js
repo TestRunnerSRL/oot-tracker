@@ -629,8 +629,8 @@ function updateGridItem(row, index) {
     var itemDOM = itemGrid[row][index]['gridItemBackground'];
     var itemTooltipDOM = itemGrid[row][index]['tooltip'];
 
-    // If item is blank, ensure no tooltip is shown
-    if (!item || item == 'blank') {
+    // If item is blank, a medallion, or skulls, ensure no tooltip is shown
+    if (!item || item == 'blank' || medallions[item] !== undefined || item.includes("Skulltula")) {
         itemTooltipDOM.style.opacity = 0;
     }
 
@@ -665,8 +665,8 @@ function updateGridItem(row, index) {
 
     itemDOM.className = 'griditembackground ' + !!items[item];
 
-    // If this item has associated locations
-    if (itemLocationMap[item] != undefined) {
+    // If this item has associated locations and is not a tooltip-less type
+    if (itemLocationMap[item] != undefined && !(!item || item == 'blank' || medallions[item] !== undefined || item.includes("Skulltula"))) {
         // Create an unordered list of locations
         var tooltipListDOM = document.createElement('ul');
         if (!itemTooltipDOM.firstChild) {
@@ -684,6 +684,7 @@ function updateGridItem(row, index) {
               tooltipListDOM.appendChild(document.createElement('hr'));
           }
         }
+        
         itemTooltipDOM.style.opacity = 1;
     } else {
         if (itemTooltipDOM.firstChild) {
