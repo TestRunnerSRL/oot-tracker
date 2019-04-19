@@ -818,9 +818,6 @@ var dungeons = [
     },
 ];
 
-
-
-
 //define overworld chests
 var chests = [
     {
