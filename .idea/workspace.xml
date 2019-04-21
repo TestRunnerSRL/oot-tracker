@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7560f2c9-fde6-45b5-88bf-e479aff6fc18" name="Default Changelist" comment="Added theoretical Lens Logic, not implemented yet" />
+    <list default="true" id="7560f2c9-fde6-45b5-88bf-e479aff6fc18" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/script/chests.js" beforeDir="false" afterPath="$PROJECT_DIR$/script/chests.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,20 +21,20 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script/chests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="86" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="86" />
+            <state relative-caret-position="-987">
+              <caret line="1086" column="19" lean-forward="true" selection-start-line="1086" selection-start-column="19" selection-end-line="1086" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+            <state relative-caret-position="117">
+              <caret line="106" selection-start-line="105" selection-start-column="1" selection-end-line="106" />
             </state>
           </provider>
         </entry>
@@ -39,7 +42,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1972">
+            <state relative-caret-position="778">
               <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
             </state>
           </provider>
@@ -89,6 +92,7 @@
       <find>items.Lens</find>
       <find>Req</find>
       <find>lens(</find>
+      <find>items.Magic</find>
     </findStrings>
     <replaceStrings>
       <replace>lens('All')</replace>
@@ -107,8 +111,8 @@
       <list>
         <option value="$PROJECT_DIR$/script/main.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/script/chests.js" />
         <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/script/chests.js" />
       </list>
     </option>
   </component>
@@ -190,6 +194,8 @@
       <workItem from="1554943625361" duration="8025000" />
       <workItem from="1554954027436" duration="17000" />
       <workItem from="1554954059354" duration="63000" />
+      <workItem from="1554954270232" duration="262000" />
+      <workItem from="1555783446484" duration="2089000" />
     </task>
     <task id="LOCAL-00001" summary="this one butterfly">
       <created>1554481092347</created>
@@ -205,14 +211,22 @@
       <option name="project" value="LOCAL" />
       <updated>1554869410701</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fully Implemented Lens Logic">
+      <created>1554954331925</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1554954331925</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18556000" />
+    <option name="totallyTimeSpent" value="20907000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.071710005" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -237,10 +251,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="this one butterfly" />
     <MESSAGE value="Added theoretical Lens Logic, not implemented yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added theoretical Lens Logic, not implemented yet" />
+    <MESSAGE value="Fully Implemented Lens Logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fully Implemented Lens Logic" />
   </component>
   <component name="editorHistoryManager">
     <entry file="http://localhost:63342/oot-tracker/script/chests.js">
@@ -248,20 +268,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script/items.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/chests.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="86" selection-start-line="28" selection-start-column="81" selection-end-line="28" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -273,10 +279,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="778">
+          <caret line="116" column="31" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="101" column="1" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+        <state relative-caret-position="117">
+          <caret line="106" selection-start-line="105" selection-start-column="1" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/chests.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-987">
+          <caret line="1086" column="19" lean-forward="true" selection-start-line="1086" selection-start-column="19" selection-end-line="1086" selection-end-column="19" />
         </state>
       </provider>
     </entry>
