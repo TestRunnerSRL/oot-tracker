@@ -1,3 +1,6 @@
+/* Global to do list
+* TODO Add Deku Shield to Items and Logic
+*  TODO Fix Access fire reqirements */
 function generalCanGetChest(chestlist) {
     var canGet = 0;
     var unopened = 0;
@@ -68,8 +71,8 @@ function canAccessFire() {
 
 function canAccessDeepFire() {
     return (items.Glove && (items.Bombs || items.Bow || items.Hookshot));
-
-    function canAccessHoverShadow() {
+}
+function canAccessHoverShadow() {
         return (items.NocturneofShadow && items.Dins && lens('All') && items.HoverBoots);
     }
 
@@ -488,15 +491,15 @@ canGetChest: function() {
     y: "16.0%",
     chestlist: {
     'Map Chest': { isAvailable: function () {
-        return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+        return (items.ZoraLetter && items.ZeldasLullaby); }, },
     'Compass Chest': { isAvailable: function () {
-        return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+        return (items.ZoraLetter && items.ZeldasLullaby); }, },
     'Heart Piece': { isAvailable: function () {
-        return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+        return (items.ZoraLetter && items.ZeldasLullaby); }, },
     'Iron Boots Chest': { isAvailable: function () {
-        return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+        return (items.ZoraLetter && items.ZeldasLullaby); }, },
     'Sheik in Ice Cavern': { isAvailable: function () {
-        return (items.Bombs || items.Scale) && items.ZoraLetter && items.ZeldasLullaby && items.Bottle; }, },
+        return (items.ZoraLetter && items.ZeldasLullaby); }, },
 },
     isBeatable: function() {
         return this.canGetChest();
@@ -1177,5 +1180,5 @@ var chests = [
             return "available";
         },
     },
-]}
+]
 
