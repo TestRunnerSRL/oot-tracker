@@ -68,7 +68,8 @@ function canAccessFire() {
     return (items.GoronTunic && (items.BoleroofFire || ((items.HoverBoots || items.Hookshot) && (items.Bow || items.Glove || items.Bombs)) || (items.HoverBoots && items.Hammer)));
 
 }
-
+var bitch = 'test fuckers'
+bitch.start
 function canAccessDeepFire() {
     return (items.Glove && (items.Bombs || items.Bow || items.Hookshot));
 }
@@ -444,7 +445,7 @@ canGetChest: function() {
         return (canAccessFire() && items.Hammer && (items.HoverBoots || (canAccessDeepFire() && (items.SongofTime || items.Bombs)))); }, },
 
 },isBeatable: function() {
-    if (items.GoronTunic && (items.BoleroofFire || (items.HoverBoots || items.Hookshot)) && items.Hammer && (items.HoverBoots || (items.Glove && (items.Bombs || items.Bow || items.Hookshot) && (items.SongofTime || items.Bombs)))) {
+        if (canAccessFire() && items.Hammer && (items.HoverBoots || (canAccessDeepFire() && (items.SongofTime || items.Bombs)))) {
         if (this.canGetChest() === 'available') {
             return 'available';
         }
@@ -998,9 +999,8 @@ var chests = [
         x: "45.0%",
         y: "78.0%",
         isAvailable: function() {
-            if (items.KokiriSword)
-                return "available";
-            return "unavailable";
+            return "available";
+
         },
     },
     {
@@ -1078,7 +1078,7 @@ var chests = [
         x: "14.0%",
         y: "25.0%",
         isAvailable: function() {
-            if (((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && ((items.Dins || (items.Fire && items.Bow)) && items.Magic) && items.Magic) {
+            if (((items.EponasSong && items.HoverBoots) || items.Hookshot >= 2) && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)) {
                 return "available";
             }
             return "unavailable";
