@@ -1,6 +1,3 @@
-/* Global to do list
-* TODO Add Deku Shield to Items and Logic
-*  TODO Fix Access fire reqirements */
 function generalCanGetChest(chestlist) {
     var canGet = 0;
     var unopened = 0;
