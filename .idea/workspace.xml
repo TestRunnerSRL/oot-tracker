@@ -33,8 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script/chests.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="1171" column="22" lean-forward="true" selection-start-line="1171" selection-start-column="22" selection-end-line="1171" selection-end-column="22" />
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -46,7 +46,7 @@
         <entry file="file://D:/Documents/chests current.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+              <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -67,8 +67,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ganon</find>
-      <find>isBrid</find>
       <find>case 'every</find>
       <find>deku</find>
       <find>deku tree</find>
@@ -97,6 +95,8 @@
       <find>==</find>
       <find>ice</find>
       <find>lens</find>
+      <find>child</find>
+      <find>/</find>
     </findStrings>
     <replaceStrings>
       <replace>lens('All')</replace>
@@ -133,6 +133,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,7 +150,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -227,7 +227,9 @@
       <workItem from="1555783446484" duration="2463000" />
       <workItem from="1555828924486" duration="6828000" />
       <workItem from="1555901206997" duration="791000" />
-      <workItem from="1555908925828" duration="532000" />
+      <workItem from="1555908925828" duration="1160000" />
+      <workItem from="1556058301040" duration="145000" />
+      <workItem from="1556058457478" duration="113000" />
     </task>
     <task id="LOCAL-00001" summary="this one butterfly">
       <created>1554481092347</created>
@@ -278,11 +280,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555880990877</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed Merge Conflicts V2 (IDK how merge conflicts roll">
+      <created>1555909484126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555909484126</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29432000" />
+    <option name="totallyTimeSpent" value="30318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="465" y="268" width="1932" height="1064" extended-state="0" />
@@ -322,7 +331,8 @@
     <MESSAGE value="Fully Implemented Lens Logic" />
     <MESSAGE value="Fixed Merge Conflicts, and cleaned up some stupid JS BS, about == vs === that could prevent issues in future" />
     <MESSAGE value="Fixed some weird Ice Cavern Stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some weird Ice Cavern Stuff" />
+    <MESSAGE value="Fixed Merge Conflicts V2 (IDK how merge conflicts roll" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Merge Conflicts V2 (IDK how merge conflicts roll" />
   </component>
   <component name="editorHistoryManager">
     <entry file="http://localhost:63342/oot-tracker/script/chests.js">
@@ -358,7 +368,7 @@
     <entry file="file://D:/Documents/chests current.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
@@ -374,8 +384,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script/chests.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="1171" column="22" lean-forward="true" selection-start-line="1171" selection-start-column="22" selection-end-line="1171" selection-end-column="22" />
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
