@@ -295,35 +295,12 @@ function showSettings(sender) {
     if (editmode) {
         var r, c;
         var startdraw = false;
-        for (r = 7; r >= 0 && !startdraw; r--) {
-            if (!itemLayout[r] || !itemLayout[r].length) {
-                itemGrid[r]['row'].style.display = 'none';
-            } else {
-                for (c = 0; c < 8; c++) {
-                    if (!!itemLayout[r][c] && itemLayout[r][c] != 'blank') {
-                        startdraw = true;
-                        r++;
-                        break;
-                    }
-                }		
-
-                if (!startdraw) {
-                    itemGrid[r]['row'].style.display = 'none';
-                    itemGrid[r]['half'].style.display = 'none';
-                }	
-            }
-        }
-
-        for (; r >= 0; r--) {
-            itemGrid[r]['row'].style.display = '';	
-            itemGrid[r]['button'].style.display = 'none';
-        }
 
         editmode = false;
         updateGridItemAll();
         showTracker('mapdiv', document.getElementsByName('showmap')[0]);
         document.getElementById('itemconfig').style.display = 'none';
-
+        document.getElementById('rowButtons').style.display = 'none';
         sender.innerHTML = '🔧';
         saveCookie();
     } else {
@@ -332,11 +309,12 @@ function showSettings(sender) {
             x.style.display = 'initial';
             sender.innerHTML = 'X';
         } else {
-            x.style.display = 'none';		
+            x.style.display = 'none';       
             sender.innerHTML = '🔧';
         } 
     }
 }
+
 
 function showTracker(target, sender) {
     if (sender.checked) {
@@ -347,38 +325,16 @@ function showTracker(target, sender) {
     }
 }
 
-function clickRowButton(row) {
-    if (itemLayout[row].length % 2 == 0) {
-        itemGrid[row]['button'].innerHTML = '-';
-        itemGrid[row]['button'].style.backgroundColor = 'red';
-        itemGrid[row][6]['item'].style.display = '';
-        itemGrid[row]['half'].style.display = 'none';	
-        itemLayout[row][6] = 'blank';
-    } else {
-        itemGrid[row]['button'].innerHTML = '+';
-        itemGrid[row]['button'].style.backgroundColor = 'green';
-        itemGrid[row][6]['item'].style.display = 'none';
-        itemGrid[row]['half'].style.display = '';	
-        document.getElementById(itemLayout[row][6]).style.opacity = 1;
-        itemLayout[row].splice(-1, 1);
-    }
-    updateGridItem(row, 6);
-}
-
 
 function EditMode() {
     var r, c;
-
-    for (r = 0; r < 8; r++) {
-        itemGrid[r]['row'].style.display = '';
-        itemGrid[r]['button'].style.display = '';
-    }
 
     editmode = true;
     updateGridItemAll();
     showTracker('mapdiv', {checked: false});
     document.getElementById('settings').style.display = 'none';
     document.getElementById('itemconfig').style.display = '';
+    document.getElementById('rowButtons').style.display = 'flex';
 
     document.getElementById('settingsbutton').innerHTML = 'Exit Edit Mode';
 }
@@ -386,6 +342,7 @@ function EditMode() {
 
 function ResetLayout() {
     initGridRow(defaultItemGrid);
+    updateGridItemAll();
 }
 
 
@@ -400,69 +357,105 @@ function ResetTracker() {
 }
 
 
-function createItemTracker(sender) {
-    var r;
-    for (r = 0; r < 8; r++) {
-        itemGrid[r] = [];
-        itemLayout[r] = [];
+function addItemRow() {
+    var sender = document.getElementById('itemdiv')
+    var r = itemLayout.length;
+    
+    itemGrid[r] = [];
+    itemLayout[r] = [];
 
-        itemGrid[r]['row'] = document.createElement('table');
-        itemGrid[r]['row'].className = 'tracker';
-        sender.appendChild(itemGrid[r]['row']);
+    itemGrid[r]['row'] = document.createElement('table');
+    itemGrid[r]['row'].className = 'tracker';
 
-        var tr = document.createElement('tr');
-        itemGrid[r]['row'].appendChild(tr);
+    itemGrid[r]['tablerow'] = document.createElement('tr')
+    itemGrid[r]['tablerow'].appendChild(itemGrid[r]['row']);
+    sender.appendChild(itemGrid[r]['tablerow']);
 
-        itemGrid[r]['half'] = document.createElement('td');
-        itemGrid[r]['half'].className = 'halfcell';
-        tr.appendChild(itemGrid[r]['half']);
+    var tr = document.createElement('tr');
+    itemGrid[r]['row'].appendChild(tr);
 
-        var i;
-        for (i = 0; i < 7; i++) {	
-            itemGrid[r][i] = [];
-            itemLayout[r][i] = 'blank';
+    itemGrid[r]['addbutton'] = document.createElement('button');
+    itemGrid[r]['addbutton'].innerHTML = '+';
+    itemGrid[r]['addbutton'].style.backgroundColor = 'green';
+    itemGrid[r]['addbutton'].style.color = 'white';
+    itemGrid[r]['addbutton'].onclick = new Function("addItem(" + r + ")");
+    itemGrid[r]['row'].appendChild(itemGrid[r]['addbutton']);
 
-            itemGrid[r][i]['item'] = document.createElement('td');
-            itemGrid[r][i]['item'].className = 'griditem';
-            tr.appendChild(itemGrid[r][i]['item']);
+    itemGrid[r]['removebutton'] = document.createElement('button');
+    itemGrid[r]['removebutton'].innerHTML = '-';
+    itemGrid[r]['removebutton'].style.backgroundColor = 'red';
+    itemGrid[r]['removebutton'].style.color = 'white';
+    itemGrid[r]['removebutton'].onclick = new Function("removeItem(" + r + ")");
+    itemGrid[r]['row'].appendChild(itemGrid[r]['removebutton']);
 
-            var tdt = document.createElement('table');
-            tdt.className = 'lonk';
-            itemGrid[r][i]['item'].appendChild(tdt);
-
-                var tdtr1 = document.createElement('tr');
-                tdt.appendChild(tdtr1);
-                    itemGrid[r][i][0] = document.createElement('th');
-                    itemGrid[r][i][0].className = 'corner';
-                    itemGrid[r][i][0].onclick = new Function("gridItemClick(" + r + "," + i + ",0)");
-                    tdtr1.appendChild(itemGrid[r][i][0]);
-                    itemGrid[r][i][1] = document.createElement('th');
-                    itemGrid[r][i][1].className = 'corner';
-                    itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
-                    tdtr1.appendChild(itemGrid[r][i][1]);
-                var tdtr2 = document.createElement('tr');
-                tdt.appendChild(tdtr2);
-                    itemGrid[r][i][2] = document.createElement('th');
-                    itemGrid[r][i][2].className = 'corner';
-                    itemGrid[r][i][2].onclick = new Function("gridItemClick(" + r + "," + i + ",2)");
-                    tdtr2.appendChild(itemGrid[r][i][2]);
-                    itemGrid[r][i][3] = document.createElement('th');
-                    itemGrid[r][i][3].className = 'corner';
-                    itemGrid[r][i][3].onclick = new Function("gridItemClick(" + r + "," + i + ",3)");
-                    tdtr2.appendChild(itemGrid[r][i][3]);
-        }
-
-        var half = document.createElement('td');
-        half.className = 'halfcell';
-        tr.appendChild(half);
-        itemGrid[r]['button'] = document.createElement('button');
-        itemGrid[r]['button'].innerHTML = '-';
-        itemGrid[r]['button'].style.backgroundColor = 'red';
-        itemGrid[r]['button'].style.color = 'white';
-        itemGrid[r]['button'].onclick = new Function("clickRowButton(" + r + ")");
-        half.appendChild(itemGrid[r]['button']);
-    }
+    saveCookie();    
 }
+
+
+function removeItemRow() {
+    var sender = document.getElementById('itemdiv')
+    var r = itemLayout.length - 1;
+
+    sender.removeChild(itemGrid[r]['tablerow'])
+    itemGrid.splice(r, 1);
+    itemLayout.splice(r, 1);
+
+    saveCookie();    
+}
+
+
+function addItem(r) {
+    var i = itemLayout[r].length
+
+    itemGrid[r][i] = [];
+    itemLayout[r][i] = 'blank';
+
+    itemGrid[r][i]['item'] = document.createElement('td');
+    itemGrid[r][i]['item'].className = 'griditem';
+    itemGrid[r]['row'].appendChild(itemGrid[r][i]['item']);
+
+    var tdt = document.createElement('table');
+    tdt.className = 'lonk';
+    itemGrid[r][i]['item'].appendChild(tdt);
+        var tdtr1 = document.createElement('tr');
+        tdt.appendChild(tdtr1);
+            itemGrid[r][i][0] = document.createElement('th');
+            itemGrid[r][i][0].className = 'corner';
+            itemGrid[r][i][0].onclick = new Function("gridItemClick(" + r + "," + i + ",0)");
+            tdtr1.appendChild(itemGrid[r][i][0]);
+            itemGrid[r][i][1] = document.createElement('th');
+            itemGrid[r][i][1].className = 'corner';
+            itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
+            tdtr1.appendChild(itemGrid[r][i][1]);
+        var tdtr2 = document.createElement('tr');
+        tdt.appendChild(tdtr2);
+            itemGrid[r][i][2] = document.createElement('th');
+            itemGrid[r][i][2].className = 'corner';
+            itemGrid[r][i][2].onclick = new Function("gridItemClick(" + r + "," + i + ",2)");
+            tdtr2.appendChild(itemGrid[r][i][2]);
+            itemGrid[r][i][3] = document.createElement('th');
+            itemGrid[r][i][3].className = 'corner';
+            itemGrid[r][i][3].onclick = new Function("gridItemClick(" + r + "," + i + ",3)");
+            tdtr2.appendChild(itemGrid[r][i][3]);
+
+    updateGridItem(r, i);
+    saveCookie();    
+}
+
+
+function removeItem(r) {
+    var i = itemLayout[r].length - 1
+
+    if (i < 0) {
+        return
+    }
+
+    itemGrid[r]['row'].removeChild(itemGrid[r][i]['item'])
+    itemGrid[r].splice(i, 1);
+    itemLayout[r].splice(i, 1);
+    saveCookie();
+}
+
 
 function updateGridItem(row, index) {
     var item = itemLayout[row][index];
@@ -477,13 +470,12 @@ function updateGridItem(row, index) {
         }
 
         itemGrid[row][index]['item'].style.border = '1px solid white';
-        itemGrid[row][index]['item'].style.opacity = 1;
+        itemGrid[row][index]['item'].className = 'griditem true'
 
         return;
     }
 
     itemGrid[row][index]['item'].style.border = '0px';
-    itemGrid[row][index]['item'].style.opacity = '';
 
     if (!item || item == 'blank') {
         itemGrid[row][index]['item'].style.backgroundImage = '';
@@ -507,64 +499,52 @@ function updateGridItem(row, index) {
     }
 }
 
+
 function updateGridItemAll() {
-    for (r = 0; r < 8; r++) {
-        for (c = 0; c < 7; c++) {
+    var r, c;
+    for (r = 0; r < itemLayout.length; r++) {
+        for (c = 0; c < itemLayout[r].length; c++) {
             updateGridItem(r, c);
+        }
+
+        if (editmode) {
+            itemGrid[r]['addbutton'].style.display = ''
+            itemGrid[r]['removebutton'].style.display = ''
+        }
+        else {
+            itemGrid[r]['addbutton'].style.display = 'none'
+            itemGrid[r]['removebutton'].style.display = 'none'        
         }
     }
 }
 
+
 function setGridItem(item, row, index) {
-    var previtem = itemLayout[row][index];
-    itemLayout[row][index] = item;
-    if (item != 'blank') {
-        document.getElementById(item).style.opacity = 0.25;
+    while (!itemLayout[row]) {
+        addItemRow();
     }
+    while (!itemLayout[row][index]) {
+        addItem(row);
+    }
+
+    itemLayout[row][index] = item;
     updateGridItem(row, index);
 }
 
-function initGridRow(itemsets) {
-    var r, c;
-    var startdraw = false;
-    for (r = 7; r >= 0 && !startdraw; r--) {
-        if (!itemsets[r] || !itemsets[r].length) {
-            itemGrid[r]['row'].style.display = 'none';
-            itemGrid[r]['half'].style.display = 'none';
-        } else {
-            for (c = 0; c < 8; c++) {
-                if (!!itemsets[r][c] && itemsets[r][c] != 'blank') {
-                    startdraw = true;
-                    r++;
-                    break;
-                }
-            }	
 
-            if (!startdraw) {
-                itemGrid[r]['row'].style.display = 'none';
-                itemGrid[r]['half'].style.display = 'none';
-            }			
-        }
+function initGridRow(itemsets) {
+    while (itemLayout.length > 0) {
+        removeItemRow();
     }
 
-    for (; r >= 0; r--) {
-        itemGrid[r]['row'].style.display = '';	
-
-        if (itemsets[r].length % 2 != 0) {
-            itemGrid[r]['half'].style.display = 'none';
-            itemGrid[r][6]['item'].style.display = '';
-        } else {
-            clickRowButton(r);
-        }
-        itemGrid[r]['button'].style.display = 'none';
-
-        for (c = 0; c < 7; c++) {
-            if (itemsets[r][c]) {
-                setGridItem(itemsets[r][c], r, c);
-            } 
+    var r, c;
+    for (r = 0; r < itemsets.length; r++) {
+        for (c = 0; c < itemsets[r].length; c++) {
+            setGridItem(itemsets[r][c], r, c);
         }
     }
 }
+
 
 function gridItemClick(row, col, corner) {
     if (editmode) {		
@@ -577,32 +557,10 @@ function gridItemClick(row, col, corner) {
                 return;
             }
 
-            if (selected.item != 'blank') {
-                document.getElementById(selected.item).style.opacity = 0.25;
-
-                var r,c;
-                var found = false;
-                for (r = 0; r < 8; r++) {
-                    for (c = 0; c < 7; c++) {
-                        if (itemLayout[r][c] == selected.item) {
-                            itemLayout[r][c] = 'blank';
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (found) {
-                        break;
-                    }
-                }
-            }
-
             itemLayout[row][col] = selected.item;
             updateGridItem(row, col);
-
-            document.getElementById(old).style.opacity = 1;
-
             selected = {};
+            document.getElementById(old).style.opacity = 1;
         } else if (selected.row !== undefined) {
             itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
 
@@ -611,39 +569,38 @@ function gridItemClick(row, col, corner) {
             itemLayout[selected.row][selected.col] = temp;
             updateGridItem(row, col);
             updateGridItem(selected.row, selected.col);
-
             selected = {};
         } else {
             itemGrid[row][col]['item'].style.border = '3px solid yellow';
             selected = {row: row, col: col};
         }
-    }
+    } else {
+        var item = itemLayout[row][col];
 
-    var item = itemLayout[row][col];
-
-    if (medallions[item] !== undefined && showprizes) {
-        if (corner == 3) {
-            medallions[item]++;
-            if (medallions[item] >=  9) {
-                medallions[item] = 0;
+        if (medallions[item] !== undefined && showprizes) {
+            if (corner == 3) {
+                medallions[item]++;
+                if (medallions[item] >=  9) {
+                    medallions[item] = 0;
+                }
+            } 
+            else {
+                items[item] = !items[item];
             }
-        } 
-        else {
+        }
+        else if ((typeof items[item]) == 'boolean') {
             items[item] = !items[item];
         }
-    }
-    else if ((typeof items[item]) == 'boolean') {
-        items[item] = !items[item];
-    }
-    else {
-        items[item]++;
-        if (items[item] > itemsMax[item]) {
-            items[item] = itemsMin[item];
+        else {
+            items[item]++;
+            if (items[item] > itemsMax[item]) {
+                items[item] = itemsMin[item];
+            }
         }
-    }
 
-    updateMap();
-    updateGridItem(row,col);
+        updateMap();
+        updateGridItem(row,col);
+    }
     saveCookie();
 }
 
@@ -707,27 +664,6 @@ function itemConfigClick (sender) {
         if (old == item) {
             selected = {};
             return;
-        }
-
-        if (item != 'blank') {
-            sender.style.opacity = 0.25;
-
-            var r, c;
-            var found = false;
-            for (r = 0; r < 8; r++) {
-                for (c = 0; c < 7; c++) {
-                    if (itemLayout[r][c] == item) {
-                        itemLayout[r][c] = 'blank';
-                        updateGridItem(r, c);
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (found) {
-                    break;
-                }
-            }
         }
 
         itemLayout[selected.row][selected.col] = item;
@@ -895,7 +831,6 @@ function isBridgeOpen() {
 }
 
 function init() {
-    createItemTracker(document.getElementById('itemdiv'));
     populateMapdiv();
     populateItemconfig();
 

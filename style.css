@@ -30,8 +30,9 @@ body{
 .tracker{
     background-color: rgba(0,0,0,0);
     position: relative;
-    left: 0px;
     top: 0px;
+    margin-left: auto;
+    margin-right: auto;
     empty-cells: show;
     border-spacing: 0px;
     border: 0px;
@@ -43,11 +44,6 @@ body{
     padding: 0px;
     background-repeat: no-repeat;
     background-size: 64px 64px;
-}
-
-.tracker .halfcell {
-    width: 32px;
-    height: 64px;	
 }
 
 .itemconfig {
@@ -90,6 +86,7 @@ label {
     height: 64px;
     border-spacing: 0px;
     border: 0px;
+    margin: 2px;
 }
 
 .corner{
@@ -98,11 +95,11 @@ label {
 }
 
 .true{
-    opacity: 1;
 }
 
 .false{
-    opacity: 0.35;
+    -webkit-filter: grayscale(50%) brightness(30%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(50%) brightness(30%);
 }
 
 .mini{
@@ -140,6 +137,7 @@ label {
 .itemdiv{
     position: relative;
     left: 0px;
+    justify-content: center;
 }
 
 .mapdiv{

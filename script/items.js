@@ -59,13 +59,9 @@ var defaultItemGrid = [
         "LightMedallion",
     ],
     [
-        "blank",
-        "blank",
         "KokiriEmerald",
         "GoronRuby",
         "ZoraSapphire",
-        "blank",
-        "blank",
     ]
 ]
 
