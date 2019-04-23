@@ -349,7 +349,7 @@ function ResetLayout() {
 function ResetTracker() {
     chests.forEach(chest => delete chest.isOpened);
     dungeons.forEach(dungeon => Object.values(dungeon.chestlist).forEach(chest => delete chest.isOpened));
-    items = Object.assign(baseItems);
+    items = Object.assign({}, baseItems);
 
     updateGridItemAll();
     updateMap();
