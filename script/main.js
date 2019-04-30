@@ -23,6 +23,7 @@ var dungeonImg = [
 ];
 ganonlogic = 'Open';
 showprizes = false;
+lensLogic = 'All'
 
 var itemGrid = [];
 var itemLayout = [];
@@ -279,6 +280,11 @@ function setGanonLogic(sender) {
     updateMap();
     saveCookie();
 }
+
+function setLens(sender){
+    lensLogic = sender.value;
+    updateMap()
+ }
 
 function setZoom(target, sender) {
     document.getElementById(target).style.zoom = sender.value / 100;

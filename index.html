@@ -3,20 +3,14 @@
         <title>Ocarina of Time Item Tracker</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
-    
-        <script src="script/items.js"></script>
-        <script src="script/chests.js"></script>
-        <script src="script/main.js"></script>
     </head>
 
     <body>
-    
+        <script src="script/items.js"></script>
+        <script src="script/chests.js"></script>
+        <script src="script/main.js"></script>
         <div id='layoutdiv'>
             <div id='itemdiv' class='itemdiv'>
-                <div id='rowButtons' style='display: none;'>
-                    <button type="button" onclick="addItemRow()" style="background-color: green; color: white">Add Row</button>
-                    <button type="button" onclick="removeItemRow()" style="background-color: red; color: white">Remove Row</button>
-                </div>
             </div>
             <div id='mapdiv' class='mapdiv'>
                 <div id='submapdiv' class='submapdiv'>
@@ -29,7 +23,7 @@
         </div>
         
         <!-- Setting panel-->
-        
+
         <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
         <fieldset id='settings' class='settings'>
             <legend>Settings</legend>
@@ -42,6 +36,10 @@
                 Size<input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
                 <span id='itemdivsize'>100%</span><br>
                 <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
+                <legend>Lens Logic</legend>
+                <input type="Radio" name="lens" value="All" checked='true' onchange="setLens(this)">Everywhere<br>
+                <input type="Radio" name="lens" value="Semi"  onchange="setLens(this)">Wasteland + Tresure Minigame<br>
+                <input type="Radio" name="lens" value="Low"  onchange="setLens(this)">Tresure Minigame Only<br>
             </fieldset>
             <fieldset>
                 <legend>Map Tracker</legend>
@@ -62,7 +60,7 @@
         </fieldset>
         
         <table id='itemconfig' class='itemconfig' style='display:none'></table>
-        
+
         <script>
             init();
         </script>
