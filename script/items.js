@@ -73,6 +73,7 @@ var baseItems = {
     Slingshot: 0,
     Boomerang: false,
     Bombs: 0,
+    Bombchus: false,
     Lens: false,
     Dins: false,
     Farores: false,
