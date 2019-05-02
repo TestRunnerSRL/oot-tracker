@@ -293,11 +293,7 @@ function setLens(sender){
         chuInLogic = false
     }
  }
-// function doTheThing() {
- //    alert(chuLogic.value)
- //   alert(chuLogic)
-   //  alert(chuLogic.)
-// }
+
 
 function setZoom(target, sender) {
     document.getElementById(target).style.zoom = sender.value / 100;
