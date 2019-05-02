@@ -363,7 +363,6 @@ var dungeons = [
         x: "59.0%",
         y: "13.5%",
         chestlist: {
-            //TODO check this logic
             'Map Chest': { isAvailable: function () {
                 return hasboom() || items.Hammer || items.Glove; }, },
             'Compass Chest': { isAvailable: function () {
@@ -380,7 +379,6 @@ var dungeons = [
                 return ((items.Bombs || (items.Bombchus && items.Glove)) && (items.Slingshot || items.Bow || items.HoverBoots || items.Hookshot >= 2)); }, },
         },
         isBeatable: function() {
-            //TODO Check this logic
             if ((items.Bombs || (items.Bombchus && items.Glove)) && (items.Slingshot || items.Bow || items.HoverBoots)) {
                 if (this.canGetChest() == 'available') {
                     return 'available';
@@ -991,7 +989,6 @@ var chests = [
         x: "46.9%",
         y: "78.0%",
         isAvailable: function() {
-            //TODO if you have a bottle then this should be in logic
             if (items.Hookshot || items.Scale || hasboom()) {
                 return "available";
             }
