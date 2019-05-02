@@ -292,6 +292,7 @@ function setLens(sender){
     }else {
         chuInLogic = false
     }
+     updateMap();
  }
 
 
