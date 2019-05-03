@@ -4,6 +4,7 @@ var defaultItemGrid = [
         "Hookshot",
         "Hammer",
         "Bombs",
+        "Bombchus",
         "Scale",
         "Glove",
     ],
