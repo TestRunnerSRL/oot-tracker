@@ -47,14 +47,6 @@ function lens(loc){
             throw loc
     }
 }
-function canBowl(){
-        if(chuInLogic == true){
-            return (items.Bombchus)
-        }else {
-            return (items.Bombs)
-        }
-
-}
 
 function hasBoom(){
     if(chuInLogic == true){
@@ -615,9 +607,9 @@ var dungeons = [
             'Child Shooting Gallery': { isAvailable: function () {
                 return true; }, },
             'Bombchu Bowling 1': { isAvailable: function () {
-                return canBowl(); }, },
+                return ((chuInLogic && items.Bombchus) || (!chuInLogic && items.Bombs)); }, },
             'Bombchu Bowling 2': { isAvailable: function () {
-                return canBowl(); }, },
+                return ((chuInLogic && items.Bombchus) || (!chuInLogic && items.Bombs)); }, },
             'Treasure Chest Game': { isAvailable: function () {
                 return lens('Low'); }, },
             'Dog Lady': { isAvailable: function () {
