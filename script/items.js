@@ -33,8 +33,12 @@ var defaultItemGrid = [
         "Ocarina",
         "Bottle",
         "ZoraLetter",
+    ],
+    [
         "Wallet",
         "Skulltula",
+        "Child",
+        "Adult",
     ],
     [
         "ZeldasLullaby",
@@ -87,6 +91,8 @@ var baseItems = {
     Bottle: 0,
     Wallet: 0,
     Skulltula: 0,
+    Child: 0,
+    Adult: 0,
 
     KokiriSword: false,
     BiggoronSword: false,
@@ -130,7 +136,7 @@ var baseItems = {
 var itemsMin = {
     Bow: 0,
     Slingshot: 0,
-    Bombs: 0,    
+    Bombs: 0,
     Hookshot: 0,
     Ocarina: 0,
     Bottle: 0,
@@ -139,12 +145,14 @@ var itemsMin = {
     Magic: 0,
     Wallet: 0,
     Skulltula: 0,
+    Child: 0,
+    Adult: 0,
 };
 
 var itemsMax = {
     Bow: 3,
     Slingshot: 3,
-    Bombs: 3,    
+    Bombs: 3,
     Hookshot: 2,
     Ocarina: 2,
     Bottle: 4,
@@ -153,6 +161,8 @@ var itemsMax = {
     Magic: 2,
     Wallet: 2,
     Skulltula: 5,
+    Child: 8,
+    Adult: 11,
 };
 
 var items = Object.assign(baseItems);

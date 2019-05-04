@@ -607,7 +607,7 @@ var dungeons = [
         y: "20.0%",
         chestlist: {
             'Zelda\'s Lullaby': { isAvailable: function () {
-                return true; }, },
+                return items.Child >= 2; }, },
             'Child Shooting Gallery': { isAvailable: function () {
                 return true; }, },
             'Bombchu Bowling 1': { isAvailable: function () {
@@ -743,13 +743,13 @@ var dungeons = [
             'Wolfos Grotto Chest': { isAvailable: function () {
                 return (hasBoom() || (items.Hammer && (item.SariasSong || canPlaySong(items.MinuetofForest)))); }, },
             'Saria\'s Song': { isAvailable: function () {
-                return true; }, },
+                return items.Child >= 3; }, },
             'Minuet of Forest': { isAvailable: function () {
                 return canPlaySong(items.SariasSong) || canPlaySong(items.MinuetofForest); }, },
             'Deku Theater Skull Mask': { isAvailable: function () {
-                return true; }, },
+                return items.Child >= 5; }, },
             'Deku Theater Mask of Truth': { isAvailable: function () {
-                return (canPlaySong(items.SariasSong) && items.KokiriEmerald && items.GoronRuby && items.ZoraSapphire); }, },
+                return items.Child >= 8; }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -807,7 +807,7 @@ var dungeons = [
             'Summit Fairy Fountain': { isAvailable: function () {
                 return ((hasBoom() || items.Hammer) && canPlaySong(items.ZeldasLullaby)); }, },
             'Biggoron Sword': { isAvailable: function () {
-                    return  (items.Bow || hasBoom() || items.Hammer || items.Glove || (canPlaySong(items.BoleroofFire) && (items.HoverBoots || items.Hookshot))); }, },
+                    return  (items.Bow || hasBoom() || items.Hammer || items.Glove || (canPlaySong(items.BoleroofFire) && (items.HoverBoots || items.Hookshot))) && items.Adult >= 11; }, },
         },
         isBeatable: function() {
             return this.canGetChest();
@@ -915,7 +915,10 @@ var chests = [
         x: "49.0%",
         y: "38.0%",
         isAvailable: function() {
-            return "available";
+            if (items.Child >= 3) {
+                return "available";
+            }
+            return "unavailable"
         },
     },
     {
@@ -923,7 +926,10 @@ var chests = [
         x: "47.0%",
         y: "41.5%",
         isAvailable: function() {
-            return "available";
+            if (items.Child >= 3) {
+                return "available";
+            }
+            return "unavailable"
         },
     },
     {
