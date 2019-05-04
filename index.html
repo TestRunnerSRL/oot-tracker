@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Setting panel-->
 
         <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
@@ -43,14 +43,16 @@
                 Size<input type="range" name='mapdivsize' value='100' max='200' min='1' onchange="setZoom('mapdiv', this)">
                 <span id='mapdivsize'>100%</span><br>
                 Position:
-                <input type='radio' name='mapposition' value='Below' checked='true' onclick="setOrder(true)">Below
-                <input type='radio' name='mapposition' value='Side' onclick="setOrder(false)">Side<br>
+                <input type='radio' name='mapposition' value='Side' checked='true' onclick="setOrder(false)">Side
+                <input type='radio' name='mapposition' value='Below' onclick="setOrder(true)">Below<br>
                 <fieldset>
                     <legend>Rainbow Bridge Logic</legend>
                     <input type='radio' name='ganonlogic' value='Open' checked='true' onclick="setGanonLogic(this)">Open
                     <input type='radio' name='ganonlogic' value='Vanilla' onclick="setGanonLogic(this)">Vanilla<br>
+                    <input type='radio' name='ganonlogic' value='Stones' onclick="setGanonLogic(this)">Stones<br>
                     <input type='radio' name='ganonlogic' value='Medallions' onclick="setGanonLogic(this)">Medallions<br>
                     <input type='radio' name='ganonlogic' value='Dungeons' onclick="setGanonLogic(this)">Dungeons<br>
+                    <input type='radio' name='ganonlogic' value='Tokens' onclick="setGanonLogic(this)">100 Gold Skulltula Tokens<br>
                 </fieldset>
 
 
@@ -66,13 +68,13 @@
             </fieldset>
             </fieldset>
         </fieldset>
-        
+
         <table id='itemconfig' class='itemconfig' style='display:none'></table>
 
         <script>
             init();
         </script>
-        
+
         <footer style='bottom:0; width:100%; text-align: center; position: relative; color:grey'>
             Ocarina of Time Item Randomizer Tracker v1.2
         </footer>

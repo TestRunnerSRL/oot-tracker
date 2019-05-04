@@ -325,9 +325,9 @@ function showSettings(sender) {
             x.style.display = 'initial';
             sender.innerHTML = 'X';
         } else {
-            x.style.display = 'none';       
+            x.style.display = 'none';
             sender.innerHTML = '🔧';
-        } 
+        }
     }
 }
 
@@ -376,7 +376,7 @@ function ResetTracker() {
 function addItemRow() {
     var sender = document.getElementById('itemdiv')
     var r = itemLayout.length;
-    
+
     itemGrid[r] = [];
     itemLayout[r] = [];
 
@@ -404,7 +404,7 @@ function addItemRow() {
     itemGrid[r]['removebutton'].onclick = new Function("removeItem(" + r + ")");
     itemGrid[r]['row'].appendChild(itemGrid[r]['removebutton']);
 
-    saveCookie();    
+    saveCookie();
 }
 
 
@@ -416,7 +416,7 @@ function removeItemRow() {
     itemGrid.splice(r, 1);
     itemLayout.splice(r, 1);
 
-    saveCookie();    
+    saveCookie();
 }
 
 
@@ -455,7 +455,7 @@ function addItem(r) {
             tdtr2.appendChild(itemGrid[r][i][3]);
 
     updateGridItem(r, i);
-    saveCookie();    
+    saveCookie();
 }
 
 
@@ -529,7 +529,7 @@ function updateGridItemAll() {
         }
         else {
             itemGrid[r]['addbutton'].style.display = 'none'
-            itemGrid[r]['removebutton'].style.display = 'none'        
+            itemGrid[r]['removebutton'].style.display = 'none'
         }
     }
 }
@@ -563,7 +563,7 @@ function initGridRow(itemsets) {
 
 
 function gridItemClick(row, col, corner) {
-    if (editmode) {		
+    if (editmode) {
         if (selected.item) {
             document.getElementById(selected.item).style.border = '1px solid white';
             var old = itemLayout[row][col];
@@ -599,7 +599,7 @@ function gridItemClick(row, col, corner) {
                 if (medallions[item] >=  9) {
                     medallions[item] = 0;
                 }
-            } 
+            }
             else {
                 items[item] = !items[item];
             }
@@ -672,7 +672,7 @@ function itemConfigClick (sender) {
     if (selected.item) {
         document.getElementById(selected.item).style.border = '0px';
         sender.style.border = '3px solid yellow';
-        selected = {item: item};	
+        selected = {item: item};
     } else if (selected.row !== undefined) {
         itemGrid[selected.row][selected.col]['item'].style.border = '1px solid white';
         var old = itemLayout[selected.row][selected.col];
@@ -816,7 +816,7 @@ function populateItemconfig() {
             rowitem.style.backgroundImage = 'url(images/' + key + itemsMax[key] + '.png)';
         }
         row.appendChild(rowitem);
-    }		
+    }
 }
 
 function isBridgeOpen() {
@@ -824,7 +824,11 @@ function isBridgeOpen() {
         case 'Open':
             return true;
         case 'Vanilla':
-            return items['ShadowMedallion'] && items['SpiritMedallion'];
+            return items['ShadowMedallion'] && items['SpiritMedallion'] && items['Light'];
+        case 'Stones':
+            return items['KokiriEmerald'] &&
+                items['GoronRuby'] &&
+                items['ZoraSapphire']
         case 'Medallions':
             return items['ForestMedallion'] &&
                 items['FireMedallion'] &&
@@ -842,6 +846,8 @@ function isBridgeOpen() {
                 items['LightMedallion'] &&
                 items['ShadowMedallion'] &&
                 items['SpiritMedallion'];
+        case 'Tokens':
+            return items.Skulltula >= 6;
     }
     return false;
 }
