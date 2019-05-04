@@ -105,7 +105,7 @@ var baseItems = {
     Scale: 0,
     StoneofAgony: false,
     Magic: 0,
-    ZoraLetter: false, 
+    ZoraLetter: false,
 
     ZeldasLullaby: false,
     EponasSong: false,
@@ -160,7 +160,7 @@ var itemsMax = {
     Scale: 2,
     Magic: 2,
     Wallet: 2,
-    Skulltula: 5,
+    Skulltula: 6,
     Child: 8,
     Adult: 11,
 };

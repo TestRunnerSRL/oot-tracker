@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Setting panel-->
 
         <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
@@ -49,8 +49,10 @@
                     <legend>Rainbow Bridge Logic</legend>
                     <input type='radio' name='ganonlogic' value='Open' checked='true' onclick="setGanonLogic(this)">Open
                     <input type='radio' name='ganonlogic' value='Vanilla' onclick="setGanonLogic(this)">Vanilla<br>
+                    <input type='radio' name='ganonlogic' value='Stones' onclick="setGanonLogic(this)">Stones<br>
                     <input type='radio' name='ganonlogic' value='Medallions' onclick="setGanonLogic(this)">Medallions<br>
                     <input type='radio' name='ganonlogic' value='Dungeons' onclick="setGanonLogic(this)">Dungeons<br>
+                    <input type='radio' name='ganonlogic' value='Tokens' onclick="setGanonLogic(this)">100 Gold Skulltula Tokens<br>
                 </fieldset>
 
 
@@ -66,13 +68,13 @@
             </fieldset>
             </fieldset>
         </fieldset>
-        
+
         <table id='itemconfig' class='itemconfig' style='display:none'></table>
 
         <script>
             init();
         </script>
-        
+
         <footer style='bottom:0; width:100%; text-align: center; position: relative; color:grey'>
             Ocarina of Time Item Randomizer Tracker v1.2
         </footer>
