@@ -286,7 +286,7 @@ function setLens(sender){
     lensLogic = sender.value;
     updateMap()
  }
- function setBoom(sender){
+ function setChu(sender){
     if (sender.checked){
         chuInLogic = true
     }else {
