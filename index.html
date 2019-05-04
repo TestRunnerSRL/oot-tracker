@@ -36,10 +36,6 @@
                 Size<input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
                 <span id='itemdivsize'>100%</span><br>
                 <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
-                <legend>Lens Logic</legend>
-                <input type="Radio" name="lens" value="All" checked='true' onchange="setLens(this)">Everywhere<br>
-                <input type="Radio" name="lens" value="Semi"  onchange="setLens(this)">Wasteland + Tresure Minigame<br>
-                <input type="Radio" name="lens" value="Low"  onchange="setLens(this)">Tresure Minigame Only<br>
             </fieldset>
             <fieldset>
                 <legend>Map Tracker</legend>
@@ -56,6 +52,18 @@
                     <input type='radio' name='ganonlogic' value='Medallions' onclick="setGanonLogic(this)">Medallions<br>
                     <input type='radio' name='ganonlogic' value='Dungeons' onclick="setGanonLogic(this)">Dungeons<br>
                 </fieldset>
+
+
+
+            <fieldset>
+                <legend> Custom Logic</legend>
+                <!--This should be where all the custom logic stuff goes -->
+                <input type="checkbox" name="chulogic" onchange="setChu(this)"> Bombchus in logic?<br>
+                <legend>Lens Logic</legend>
+                <input type="Radio" name="lens" value="All" checked='true' onchange="setLens(this)">Everywhere<br>
+                <input type="Radio" name="lens" value="Semi"  onchange="setLens(this)">Wasteland + Tresure Minigame<br>
+                <input type="Radio" name="lens" value="Low"  onchange="setLens(this)">Tresure Minigame Only<br>
+            </fieldset>
             </fieldset>
         </fieldset>
         
