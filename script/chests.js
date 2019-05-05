@@ -675,7 +675,7 @@ var dungeons = [
             'Sun\'s Song Chest': { isAvailable: function () {
                 return (canPlay(items.ZeldasLullaby) && ((items.Dins || (items.Fire && items.Bow)) && items.Magic)); }, },
             'Magic Bean Heart Piece': { isAvailable: function () {
-                return items.Scale || hasBoom() || items.Hookshot >= 2; }, },
+                return items.Beans || items.Hookshot >= 2; }, },
             'Nocturne of Shadow': { isAvailable: function () {
                 return items.ForestMedallion && items.FireMedallion && items.WaterMedallion; }, },
             'Skulltula House 10': { isAvailable: function () {
@@ -799,7 +799,7 @@ var dungeons = [
             'Crater Wall Heart Piece': { isAvailable: function () {
                 return (hasBoom() || items.Hammer || (canPlay(items.BoleroofFire) && (items.HoverBoots || items.Hookshot)) || items.Glove || items.Bow); }, },
             'Crater Magic Bean Heart Piece': { isAvailable: function () {
-                return ((hasBoom() || items.Scale) && canPlay(items.BoleroofFire)); }, },
+                return (items.Beans && canPlay(items.BoleroofFire)); }, },
             'Crater Grotto': { isAvailable: function () {
                 return hasBoom() || items.Hammer; }, },
             'Crater Fairy Fountain': { isAvailable: function () {
@@ -976,7 +976,7 @@ var chests = [
         x: "35.2%",
         y: "74.0%",
         isAvailable: function() {
-            if (items.Scale || hasBoom() || items.Hookshot) {
+            if (items.Beans || items.Hookshot) {
                 return "available";
             }
             return "unavailable";
@@ -995,7 +995,7 @@ var chests = [
         x: "46.9%",
         y: "78.0%",
         isAvailable: function() {
-            if (items.Hookshot || items.Scale || hasBoom()) {
+            if (items.Hookshot || items.Beans) {
                 return "available";
             }
             return "unavailable";
@@ -1099,7 +1099,7 @@ var chests = [
         x: "06.4%",
         y: "23.5%",
         isAvailable: function() {
-            if (canPlay(items.RequiemofSpirit) && (hasBoom() || items.Scale)) {
+            if (canPlay(items.RequiemofSpirit) && items.Beans) {
                 return "available";
             }
             return "unavailable";

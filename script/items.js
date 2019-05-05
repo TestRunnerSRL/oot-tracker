@@ -33,6 +33,7 @@ var defaultItemGrid = [
         "Ocarina",
         "Bottle",
         "ZoraLetter",
+        "Beans",
     ],
     [
         "Wallet",
@@ -106,6 +107,7 @@ var baseItems = {
     StoneofAgony: false,
     Magic: 0,
     ZoraLetter: false,
+    Beans: false,
 
     ZeldasLullaby: false,
     EponasSong: false,
