@@ -803,7 +803,7 @@ var dungeons = [
             'Crater Grotto': { isAvailable: function () {
                 return hasBoom() || items.Hammer; }, },
             'Crater Fairy Fountain': { isAvailable: function () {
-                return (items.Hammer && canPlay(items.ZeldasLullaby) && (items.Glove || (canPlay(items.BoleroofFire) && items.Hookshot) || items.HoverBoots) || items.Bow); }, },
+                return (items.Hammer && canPlay(items.ZeldasLullaby) && (items.Bow || hasBoom() || items.Glove || (canPlay(items.BoleroofFire) && (items.HoverBoots || items.Hookshot)))); }, },
             'Summit Fairy Fountain': { isAvailable: function () {
                 return ((hasBoom() || items.Hammer) && canPlay(items.ZeldasLullaby)); }, },
             'Biggoron Sword': { isAvailable: function () {
