@@ -8,9 +8,46 @@
     <body>
         <script src="script/items.js"></script>
         <script src="script/chests.js"></script>
+        <script type="text/javascript">
+            if (document.addEventListener) { // IE >= 9; other browsers
+                document.addEventListener('contextmenu', function(e) {
+                    //Runs when you right click to bring up context menu
+                    if(mouseOverItem == true){
+                        //We might still want context menu while in edit mode.
+                        if(!editmode) {
+
+                            //This was used rundundent code used during debug attempts will be removed in PR
+                            var A = mouseLastOverR
+                            var B = mouseLastOverC
+                            var C = mouseLastOverCor
+                            //Call the method that handles right clicking.
+                            gridItemRClick(A,B,C);
+                            e.preventDefault();
+                        }
+                    }
+
+                }, false);
+            } else { // IE < 9
+                document.attachEvent('oncontextmenu', function() {
+                    if(mouseOverItem == true){
+                        if(!editmode) {
+                            var A = mouseLastOverR
+                            var B = mouseLastOverC
+                            var C = mouseLastOverCor
+                            gridItemRClick(A,B,C);
+                            //This is methjod used in old  browsers
+                            window.event.returnValue = false;
+                        }
+                    }
+
+
+                });
+            }
+        </script>
         <script src="script/main.js"></script>
+
         <div id='layoutdiv'>
-            <div id='itemdiv' class='itemdiv'>
+            <div id='itemdiv' oncontextmenu="gridItemRClick()" class='itemdiv'>
             </div>
             <div id='mapdiv' class='mapdiv'>
                 <div id='submapdiv' class='submapdiv'>
