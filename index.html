@@ -15,13 +15,8 @@
                     if(mouseOverItem == true){
                         //We might still want context menu while in edit mode.
                         if(!editmode) {
-
-                            //This was used rundundent code used during debug attempts will be removed in PR
-                            var A = mouseLastOverR
-                            var B = mouseLastOverC
-                            var C = mouseLastOverCor
                             //Call the method that handles right clicking.
-                            gridItemRClick(A,B,C);
+                            gridItemRClick(mouseLastOverR,mouseLastOverC,mouseLastOverCor);
                             e.preventDefault();
                         }
                     }
@@ -31,11 +26,8 @@
                 document.attachEvent('oncontextmenu', function() {
                     if(mouseOverItem == true){
                         if(!editmode) {
-                            var A = mouseLastOverR
-                            var B = mouseLastOverC
-                            var C = mouseLastOverCor
-                            gridItemRClick(A,B,C);
-                            //This is methjod used in old  browsers
+                            gridItemRClick(mouseLastOverR,mouseLastOverC,mouseLastOverCor);
+                            //This is method used in old  browsers
                             window.event.returnValue = false;
                         }
                     }

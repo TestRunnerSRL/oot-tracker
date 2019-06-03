@@ -450,9 +450,9 @@ function addItem(r) {
             itemGrid[r][i][1].onmouseover = new Function("setMOver(" + r + "," + i + ",1)")
             itemGrid[r][i][1].onmouseout = new Function("setMOff()")
             itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
-    tdtr1.appendChild(itemGrid[r][i][1]);
+            tdtr1.appendChild(itemGrid[r][i][1]);
         var tdtr2 = document.createElement('tr');
-        tdt.appendChild(tdtr2);
+            tdt.appendChild(tdtr2);
             itemGrid[r][i][2] = document.createElement('th');
             itemGrid[r][i][2].className = 'corner';
             itemGrid[r][i][2].onmouseover = new Function("setMOver(" + r + "," + i + ",2)")
@@ -469,8 +469,6 @@ function addItem(r) {
     updateGridItem(r, i);
     saveCookie();
 }
-
-
 function removeItem(r) {
     var i = itemLayout[r].length - 1
 
@@ -573,14 +571,15 @@ function initGridRow(itemsets) {
     }
 }
 
-function setMOver(row, col,corner)
-{
+function setMOver(row, col,corner) {
     //keep track of what item you moused over.
     mouseLastOverCor = corner;
     mouseLastOverR = row;
     mouseLastOverC = col;
     mouseOverItem = true;
+
 }
+
 function setMOff() {
     mouseOverItem = false;
 }
@@ -647,43 +646,40 @@ function gridItemRClick(row, col, corner) {
     if (editmode) {
  //Do Nothing
     } else {
-        
         var item = itemLayout[row][col];
 
         if (medallions[item] !== undefined && showprizes) {
-            var item = itemLayout[row][col];
             if (corner == 3) {
                 //this is where the code for the dungeon list happenes
                 //corner 3 is bottom right
                 if (medallions[item] <= 0) {
-                    medallions[item] = 9;
-                    alert(medallions[item])
+                    medallions[item] = 8;
                 }
                 else {
-                        medallions[item] = medallions[item] - 1;
+                    medallions[item] = medallions[item] - 1;
 
                 }
             }
             else {
-                    items[item] = !items[item];
-                }
-            }
-        else if ((typeof items[item]) == 'boolean') {
                 items[item] = !items[item];
-            } else {
-                if (items[item] == itemsMin[item]) {
-                    items[item] = itemsMax[item]
-                } else {
-                    items[item]--;
-                }
             }
-
-            updateMap();
-            updateGridItem(row, col);
         }
-        saveCookie();
+        else if ((typeof items[item]) == 'boolean') {
+            items[item] = !items[item];
+        } else {
+            if (items[item] == itemsMin[item]) {
+                items[item] = itemsMax[item]
+            } else {
+                items[item]--;
+            }
+        }
 
+        updateMap();
+        updateGridItem(row, col);
     }
+    saveCookie();
+
+}
 
 function updateMap() {
     for (k = 0; k < chests.length; k++) {
