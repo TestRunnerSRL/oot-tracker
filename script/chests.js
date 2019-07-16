@@ -708,7 +708,7 @@ var dungeons = [
             'Right Boulder Maze Chest': { isAvailable: function () {
                 return hasBoom() || items.Hammer || items.Glove >= 2; }, },
             'Hot Rodder Goron': { isAvailable: function () {
-                return hasBoom(); }, },
+                return items.Bombs; }, },
             'Link the Goron': { isAvailable: function () {
                 return items.Glove || hasBoom() || items.Bow; }, },
             'Spinning Pot Heart Piece': { isAvailable: function () {
