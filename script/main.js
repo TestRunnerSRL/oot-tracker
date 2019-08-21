@@ -25,6 +25,10 @@ ganonlogic = 'Open';
 showprizes = false;
 lensLogic = 'All'
 chuInLogic = false;
+var mouseOverItem = false;
+var mouseLastOverR;
+var mouseLastOverC;
+var mouseLastOverCor;
 
 var itemGrid = [];
 var itemLayout = [];
@@ -437,28 +441,34 @@ function addItem(r) {
         tdt.appendChild(tdtr1);
             itemGrid[r][i][0] = document.createElement('th');
             itemGrid[r][i][0].className = 'corner';
+            itemGrid[r][i][0].onmouseover = new Function("setMOver(" + r + "," + i + ",0)")
+            itemGrid[r][i][0].onmouseout = new Function("setMOff()")
             itemGrid[r][i][0].onclick = new Function("gridItemClick(" + r + "," + i + ",0)");
             tdtr1.appendChild(itemGrid[r][i][0]);
             itemGrid[r][i][1] = document.createElement('th');
             itemGrid[r][i][1].className = 'corner';
+            itemGrid[r][i][1].onmouseover = new Function("setMOver(" + r + "," + i + ",1)")
+            itemGrid[r][i][1].onmouseout = new Function("setMOff()")
             itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
             tdtr1.appendChild(itemGrid[r][i][1]);
         var tdtr2 = document.createElement('tr');
-        tdt.appendChild(tdtr2);
+            tdt.appendChild(tdtr2);
             itemGrid[r][i][2] = document.createElement('th');
             itemGrid[r][i][2].className = 'corner';
+            itemGrid[r][i][2].onmouseover = new Function("setMOver(" + r + "," + i + ",2)")
+            itemGrid[r][i][2].onmouseout = new Function("setMOff()")
             itemGrid[r][i][2].onclick = new Function("gridItemClick(" + r + "," + i + ",2)");
             tdtr2.appendChild(itemGrid[r][i][2]);
             itemGrid[r][i][3] = document.createElement('th');
             itemGrid[r][i][3].className = 'corner';
+            itemGrid[r][i][3].onmouseover = new Function("setMOver(" + r + "," + i + ",3)")
+            itemGrid[r][i][3].onmouseout = new Function("setMOff()")
             itemGrid[r][i][3].onclick = new Function("gridItemClick(" + r + "," + i + ",3)");
             tdtr2.appendChild(itemGrid[r][i][3]);
 
     updateGridItem(r, i);
     saveCookie();
 }
-
-
 function removeItem(r) {
     var i = itemLayout[r].length - 1
 
@@ -561,7 +571,18 @@ function initGridRow(itemsets) {
     }
 }
 
+function setMOver(row, col,corner) {
+    //keep track of what item you moused over.
+    mouseLastOverCor = corner;
+    mouseLastOverR = row;
+    mouseLastOverC = col;
+    mouseOverItem = true;
 
+}
+
+function setMOff() {
+    mouseOverItem = false;
+}
 function gridItemClick(row, col, corner) {
     if (editmode) {
         if (selected.item) {
@@ -606,18 +627,58 @@ function gridItemClick(row, col, corner) {
         }
         else if ((typeof items[item]) == 'boolean') {
             items[item] = !items[item];
-        }
-        else {
+        } else {
             items[item]++;
             if (items[item] > itemsMax[item]) {
                 items[item] = itemsMin[item];
             }
         }
 
+        }
+    updateMap();
+    updateGridItem(row,col);
+    saveCookie();
+
+    }
+
+
+function gridItemRClick(row, col, corner) {
+    if (editmode) {
+ //Do Nothing
+    } else {
+        var item = itemLayout[row][col];
+
+        if (medallions[item] !== undefined && showprizes) {
+            if (corner == 3) {
+                //this is where the code for the dungeon list happenes
+                //corner 3 is bottom right
+                if (medallions[item] <= 0) {
+                    medallions[item] = 8;
+                }
+                else {
+                    medallions[item] = medallions[item] - 1;
+
+                }
+            }
+            else {
+                items[item] = !items[item];
+            }
+        }
+        else if ((typeof items[item]) == 'boolean') {
+            items[item] = !items[item];
+        } else {
+            if (items[item] == itemsMin[item]) {
+                items[item] = itemsMax[item]
+            } else {
+                items[item]--;
+            }
+        }
+
         updateMap();
-        updateGridItem(row,col);
+        updateGridItem(row, col);
     }
     saveCookie();
+
 }
 
 function updateMap() {
