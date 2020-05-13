@@ -1154,10 +1154,7 @@ var chests = [
         x: "75.5%",
         y: "34.5%",
         isAvailable: function() {
-            if (items.Scale || hasBoom() || items.HoverBoots) {
-                return "available";
-            }
-            return "unavailable";
+            return "available";
         },
     },
     {
