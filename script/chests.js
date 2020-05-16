@@ -739,9 +739,9 @@ var dungeons = [
             'Bomb Grotto Chest': { isAvailable: function () {
                 return (hasBoom() || items.Hammer); }, },
             'Deku Salesman Grotto': { isAvailable: function () {
-                return (hasBoom() || (items.Hammer && (item.SariasSong || canPlay(items.MinuetofForest)))); }, },
+                return (hasBoom() || (items.Hammer && (canPlay(item.SariasSong) || canPlay(items.MinuetofForest)))); }, },
             'Wolfos Grotto Chest': { isAvailable: function () {
-                return (hasBoom() || (items.Hammer && (item.SariasSong || canPlay(items.MinuetofForest)))); }, },
+                return (hasBoom() || (items.Hammer && (canPlay(item.SariasSong) || canPlay(items.MinuetofForest)))); }, },
             'Saria\'s Song': { isAvailable: function () {
                 return items.Child >= 3; }, },
             'Minuet of Forest': { isAvailable: function () {
