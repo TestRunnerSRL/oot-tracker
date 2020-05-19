@@ -1033,7 +1033,7 @@ var chests = [
         x: "18.8%",
         y: "23.0%",
         isAvailable: function() {
-            if ((canPlay(items.EponasSong) || items.Hookshot >= 2) && items.HoverBoots || items.Hookshot >= 2) {
+            if ((canPlay(items.EponasSong) || items.Hookshot >= 2) && items.HoverBoots || items.Hookshot >= 1) {
                 return "available";
             }
             return "unavailable";
