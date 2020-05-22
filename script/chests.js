@@ -560,7 +560,7 @@ var dungeons = [
             'Spirit Trial First Chest': { isAvailable: function () {
                 return isBridgeOpen() && items.Hookshot; }, },
             'Spirit Trial Second Chest': { isAvailable: function () {
-                return isBridgeOpen() && items.Hookshot && items.Magic && items.Lens && hasBoom(); }, },
+                return isBridgeOpen() && items.Hookshot && lens('Semi') && hasBoom(); }, },
             'Light Trial First Left Chest': { isAvailable: function () {
                 return isBridgeOpen() && items.Glove >= 3; }, },
             'Light Trial Second Left Chest': { isAvailable: function () {
