@@ -3,110 +3,150 @@
         <title>Ocarina of Time Item Tracker</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css" type="text/css">
+    
+        <script src="script/items.js"></script>
+        <script src="script/chests.js"></script>
+        <script src="script/main.js"></script>
     </head>
 
     <body>
-        <script src="script/items.js"></script>
-        <script src="script/chests.js"></script>
-        <script type="text/javascript">
-            if (document.addEventListener) { // IE >= 9; other browsers
-                document.addEventListener('contextmenu', function(e) {
-                    //Runs when you right click to bring up context menu
-                    if(mouseOverItem == true){
-                        //We might still want context menu while in edit mode.
-                        if(!editmode) {
-                            //Call the method that handles right clicking.
-                            gridItemRClick(mouseLastOverR,mouseLastOverC,mouseLastOverCor);
-                            e.preventDefault();
-                        }
-                    }
-
-                }, false);
-            } else { // IE < 9
-                document.attachEvent('oncontextmenu', function() {
-                    if(mouseOverItem == true){
-                        if(!editmode) {
-                            gridItemRClick(mouseLastOverR,mouseLastOverC,mouseLastOverCor);
-                            //This is method used in old  browsers
-                            window.event.returnValue = false;
-                        }
-                    }
-
-
-                });
-            }
-        </script>
-        <script src="script/main.js"></script>
-
+    
         <div id='layoutdiv'>
-            <div id='itemdiv' oncontextmenu="gridItemRClick()" class='itemdiv'>
+            <div id='itemdiv' class='itemdiv'>
             </div>
             <div id='mapdiv' class='mapdiv'>
-                <div id='submapdiv' class='submapdiv'>
-                    <div align='center'><span id='submaparea' style="font-size:20px">Hyrule</span></div>
+                <div id='submapdiv' class='submapdiv' style="overflow-y: scroll">
+                    <hr style="margin-top: 2px; margin-bottom: 4px">
+                    <div align='center'><span id='submaparea' style="font-size:20px" onclick="bulkDCSelect(this)">Hyrule</span></div>
                     <hr style="margin-top: 4px; margin-bottom: 4px">
-                    <ul onselectstart="return false" id='submaplist' style="margin-top: 4px; margin-bottom: 4px; overflow-y: auto; height: 232px;">
+                    <ul onselectstart="return false" id='submaplist' style="margin-top: 4px; margin-bottom: 8px; overflow-y: auto; min-height: 50px; list-style-type: none;">
                     </ul>
                 </div>
+             </div>
+            <div id='minimapdiv' class='minimapdiv'>
             </div>
-        </div>
-
+         </div>
+        
         <!-- Setting panel-->
-
+        
         <button id='settingsbutton' type='button' onclick='showSettings(this)'>🔧</button>
-        <fieldset id='settings' class='settings'>
-            <legend>Settings</legend>
-            <fieldset>
-                <legend>Item Tracker</legend>
-                <button type="button" onclick="EditMode()">Edit Mode</button>
-                <button type="button" onclick="ResetLayout()">Reset Layout</button>
-                <button type="button" onclick="ResetTracker()">Reset Tracker</button>
-                <br>
-                Size<input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
-                <span id='itemdivsize'>100%</span><br>
-                <input type="checkbox" name="showprizes" checked='true' onchange="showPrizes(this)">Show Medallion Locations<br>
-            </fieldset>
-            <fieldset>
-                <legend>Map Tracker</legend>
-                <input type="checkbox" name="showmap" checked='true' onchange="showTracker('mapdiv', this)">Enabled<br>
-                Size<input type="range" name='mapdivsize' value='100' max='200' min='1' onchange="setZoom('mapdiv', this)">
-                <span id='mapdivsize'>100%</span><br>
-                Position:
-                <input type='radio' name='mapposition' value='Side' checked='true' onclick="setOrder(false)">Side
-                <input type='radio' name='mapposition' value='Below' onclick="setOrder(true)">Below<br>
+        <fieldset id='settings' class='settings'> 
+            <div class="row">
+                <div class="column">
+                    <legend>Settings <button type="button" onclick="EditMode()">Edit Mode</button> </legend>
+                    <fieldset> <center>
+                        <legend>Items: 
+                        <input type="range" name='itemdivsize' value='100' max='200' min='1' onchange="setZoom('itemdiv', this)">
+                        <span id='itemdivsize'>100%</span> </legend>
+                        <input type="checkbox" name="showmap" checked='true' onchange="showTracker('mapdiv', this)">Map
+                        <legend>Map: <input type="range" name='mapdivsize' value='100' max='200' min='1' onchange="setZoom('mapdiv', this)">
+                        <span id='mapdivsize'>100%</span> </legend>
+                    </fieldset>    
+                    <fieldset> 
+                        <legend>World</legend>
+                                <center> <input type='checkbox' name='OpenDeku' checked='true' onchange="setTree(this)">Open Deku Tree
+                                <input type='checkbox' name='OpenDoor' checked='true' onchange="setDoor(this)">Open Door of Time <br>
+                                <input type='checkbox' name='OpenFountain' checked='false' onchange="setFountain(this)">Open Zora Fountain
+                        <hr>
+                        <legend> Quest 
+                        <input type='radio' name='quest' value='Vanilla' checked='true' onclick="setQuest(this)">Vanilla 
+                        <input type='radio' name='quest' value='Master' onclick="setQuest(this)">Master 
+                        <input type='radio' name='quest' value='Mixed' onclick="setQuest(this)">Mixed </legend>
+                        </center> </fieldset>
+                        <fieldset> <Legend>Ganon's Castle</legend>
+                        <legend>Rainbow Bridge</legend> 
+                            <center><input type='radio' name='rainbowbridge' value='Open' checked='true' onclick="setRainbow(this)">Open
+                            <input type='radio' name='rainbowbridge' value='Vanilla' onclick="setRainbow(this)">Vanilla
+                            <input type='radio' name='rainbowbridge' value='Skulltulas' onclick="setRainbow(this)">Skulltulas <br>
+                            <input type='radio' name='rainbowbridge' value='Stones' onclick="setRainbow(this)">Spiritual Stones
+                            <input type='radio' name='rainbowbridge' value='Medallions' onclick="setRainbow(this)">Medallions
+                            <input type='radio' name='rainbowbridge' value='Dungeons' onclick="setRainbow(this)">Dungeons
+                        </center> 
+                        <hr>
+                        <legend>Castle Trials: 0 <input type="range" name='trialsize' value='0' max='6' min='0' onchange="setTrialSize(this)">
+                        <span id='trialsize'> 6 </span> </legend> 
+                        <legend>Ganon's Boss Key 
+                            <input type='radio' name='castlelogic' value='Removed' onclick="setCastle(this)">Removed </legend>
+                            <center><input type='radio' name='castlelogic' value='Vanilla' onclick="setCastle(this)">Vanilla
+                            <input type='radio' name='castlelogic' value='Castle' onclick="setCastle(this)">Ganons Castle
+                            <input type='radio' name='castlelogic' value='Anywhere' onclick="setCastle(this)">Anywhere<br>
+                            <input type='radio' name='castlelogic' value='LACSVan' onclick="setCastle(this)">LACS Vanilla
+                            <input type='radio' name='castlelogic' value='LACSStones' onclick="setCastle(this)">LACS Stones <br>
+                            <input type='radio' name='castlelogic' value='LACSMeds' onclick="setCastle(this)">LACS Medallions
+                            <input type='radio' name='castlelogic' value='LACSAD' onclick="setCastle(this)">LACS All Dungeons
+                        </center> </fieldset>
+                    <fieldset>
+                            <legend>Fortress Logic</legend>
+                                Gerudo Membership:
+                                    <input type='radio' name='gerudobridge' value='Default' checked='true' onclick="setFortressLogic(this)">Guard Fight 
+                                    <center><input type='radio' name='gerudobridge' value='Shuffle' onclick="setFortressLogic(this)">Shuffle Membership <br>
+                                    <input type='radio' name='gerudobridge' value='Start' onclick="setFortressLogic(this)">Start with Membership<br>
+                        </center>
+                                Carpenters: 
+                                    <input type='checkbox' name='Rescue1' checked='false' onchange="setCarpenter(this)">Rescue 1 Carpenter<br>                            
+                        </fieldset>
+                </div>
+                <div class="column">
                 <fieldset>
-                    <legend>Rainbow Bridge Logic</legend>
-                    <input type='radio' name='ganonlogic' value='Open' checked='true' onclick="setGanonLogic(this)">Open
-                    <input type='radio' name='ganonlogic' value='Vanilla' onclick="setGanonLogic(this)">Vanilla<br>
-                    <input type='radio' name='ganonlogic' value='Stones' onclick="setGanonLogic(this)">Stones<br>
-                    <input type='radio' name='ganonlogic' value='Medallions' onclick="setGanonLogic(this)">Medallions<br>
-                    <input type='radio' name='ganonlogic' value='Dungeons' onclick="setGanonLogic(this)">Dungeons<br>
-                    <input type='radio' name='ganonlogic' value='Tokens' onclick="setGanonLogic(this)">100 Gold Skulltula Tokens<br>
-                </fieldset>
-
-
-
-            <fieldset>
-                <legend> Custom Logic</legend>
-                <!--This should be where all the custom logic stuff goes -->
-                <input type="checkbox" name="chulogic" onchange="setChu(this)"> Bombchus in logic?<br>
-                <legend>Lens Logic</legend>
-                <input type="Radio" name="lens" value="All" checked='true' onchange="setLens(this)">Everywhere<br>
-                <input type="Radio" name="lens" value="Semi"  onchange="setLens(this)">Wasteland + Tresure Minigame<br>
-                <input type="Radio" name="lens" value="Low"  onchange="setLens(this)">Tresure Minigame Only<br>
-            </fieldset>
-            </fieldset>
-        </fieldset>
-
+                    <legend>Sanity</legend>
+                    <fieldset>
+                        <legend>Keys</legend>
+                        Small:
+                            <input type='radio' name='smallkeys' value='Remove' onclick="setSmallKeys(this)">Keysy
+                            <input type='radio' name='smallkeys' value='Dungeons' checked='true' onclick="setSmallKeys(this)">Dungeons
+                            <input type='radio' name='smallkeys' value='Keysanity' onclick="setSmallKeys(this)">KeySanity<br>
+                        Boss:
+                            <input type='radio' name='bosskeys' value='Remove' onclick="setBossKeys(this)">Keysy
+                            <input type='radio' name='bosskeys' value='Dungeons' checked='true' onclick="setBossKeys(this)">Dungeons 
+                            <input type='radio' name='bosskeys' value='Keysanity' onclick="setBossKeys(this)">KeySanity<br>
+                    </fieldset>
+                    <fieldset><legend>Skulltula</legend>
+                        <input type='radio' name='skulltula' value='Off' checked='true' onclick="setSkulltula(this)">Off
+                        <input type='radio' name='skulltula' value='Dungeons' onclick="setSkulltula(this)">Dungeons
+                        <input type='radio' name='skulltula' value='Overworld' onclick="setSkulltula(this)">Overworld
+                        <input type='radio' name='skulltula' value='All' onclick="setSkulltula(this)">All<br>
+                    </fieldset>
+                    <fieldset> <legend>Scrub Salesmen</legend>
+                        <center> Scrubsanity:  
+                        <input type='radio' name='scrubs' value='Off' checked='true' onclick="setScrub(this)">Off
+                        <input type='radio' name='scrubs' value='Scrubsanity' onclick="setScrub(this)">On
+                        </center> </fieldset>
+                    <fieldset> <legend>Getting Crazy</legend>
+                        Shop Size: 0 <input type="range" name='shopsize' value='4' max='4' min='0' onchange="setShopsize(this)">
+                        <span id='shopsize'> 4 </span><br>
+                        <input type='checkbox' name='Cowsanity' checked='false' onchange="setCows(this)">Shuffle Cow Milk
+                        <input type='checkbox' name='SongShuffle' checked='false' onchange="setSongs(this)">Songs Shuffle<br>
+                        <input type='checkbox' name='OcarinaShuffle' checked='false' onchange="setOcarina(this)">Shuffle Ocarina
+                        <input type='checkbox' name='WeirdEgg' checked='false' onchange="setEgg(this)">Shuffle Weird Egg <br>
+                        <input type='checkbox' name='BeanShuffle' checked='false' onchange="setBean(this)">Shuffle Bean Pack
+                        <input type='checkbox' name='Medigoron' checked='false' onchange="setMedigoron(this)">Medigoron Sale<br>            
+                        <input type='checkbox' name='BombchuLogic' checked='false' onchange="setBombchu(this)">Bombchu IN Logic
+                        <input type='checkbox' name='Aladdin' checked='false' onchange="setCarpet(this)">Magic Carpet Sale<br>            
+                    </fieldset>
+                    <fieldset> <legend>Losing Your Mind</legend>
+                        <legend>Starting Age</legend>
+                            <input type='radio' name='Age' value='Child' onclick="setAge(this)">Child
+                            <input type='radio' name='Age' value='Adult' onclick="setAge(this)">Adult
+                            <input type='checkbox' name='RndmStart' checked='false' onchange="setERTracker(this)">Random Start                        
+                        <hr>
+                        <legend>Entrance Randomizer</legend>
+                            <input type='radio' name='IndoorER' value='Simple' onclick="setIndoorER(this)">Simple Indoors
+                            <input type='radio' name='IndoorER' value='Full' onclick="setIndoorER(this)">All Indoors
+                            <input type='radio' name='IndoorER' value='Off' onclick="setIndoorER(this)">Off<br>
+                            <input type='checkbox' name='GrottoER' checked='false' onchange="setGrottoER(this)">Grotto Entrances
+                            <input type='checkbox' name='OWERmap' checked='false' onchange="setOWER(this)">Overworld ER<br>
+                            <input type='checkbox' name='DungeonER' checked='false' onchange="setDER(this)">Dungeon ER
+                            <input type='checkbox' name='Decouple' checked='false' onchange="setDecouple(this)">Mix ER Pools<br>
+                    </fieldset>    
+                    </fieldset>
+                    </fieldset>
+                </div>
+            </div>
+        </fieldset> 
         <table id='itemconfig' class='itemconfig' style='display:none'></table>
-
+        
         <script>
             init();
         </script>
-
-        <footer style='bottom:0; width:100%; text-align: center; position: relative; color:grey'>
-            Ocarina of Time Item Randomizer Tracker v1.2
-        </footer>
     </body>
 </html>
-
