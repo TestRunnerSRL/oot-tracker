@@ -444,12 +444,14 @@ function addItem(r) {
             itemGrid[r][i][0].onmouseover = new Function("setMOver(" + r + "," + i + ",0)")
             itemGrid[r][i][0].onmouseout = new Function("setMOff()")
             itemGrid[r][i][0].onclick = new Function("gridItemClick(" + r + "," + i + ",0)");
+            itemGrid[r][i][0].oncontextmenu = new Function("gridItemRClick(" + r + "," + i + ",0)");
             tdtr1.appendChild(itemGrid[r][i][0]);
             itemGrid[r][i][1] = document.createElement('th');
             itemGrid[r][i][1].className = 'corner';
             itemGrid[r][i][1].onmouseover = new Function("setMOver(" + r + "," + i + ",1)")
             itemGrid[r][i][1].onmouseout = new Function("setMOff()")
             itemGrid[r][i][1].onclick = new Function("gridItemClick(" + r + "," + i + ",1)");
+            itemGrid[r][i][1].oncontextmenu = new Function("gridItemRClick(" + r + "," + i + ",1)");
             tdtr1.appendChild(itemGrid[r][i][1]);
         var tdtr2 = document.createElement('tr');
             tdt.appendChild(tdtr2);
@@ -458,12 +460,14 @@ function addItem(r) {
             itemGrid[r][i][2].onmouseover = new Function("setMOver(" + r + "," + i + ",2)")
             itemGrid[r][i][2].onmouseout = new Function("setMOff()")
             itemGrid[r][i][2].onclick = new Function("gridItemClick(" + r + "," + i + ",2)");
+            itemGrid[r][i][2].oncontextmenu = new Function("gridItemRClick(" + r + "," + i + ",2)");
             tdtr2.appendChild(itemGrid[r][i][2]);
             itemGrid[r][i][3] = document.createElement('th');
             itemGrid[r][i][3].className = 'corner';
             itemGrid[r][i][3].onmouseover = new Function("setMOver(" + r + "," + i + ",3)")
             itemGrid[r][i][3].onmouseout = new Function("setMOff()")
             itemGrid[r][i][3].onclick = new Function("gridItemClick(" + r + "," + i + ",3)");
+            itemGrid[r][i][3].oncontextmenu = new Function("gridItemRClick(" + r + "," + i + ",3)");
             tdtr2.appendChild(itemGrid[r][i][3]);
 
     updateGridItem(r, i);
@@ -643,6 +647,9 @@ function gridItemClick(row, col, corner) {
 
 
 function gridItemRClick(row, col, corner) {
+    
+    window.event.preventDefault(); //prevents popup
+    
     if (editmode) {
  //Do Nothing
     } else {
